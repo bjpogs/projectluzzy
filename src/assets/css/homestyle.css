@@ -1,0 +1,9 @@
+#infocakes .cakebox{
+    width : 50vh;
+    height : 50vh;
+    
+}
+#mainbanner{
+    background-image : url('../img/luzzy1.jpg');
+    color : rgba(9, 162, 255, 0.85);
+}

@@ -1,0 +1,11 @@
+.menu-container{
+    background-color: rgba(9, 162, 255, 0.85);
+    height : 30vh;
+    width : 100%;
+}
+.menu-container .item-category{
+    width : 20vh;
+    height : 25vh;
+    background-color : black;
+    margin-left : 10px;
+}
