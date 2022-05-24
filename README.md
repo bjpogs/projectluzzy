@@ -1,6 +1,6 @@
 # Konnichiwa!
 
-This is me Kaguya to serve you >.<
+This is me Kaguya to serve you UwU
 
 ## Available Scripts
 
@@ -8,7 +8,7 @@ In the project directory, you can run:
 
 ### `yarn install`
 
-to install all packages to run the project >w<
+to install all packages to run the project // >.< //
 
 ### `yarn start`
 
