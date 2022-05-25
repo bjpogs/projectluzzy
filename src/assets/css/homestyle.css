@@ -7,3 +7,10 @@
     background-image : url('../img/luzzy1.jpg');
     color : rgba(9, 162, 255, 0.85);
 }
+
+@media only screen and (max-width: 900px){
+    #infocakes .cakebox{
+        width : 20vh;
+        height : 20vh;
+    }
+}

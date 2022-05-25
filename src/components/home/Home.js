@@ -31,15 +31,31 @@ const Home = () => {
                         </div><button class="btn btn-outline-primary btn-lg" type="button">Shop Now</button>
                     </div>
                 </div><span>&nbsp;</span>
-                <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <h3>Birthday Cakes</h3>
-                        <div class="getting-started-info">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        </div><button class="btn btn-outline-primary btn-lg" type="button">Shop Now</button>
-                    </div>
+                { /* bday cake at tablet - pc screen */}
+                <div class="d-none d-md-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <h3>Birthday Cakes</h3>
+                            <div class="getting-started-info">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                            </div><button class="btn btn-outline-primary btn-lg" type="button">Shop Now</button>
+                        </div>
+                        <div class="col-md-6"><center><img class="img-thumbnail cakebox" src={bdaycake}/></center></div>
+                    </div><span>&nbsp;</span>
+                </div>
+                { /* bday cake at mobile screen */ }
+                <div class="d-block d-md-none">
+                    <div class="row align-items-center">
                     <div class="col-md-6"><center><img class="img-thumbnail cakebox" src={bdaycake}/></center></div>
-                </div><span>&nbsp;</span>
+                        <div class="col-md-6">
+                            <h3>Birthday Cakes</h3>
+                            <div class="getting-started-info">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                            </div><button class="btn btn-outline-primary btn-lg" type="button">Shop Now</button>
+                        </div>
+                    </div><span>&nbsp;</span>
+                </div>
+                { /* end of bday cake */ }
                 <div class="row align-items-center">
                     <div class="col-md-6"><center><img class="img-thumbnail cakebox" src={gendercake}/></center></div>
                     <div class="col-md-6">
