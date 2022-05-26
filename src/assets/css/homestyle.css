@@ -8,6 +8,12 @@
     color : rgba(9, 162, 255, 0.85);
 }
 
+#infocakes .cakebox-center{
+    width : 50vh;
+    height : 50vh;
+    justify-content: flex-end;
+}
+
 @media only screen and (max-width: 900px){
     #infocakes .cakebox{
         width : 20vh;

@@ -54,7 +54,7 @@ const Home = () => {
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                             </div><button class="btn btn-outline-primary btn-lg" type="button">Shop Now</button>
                         </div>
-                        <div class="col-md-6"><img class="img-thumbnail cakebox justify-content-end" src={bdaycake}/></div>
+                        <div class="col-md-6"><img class="img-thumbnail cakebox-center" src={bdaycake}/></div>
                     </div><span>&nbsp;</span>
                 </div>
                 { /* bday cake at mobile screen */ }
