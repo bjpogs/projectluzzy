@@ -60,7 +60,7 @@ const Home = () => {
                 { /* bday cake at mobile screen */ }
                 <div class="d-block d-md-none">
                     <div class="row align-items-center">
-                    <div class="col-md-6"><center><img class="img-thumbnail cakebox" src={bdaycake}/></center></div>
+                    <div class="col-md-6"><img class="img-thumbnail cakebox" src={bdaycake}/></div>
                         <div class="col-md-6">
                             <h3>Birthday Cakes</h3>
                             <div class="getting-started-info">
@@ -71,7 +71,7 @@ const Home = () => {
                 </div>
                 { /* end of bday cake */ }
                 <div class="row align-items-center">
-                    <div class="col-md-6"><center><img class="img-thumbnail cakebox" src={gendercake}/></center></div>
+                    <div class="col-md-6"><img class="img-thumbnail cakebox" src={gendercake}/></div>
                     <div class="col-md-6">
                         <h3>Gender Reveal Cakes</h3>
                         <div class="getting-started-info">
