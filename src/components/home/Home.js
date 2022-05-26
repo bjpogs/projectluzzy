@@ -3,8 +3,22 @@ import React, {useState, useEffect} from 'react'
 import gradcake from '../../assets/img/gradcake.jpg'
 import bdaycake from '../../assets/img/hbd.jpeg'
 import gendercake from '../../assets/img/gender.jpeg'
-import Navbar from '../templates/Navbar'
 
+// navbar and footer template
+import Navbar from '../templates/Navbar'
+import Footer from '../templates/Footer'
+
+/* -------------------- NOTES ----------------------------
+
+    cake image size between 425px to 768 for tablet portrait view
+    gallery nalang ung sa about? or + gallery -.?
+    add natin mga buttons mamaya okiraa?
+
+
+
+
+   -------------------------------------------------------
+*/
 const Home = () => {
  return(
     <>
@@ -23,7 +37,7 @@ const Home = () => {
                     <p>Our classic treats are made daily by in-house bakers, using the freshest &amp; finest ingredients. Come visit us for delicious, sentimental sweets and a friendly, old-fashioned neighborhood experience.<br/></p>
                 </div>
                 <div class="row align-items-center">
-                    <div class="col-md-6 align-items-center"><center><img class="img-thumbnail cakebox" src={gradcake}/></center></div>
+                    <div class="col-md-6 align-items-center"><img class="img-thumbnail cakebox" src={gradcake}/></div>
                     <div class="col-md-6">
                         <h3>Graduation Day Cakes</h3>
                         <div class="getting-started-info">
@@ -40,7 +54,7 @@ const Home = () => {
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                             </div><button class="btn btn-outline-primary btn-lg" type="button">Shop Now</button>
                         </div>
-                        <div class="col-md-6"><center><img class="img-thumbnail cakebox" src={bdaycake}/></center></div>
+                        <div class="col-md-6"><img class="img-thumbnail cakebox justify-content-end" src={bdaycake}/></div>
                     </div><span>&nbsp;</span>
                 </div>
                 { /* bday cake at mobile screen */ }
@@ -94,6 +108,7 @@ const Home = () => {
             </div>
         </section>
     </main>
+    <Footer/>
     </>
     )
 }
