@@ -37,7 +37,7 @@ const Home = () => {
                     <p>Our classic treats are made daily by in-house bakers, using the freshest &amp; finest ingredients. Come visit us for delicious, sentimental sweets and a friendly, old-fashioned neighborhood experience.<br/></p>
                 </div>
                 <div class="row align-items-center">
-                    <div class="col-md-6 align-items-center"><img class="img-thumbnail cakebox" src={gradcake}/></div>
+                    <div class="col-md-6 align-items-center"><center><img class="img-thumbnail cakebox" src={gradcake}/></center></div>
                     <div class="col-md-6">
                         <h3>Graduation Day Cakes</h3>
                         <div class="getting-started-info">
@@ -54,7 +54,7 @@ const Home = () => {
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                             </div><button class="btn btn-outline-primary btn-lg" type="button">Shop Now</button>
                         </div>
-                        <div class="col-md-6"><img class="img-thumbnail cakebox-center" src={bdaycake}/></div>
+                        <div class="col-md-6"><center><img class="img-thumbnail cakebox-center" src={bdaycake}/></center></div>
                     </div><span>&nbsp;</span>
                 </div>
                 { /* bday cake at mobile screen */ }
@@ -71,7 +71,7 @@ const Home = () => {
                 </div>
                 { /* end of bday cake */ }
                 <div class="row align-items-center">
-                    <div class="col-md-6"><img class="img-thumbnail cakebox" src={gendercake}/></div>
+                    <div class="col-md-6"><center><img class="img-thumbnail cakebox" src={gendercake}/></center></div>
                     <div class="col-md-6">
                         <h3>Gender Reveal Cakes</h3>
                         <div class="getting-started-info">
