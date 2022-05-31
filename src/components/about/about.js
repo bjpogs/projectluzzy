@@ -13,7 +13,7 @@ const About = () => {
             <div class="container">
                 <div class="block-heading">
                     <h2 class="text-info">About Us</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc quam urna, dignissim nec auctor in, mattis vitae leo.</p>
+                    <p>Our classic treats are made daily by in-house bakers, using the freshest & finest ingredients. Come visit us for delicious, sentimental sweets and a friendly, old-fashioned neighborhood experience.</p>
                 </div>
                 <p>Gallery to dapat! then dapat may sample pictures tayo na bida si luzzycakes sa mga party or events. bida dapat yung cake ni luzzy &gt;.&lt; </p>
                 <div class="row justify-content-center">
