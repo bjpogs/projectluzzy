@@ -9,3 +9,9 @@
     background-color : black;
     margin-left : 10px;
 }
+
+.track-container{
+    background-color: green;
+    height: 40vh;
+    width : 100%;
+}

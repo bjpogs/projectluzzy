@@ -89,38 +89,6 @@ const ProductInfo = () => {
                                         </div>
                                     </Tab>
                                 </Tabs>
-
-                                {/*
-                                <ul class="nav nav-tabs" role="tablist" id="myTab">
-                                    <li class="nav-item" role="presentation"><a class="nav-link active" role="tab" data-bs-toggle="tab" id="specifications-tabs" href="#specifications">Specifications</a></li>
-                                    <li class="nav-item" role="presentation"><a class="nav-link" role="tab" data-bs-toggle="tab" id="reviews-tab" href="#reviews">Reviews</a></li>
-                                </ul>
-                                    */}
-                                <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade specifications active" role="tabpanel" id="specifications">
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered">
-                                                <tbody>
-                                                    <tr>
-                                                        <td class="stat">Category</td>
-                                                        <td>Mini Cake</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="stat">Size</td>
-                                                        <td>4' 2''</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="stat">Stock</td>
-                                                        <td>made to order</td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane fade show" role="tabpanel" id="reviews">
-                                        
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

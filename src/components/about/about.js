@@ -9,7 +9,7 @@ const About = () => {
     return(
         <>
         <Navbar/>
-        <section class="clean-block about-us mt-5">
+        <section class="clean-block about-us mt-2 dark">
             <div class="container">
                 <div class="block-heading">
                     <h2 class="text-info">About Us</h2>

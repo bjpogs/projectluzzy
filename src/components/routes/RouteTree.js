@@ -12,6 +12,7 @@ import Shop from '../shop/Shop'
 import ProductInfo from '../product-info/ProductInfo'
 import Cart from '../cart/Cart'
 import Reservation from '../reservation/Reservation'
+import TrackOrder from '../trackorder/Trackorder'
 
 // not found page 
 import Notfound from '../templates/Notfound'
@@ -29,6 +30,7 @@ function RouteTree() {
                 <Route exact path="/Product-Info" component={ProductInfo}/>
                 <Route exact path="/Cart" component={Cart}/>
                 <Route exact path="/Reservation" component={Reservation}/>
+                <Route exact path="/Track" component={TrackOrder}/>
                 { /*<ProtectedRoute exact path="/masterlist" component={masterlist}/> */ }
 
                 <Route component={Notfound} /> 
