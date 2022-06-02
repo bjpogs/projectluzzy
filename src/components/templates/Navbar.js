@@ -16,7 +16,7 @@ const Navbars = () => {
                         <Nav.Link href="/shop">Shop</Nav.Link>
                         <Nav.Link href="/about">About</Nav.Link>
                         <Nav.Link href="/reservation">Reservation</Nav.Link>
-                        <Nav.Link href="/track">Track My Order</Nav.Link>
+                        <Nav.Link href="/login">Login</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
                 

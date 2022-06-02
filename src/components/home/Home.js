@@ -12,8 +12,9 @@ import Footer from '../templates/Footer'
 
     cake image size between 425px to 768 for tablet portrait view
     gallery nalang ung sa about? or + gallery -.?
-    add natin mga buttons mamaya okiraa?
 
+    dagdagan natin testimonials
+    pwede din in house delivery? hmm sige 
 
 
 
@@ -33,23 +34,24 @@ const Home = () => {
         <section class="clean-block clean-info dark">
             <div class="container" id="infocakes">
                 <div class="block-heading">
-                    <h2 class="text-info">About Luzzy's Supreme Sweets</h2>
-                    <p>Our classic treats are made daily by in-house bakers, using the freshest &amp; finest ingredients. Come visit us for delicious, sentimental sweets and a friendly, old-fashioned neighborhood experience.<br/></p>
+                    <h2 class="text-info">Our cakes are made with love and care</h2>
+                    <p>We at Luzzy's Supreme Sweets ensure that our product is fresh and clean for the sake of our lovable costumer's health and satisfaction.<br/></p>
                 </div>
                 <div class="row align-items-center">
                     <div class="col-md-6 align-items-center"><center><img class="img-thumbnail cakebox" src={gradcake}/></center></div>
                     <div class="col-md-6">
-                        <h3>Graduation Day Cakes</h3>
+                        <h3>Mini Cakes</h3>
                         <div class="getting-started-info">
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                         </div><button class="btn btn-outline-primary btn-lg" type="button">Shop Now</button>
                     </div>
                 </div><span>&nbsp;</span>
+
                 { /* bday cake at tablet - pc screen */}
                 <div class="d-none d-md-block">
                     <div class="row align-items-center">
                         <div class="col-md-6">
-                            <h3>Birthday Cakes</h3>
+                            <h3>Regular Cakes</h3>
                             <div class="getting-started-info">
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                             </div><button class="btn btn-outline-primary btn-lg" type="button">Shop Now</button>
@@ -62,7 +64,7 @@ const Home = () => {
                     <div class="row align-items-center">
                     <div class="col-md-6"><img class="img-thumbnail cakebox" src={bdaycake}/></div>
                         <div class="col-md-6">
-                            <h3>Birthday Cakes</h3>
+                            <h3>Regular Cakes</h3>
                             <div class="getting-started-info">
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                             </div><button class="btn btn-outline-primary btn-lg" type="button">Shop Now</button>
@@ -70,10 +72,11 @@ const Home = () => {
                     </div><span>&nbsp;</span>
                 </div>
                 { /* end of bday cake */ }
+
                 <div class="row align-items-center">
                     <div class="col-md-6"><center><img class="img-thumbnail cakebox" src={gendercake}/></center></div>
                     <div class="col-md-6">
-                        <h3>Gender Reveal Cakes</h3>
+                        <h3>Two-Tier Cakes</h3>
                         <div class="getting-started-info">
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                         </div><button class="btn btn-outline-primary btn-lg" type="button">Shop Now</button>
