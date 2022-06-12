@@ -1,13 +1,58 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 
 // navbar and footer template
 import Navbar from '../templates/Navbar'
 import Footer from '../templates/Footer'
 import cake from '../../assets/img/gradcake.jpg'
 import star from '../../assets/img/star.svg'
+import axios from '../../api/api'
 
 
 const Shop = () => {
+    const [data, setData] = useState([])
+    const [image, setImage] = useState()
+    useEffect(() => {
+        axios.get('getallproducts')
+        .then((res) => {
+            setData(res.data);
+            console.log(res.data);
+        })
+        .catch((err) => {
+            console.log('error : ', err);
+        })
+    },[])
+
+    const getimage = (imahe) => {
+        axios.get(`productimage/${imahe}`)
+        .then((res) => {
+            setImage(res.data)
+        })
+        .catch((err) => {
+            console.log('error : ', err);
+        })
+    }
+
+    const generateItem = () => {
+        return (
+            data.map(meow => {
+                return (
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <div class="clean-product-item">
+                            <div class="image"><a onClick={() => {window.location.href = "/Product-info?product_id=" + meow.product_id}}><img class="shopimage d-block mx-auto" src={meow.product_image}/></a></div>
+                            <div class="product-name"><a href="/Product-Info">{meow.product_name}</a></div>
+                            <div class="about">
+                                <div class="rating"></div>
+                                <div class="price">
+                                    <h3><strong>₱</strong>{meow.product_price}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )
+            })
+        )
+    }
+
     return(
         <>
         <Navbar/>
@@ -56,114 +101,9 @@ const Shop = () => {
                             <div class="col-md-9">
                                 <div class="products">
                                     <div class="row g-0">
-                                        <div class="col-12 col-md-6 col-lg-4">
-                                            <div class="clean-product-item">
-                                                <div class="image"><a href="/Product-Info"><img class="img-fluid d-block mx-auto" src={cake}/></a></div>
-                                                <div class="product-name"><a href="/Product-Info">Graduation Cake</a></div>
-                                                <div class="about">
-                                                    <div class="rating"><img src={star}/><img src={star}/><img src={star}/><img src={star}/><img src={star}/></div>
-                                                    <div class="price">
-                                                        <h3><strong>₱</strong>100</h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md-6 col-lg-4">
-                                            <div class="clean-product-item">
-                                                <div class="image"><a href="/Product-Info"><img class="img-fluid d-block mx-auto" src={cake}/></a></div>
-                                                <div class="product-name"><a href="/Product-Info">Graduation Cake</a></div>
-                                                <div class="about">
-                                                    <div class="rating"><img src={star}/><img src={star}/><img src={star}/><img src={star}/><img src={star}/></div>
-                                                    <div class="price">
-                                                        <h3><strong>₱</strong>100</h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md-6 col-lg-4">
-                                            <div class="clean-product-item">
-                                                <div class="image"><a href="/Product-Info"><img class="img-fluid d-block mx-auto" src={cake}/></a></div>
-                                                <div class="product-name"><a href="/Product-Info">Graduation Cake</a></div>
-                                                <div class="about">
-                                                    <div class="rating"><img src={star}/><img src={star}/><img src={star}/><img src={star}/><img src={star}/></div>
-                                                    <div class="price">
-                                                        <h3><strong>₱</strong>100</h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md-6 col-lg-4">
-                                            <div class="clean-product-item">
-                                                <div class="image"><a href="/Product-Info"><img class="img-fluid d-block mx-auto" src={cake}/></a></div>
-                                                <div class="product-name"><a href="/Product-Info">Graduation Cake</a></div>
-                                                <div class="about">
-                                                    <div class="rating"><img src={star}/><img src={star}/><img src={star}/><img src={star}/><img src={star}/></div>
-                                                    <div class="price">
-                                                        <h3><strong>₱</strong>100</h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md-6 col-lg-4">
-                                            <div class="clean-product-item">
-                                                <div class="image"><a href="/Product-Info"><img class="img-fluid d-block mx-auto" src={cake}/></a></div>
-                                                <div class="product-name"><a href="/Product-Info">Graduation Cake</a></div>
-                                                <div class="about">
-                                                    <div class="rating"><img src={star}/><img src={star}/><img src={star}/><img src={star}/><img src={star}/></div>
-                                                    <div class="price">
-                                                        <h3><strong>₱</strong>100</h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md-6 col-lg-4">
-                                            <div class="clean-product-item">
-                                                <div class="image"><a href="/Product-Info"><img class="img-fluid d-block mx-auto" src={cake}/></a></div>
-                                                <div class="product-name"><a href="/Product-Info">Graduation Cake</a></div>
-                                                <div class="about">
-                                                    <div class="rating"><img src={star}/><img src={star}/><img src={star}/><img src={star}/><img src={star}/></div>
-                                                    <div class="price">
-                                                        <h3><strong>₱</strong>100</h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md-6 col-lg-4">
-                                            <div class="clean-product-item">
-                                                <div class="image"><a href="/Product-Info"><img class="img-fluid d-block mx-auto" src={cake}/></a></div>
-                                                <div class="product-name"><a href="/Product-Info">Graduation Cake</a></div>
-                                                <div class="about">
-                                                    <div class="rating"><img src={star}/><img src={star}/><img src={star}/><img src={star}/><img src={star}/></div>
-                                                    <div class="price">
-                                                        <h3><strong>₱</strong>100</h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md-6 col-lg-4">
-                                            <div class="clean-product-item">
-                                                <div class="image"><a href="/Product-Info"><img class="img-fluid d-block mx-auto" src={cake}/></a></div>
-                                                <div class="product-name"><a href="/Product-Info">Graduation Cake</a></div>
-                                                <div class="about">
-                                                    <div class="rating"><img src={star}/><img src={star}/><img src={star}/><img src={star}/><img src={star}/></div>
-                                                    <div class="price">
-                                                        <h3><strong>₱</strong>100</h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-12 col-md-6 col-lg-4">
-                                            <div class="clean-product-item">
-                                                <div class="image"><a href="/Product-Info"><img class="img-fluid d-block mx-auto" src={cake}/></a></div>
-                                                <div class="product-name"><a href="/Product-Info">Graduation Cake</a></div>
-                                                <div class="about">
-                                                    <div class="rating"><img src={star}/><img src={star}/><img src={star}/><img src={star}/><img src={star}/></div>
-                                                    <div class="price">
-                                                        <h3><strong>₱</strong>100</h3>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        { /* items */ }
+                                        
+                                        {generateItem()}
                                     </div>
                                     <nav>
                                         <ul class="pagination">

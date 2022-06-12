@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {Tabs, Tab} from 'react-bootstrap'
 
 // navbar and footer template
@@ -7,8 +7,33 @@ import Footer from '../templates/Footer'
 import cake from '../../assets/img/gradcake.jpg'
 import star from '../../assets/img/star.svg'
 
+import axios from '../../api/api'
+import api from '../../api/api'
+
 
 const ProductInfo = () => {
+    const queryParams = new URLSearchParams(window.location.search);
+    const [data, setData] = useState({
+        product_name : '',
+        product_price : '',
+        product_description : '',
+        product_image : '',
+        product_category : '',
+        product_qty : '',
+    })
+    useEffect(() => {
+        const id = queryParams.get('product_id')
+        console.log(id)
+        api.get(`getproductbyid/${id}`)
+        .then((res) => {
+            setData(res.data[0]);
+            console.log(res.data)
+        })
+        .catch((err) => {
+            console.log(err);
+            window.location.href = "/"
+        })
+    },[0])
     return (
         <>
         <Navbar/>
@@ -23,19 +48,18 @@ const ProductInfo = () => {
                                     <div class="gallery">
                                         <div id="product-preview" class="vanilla-zoom">
                                             <div class="zoomed-image"></div>
-                                            <div class="sidebar"><img class="img-fluid d-block small-preview" src={cake}/></div>
+                                            <div class="sidebar"><img class="productimage d-block small-preview" src={data.product_image}/></div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="info">
-                                        <h3>Graduation Cake</h3>
-                                        <div class="rating"><img src={star}/><img src={star}/><img src={star}/><img src={star}/><img src={star}/></div>
+                                        <h3>{data.product_name}</h3>
                                         <div class="price">
-                                            <h3>₱300.00</h3>
+                                            <h3>₱{data.product_price}</h3>
                                         </div><button class="btn btn-primary" type="button" onClick={() => {window.location.href="/cart"}}><i class="icon-basket"></i>Add to Cart</button>
                                         <div class="summary">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec augue nunc, pretium at augue at, convallis pellentesque ipsum. Vestibulum diam risus, sagittis at fringilla at, pulvinar vel risus. Vestibulum dignissim eu nulla eu imperdiet. Morbi mollis tellus a nunc vestibulum consequat. Quisque tristique elit et nibh dapibus sodales. Nam sollicitudin a urna sed iaculis.</p>
+                                            <p>{data.product_description}</p>
                                         </div>
                                     </div>
                                 </div>
