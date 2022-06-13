@@ -59,6 +59,8 @@ const Shop = () => {
         <main class="page catalog-page">
             <section class="clean-block clean-catalog dark">
                 <div class="container">
+                    <div class="block-heading">
+                    </div>
                     <div class="content">
                         <div class="row">
                             <div class="col-md-3">

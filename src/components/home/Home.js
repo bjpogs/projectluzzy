@@ -38,7 +38,7 @@ const Home = () => {
                     <p>We at Luzzy's Supreme Sweets ensure that our product is fresh and clean for the sake of our lovable costumer's health and satisfaction.<br/></p>
                 </div>
                 <div class="row align-items-center">
-                    <div class="col-md-6 align-items-center"><center><img class="img-thumbnail cakebox" src={gradcake}/></center></div>
+                    <div class="col-md-6 align-items-center"><img class="img-thumbnail cakebox" src={gradcake}/></div>
                     <div class="col-md-6">
                         <h3>Mini Cakes</h3>
                         <div class="getting-started-info">
@@ -74,7 +74,7 @@ const Home = () => {
                 { /* end of bday cake */ }
 
                 <div class="row align-items-center">
-                    <div class="col-md-6"><center><img class="img-thumbnail cakebox" src={gendercake}/></center></div>
+                    <div class="col-md-6"><img class="img-thumbnail cakebox" src={gendercake}/></div>
                     <div class="col-md-6">
                         <h3>Two-Tier Cakes</h3>
                         <div class="getting-started-info">

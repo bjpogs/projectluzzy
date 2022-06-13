@@ -18,6 +18,7 @@ const Login = () => {
             console.log(res.data);
             localStorage.setItem('fname', res.data.fname)
             localStorage.setItem('accessToken', res.data.accessToken)
+            localStorage.setItem('isAuthenticated', true)
             window.location.href = '/'
         })
         .catch((err) => {

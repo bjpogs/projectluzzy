@@ -30,7 +30,7 @@ body{
     margin-top: 10%;
     margin-bottom: 5%;
     width : 50vh;
-    height: 50vh;
+    height: flex;
     padding: 5%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
@@ -52,4 +52,17 @@ body{
     object-fit: cover;
     width: 220px;
     height: 220px;
+}
+.reservationcard{
+    position: flex;
+    margin-bottom: 5%;
+    width : auto;
+    height: flex;
+    padding: 5%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    background-color: white;
+    border-radius: 5px; /* 5px rounded corners */
+    margin-left: auto;
+    margin-right: auto;
 }
