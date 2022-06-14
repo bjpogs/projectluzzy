@@ -15,7 +15,7 @@ const api = axios.create({
 
 
 api.interceptors.request.use(function (config) {
-    const toktok = localStorage.getItem('token');
+    const toktok = localStorage.getItem('accessToken');
     config.headers.Authorization = 'Bearer ' + toktok
     return config
 })
@@ -53,7 +53,7 @@ api.interceptors.response.use(
                         }
                         else{
                             // meron nang new access token.
-                            localStorage.setItem('token', meow.data.accessToken)
+                            localStorage.setItem('accessToken', meow.data.accessToken)
                             return api(origconfig);
                         }
                     }
@@ -64,6 +64,7 @@ api.interceptors.response.use(
                 }
                 else if (err.response.status === 401){
                     alert('Please log in again.')
+                    localStorage.clear()
                     window.location.href = '/'
                 }
             }

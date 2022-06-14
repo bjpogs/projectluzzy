@@ -29,6 +29,16 @@ const Myaccount = () => {
 
     const updateInfo = (e) => {
         e.preventDefault();
+        const data = {
+            first_name : document.getElementById('first_name').value,
+            last_name : document.getElementById('last_name').value,
+            add_house : document.getElementById('add_house').value,
+            add_brgy : document.getElementById('add_brgy').value,
+            add_city : document.getElementById('add_city').value,
+            add_province : document.getElementById('add_province').value,
+            contact_no : document.getElementById('contact_no').value,
+            email_address : document.getElementById('email_address').value
+        }
         const form = new FormData()
         form.append('first_name', document.getElementById('first_name').value)
         form.append('last_name', document.getElementById('last_name').value)
@@ -41,13 +51,16 @@ const Myaccount = () => {
         for (const value of form.values()){
             console.log(value);
         }
-        axios.put('saveuserinfo', form)
+        axios.post('updateuserinfo', data)
         .then((res) => {
             console.log(res.data);
             alert('information updated successfully!')
         })
         .catch((err) =>{
             console.log(err);
+        })
+        .finally(() => {
+            console.log('??');
         })
     }
     return(
