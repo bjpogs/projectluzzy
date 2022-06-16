@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 
-import gradcake from '../../assets/img/gradcake.jpg'
-import bdaycake from '../../assets/img/hbd.jpeg'
+import bentocake from '../../assets/img/bento.jpg'
+import weddingcake from '../../assets/img/wedding.jpg'
 import gendercake from '../../assets/img/gender.jpeg'
 
 // navbar and footer template
@@ -10,8 +10,6 @@ import Footer from '../templates/Footer'
 
 /* -------------------- NOTES ----------------------------
 
-    to remove : reviews
-    to fix : product category
     need : checkout
 
 
@@ -41,7 +39,7 @@ const Home = () => {
         <section class="moneycake">
             <div class="container" id="infocakes">
             <div class="row align-items-center">
-                    <div class="col-md-6 align-items-center"><img class="img-thumbnail cakebox" src={gradcake}/></div>
+                    <div class="col-md-6 align-items-center"><img class="img-thumbnail cakebox" src={bentocake}/></div>
                     <div class="col-md-6">
                         <h3>Bento Cake</h3>
                         <div class="getting-started-info">
@@ -53,7 +51,7 @@ const Home = () => {
         </section>
         <section class="gendercake">
             <div class="container" id="infocakes">
-            { /* bday cake at tablet - pc screen */}
+            { /* gender cake at tablet - pc screen */}
                 <div class="d-none d-md-block">
                     <div class="row align-items-center">
                         <div class="col-md-6">
@@ -62,13 +60,13 @@ const Home = () => {
                                 <p>Surprise your partner about the gender of your baby with our gender reveal themed cakes.</p>
                             </div><button class="btn btn-outline-primary btn-lg" type="button" onClick={() => window.location.href="/shop?product_category=GENDER"}>Shop Now</button>
                         </div>
-                        <div class="col-md-6"><center><img class="img-thumbnail cakebox-center" src={bdaycake}/></center></div>
+                        <div class="col-md-6"><center><img class="img-thumbnail cakebox-center" src={gendercake}/></center></div>
                     </div>
                 </div>
-                { /* bday cake at mobile screen */ }
+                { /* gender cake at mobile screen */ }
                 <div class="d-block d-md-none">
                     <div class="row align-items-center">
-                    <div class="col-md-6"><img class="img-thumbnail cakebox" src={bdaycake}/></div>
+                    <div class="col-md-6"><img class="img-thumbnail cakebox" src={gendercake}/></div>
                         <div class="col-md-6">
                             <h3>Gender Reveal Cake</h3>
                             <div class="getting-started-info">
@@ -83,7 +81,7 @@ const Home = () => {
         <section class="weddingcake">
             <div class="container" id="infocakes">
                 <div class="row align-items-center">
-                    <div class="col-md-6"><img class="img-thumbnail cakebox" src={gendercake}/></div>
+                    <div class="col-md-6"><img class="img-thumbnail cakebox" src={weddingcake}/></div>
                     <div class="col-md-6">
                         <h3>Wedding Cake</h3>
                         <div class="getting-started-info">
