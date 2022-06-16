@@ -39,18 +39,7 @@ const Myaccount = () => {
             contact_no : document.getElementById('contact_no').value,
             email_address : document.getElementById('email_address').value
         }
-        const form = new FormData()
-        form.append('first_name', document.getElementById('first_name').value)
-        form.append('last_name', document.getElementById('last_name').value)
-        form.append('add_house', document.getElementById('add_house').value)
-        form.append('add_brgy', document.getElementById('add_brgy').value)
-        form.append('add_city', document.getElementById('add_city').value)
-        form.append('add_province', document.getElementById('add_province').value)
-        form.append('contact_no', document.getElementById('contact_no').value)
-        form.append('email_address', document.getElementById('email_address').value)
-        for (const value of form.values()){
-            console.log(value);
-        }
+        
         axios.post('updateuserinfo', data)
         .then((res) => {
             console.log(res.data);

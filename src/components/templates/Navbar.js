@@ -30,13 +30,14 @@ const Navbars = () => {
                     <Nav>
                         <Nav.Link href="/">Home</Nav.Link>
                         <Nav.Link href="/shop">Shop</Nav.Link>
-                        <Nav.Link href="/about">About</Nav.Link>
                         <Nav.Link href="/reservation">Reservation</Nav.Link>
+                        <Nav.Link href="/about">About</Nav.Link>
                         { !localStorage.getItem('fname') ? 
                         <Nav.Link href="/login">Login</Nav.Link> 
                         : 
                         <NavDropdown title={localStorage.getItem('fname')} id="nav-dropdown">
                         <NavDropdown.Item href='/myaccount'>My Account</NavDropdown.Item>
+                        <NavDropdown.Item href='/cart'>My Cart</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
                     </NavDropdown>

@@ -15,3 +15,21 @@
     height: 40vh;
     width : 100%;
 }
+
+.moneycake{
+    background-color: rgba(9, 255, 234, 0.85);
+    height : auto;
+    padding: 25px 5px 25px 5px
+}
+
+.gendercake{
+    height : auto;
+    padding: 25px 5px 25px 5px
+}
+
+.weddingcake{
+    
+    background-color: #ff475b;
+    height : auto;
+    padding: 25px 5px 25px 5px
+}

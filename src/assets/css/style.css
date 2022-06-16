@@ -65,3 +65,19 @@
         padding: 60px;
     }
 }
+
+/* shop container */
+.shopcontainer{
+    position: flex;
+    margin-bottom: 5%;
+    width : auto;
+    height: flex;
+    min-height: 50vh;
+    padding: 5%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    background-color: white;
+    border-radius: 5px; /* 5px rounded corners */
+    margin-left: auto;
+    margin-right: auto;
+}

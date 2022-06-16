@@ -34,6 +34,21 @@ const ProductInfo = () => {
             window.location.href = "/"
         })
     },[0])
+
+    // add to cart
+
+    const addtocart = (e) => {
+        console.log('here');
+        const id = queryParams.get('product_id')
+        api.post('addtocart',{ product_id : id})
+        .then((res) => {
+            console.log(res);
+        }) 
+        .catch((err) => {
+            console.log('error!');
+        })
+    }
+
     return (
         <>
         <Navbar/>
@@ -48,7 +63,7 @@ const ProductInfo = () => {
                                     <div class="gallery">
                                         <div id="product-preview" class="vanilla-zoom">
                                             <div class="zoomed-image"></div>
-                                            <div class="sidebar"><img class="productimage d-block small-preview" src={data.product_image}/></div>
+                                            <div class="sidebar"><img class="img-fluid d-block small-preview" src={data.product_image}/></div>
                                         </div>
                                     </div>
                                 </div>
@@ -57,7 +72,13 @@ const ProductInfo = () => {
                                         <h3>{data.product_name}</h3>
                                         <div class="price">
                                             <h3>₱{data.product_price}</h3>
-                                        </div><button class="btn btn-primary" type="button" onClick={() => {window.location.href="/cart"}}><i class="icon-basket"></i>Add to Cart</button>
+                                        </div>
+                                        {
+                                            data.product_qty <= 0 ? 
+                                            <button class="btn btn-primary" type="button" disabled><i class="icon-basket"></i>Out of Stock</button>
+                                            :
+                                            <button class="btn btn-primary" type="button" onClick={() => addtocart()}><i class="icon-basket"></i>Add to Cart</button>
+                                        }
                                         <div class="summary">
                                             <p>{data.product_description}</p>
                                         </div>
@@ -75,41 +96,18 @@ const ProductInfo = () => {
                                                 <tbody>
                                                     <tr>
                                                         <td class="stat">Category</td>
-                                                        <td>Mini Cake</td>
+                                                        <td>{data.product_category}</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="stat">Size</td>
-                                                        <td>4' 2''</td>
+                                                        <td>{data.product_size}</td>
                                                     </tr>
                                                     <tr>
                                                         <td class="stat">Stock</td>
-                                                        <td>made to order</td>
+                                                        <td>{data.product_qty}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
-                                        </div>
-                                    </Tab>
-                                    <Tab eventKey="reviews" title="Reviews">
-                                        <div class="reviews">
-                                            <div class="review-item">
-                                                <div class="rating"><img src={star}/><img src={star}/><img src={star}/><img src={star}/><img src={star}/></div>
-                                                <h4>Incredible product</h4><span class="text-muted"><a href="#">Kaguya Shinomiya</a>, 12 May 2022</span>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec augue nunc, pretium at augue at, convallis pellentesque ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                            </div>
-                                        </div>
-                                        <div class="reviews">
-                                            <div class="review-item">
-                                                <div class="rating"><img src={star}/><img src={star}/><img src={star}/><img src={star}/><img src={star}/></div>
-                                                <h4>Incredible product</h4><span class="text-muted"><a href="#">Shouko Komi</a>, 12 May 2022</span>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec augue nunc, pretium at augue at, convallis pellentesque ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                            </div>
-                                        </div>
-                                        <div class="reviews">
-                                            <div class="review-item">
-                                                <div class="rating"><img src={star}/><img src={star}/><img src={star}/><img src={star}/><img src={star}/></div>
-                                                <h4>Incredible product</h4><span class="text-muted"><a href="#">Marin Kitagawa</a>, 12 May 2022</span>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec augue nunc, pretium at augue at, convallis pellentesque ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                            </div>
                                         </div>
                                     </Tab>
                                 </Tabs>

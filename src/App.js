@@ -4,6 +4,7 @@ import '../src/assets/bootstrap/css/bootstrap.min.css'
 import '../src/assets/css/homestyle.css'
 import '../src/assets/css/menu.css'
 import '../src/assets/css/style.css'
+import '../src/assets/fonts/simple-line-icons.min.css'
 
 function App() {
   return (

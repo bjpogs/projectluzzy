@@ -1,6 +1,7 @@
 import React from 'react'
 import { Route, Switch } from 'react-router'
 import ProtectedRoute from './ProtectedRoute.js'
+import AdminRoute from './AdminRoute.js'
 
 // directories >.<
 import Home from '../home/Home'
@@ -14,6 +15,9 @@ import Cart from '../cart/Cart'
 import Reservation from '../reservation/Reservation'
 import TrackOrder from '../trackorder/Trackorder'
 import Myaccount from '../myaccount/myaccount'
+
+// admin directories
+import AdminHome from '../adminhome/Adminhome'
 
 // not found page 
 import Notfound from '../templates/Notfound'
@@ -33,7 +37,7 @@ function RouteTree() {
                 <Route exact path="/Reservation" component={Reservation}/>
                 <Route exact path="/Track" component={TrackOrder}/>
                 <ProtectedRoute exact path="/myaccount" component={Myaccount}/>
-
+                <AdminRoute exact path="/admindashboard" component={AdminHome}/>
                 <Route component={Notfound} /> 
             </Switch>
         </div>
