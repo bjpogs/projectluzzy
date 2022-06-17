@@ -150,7 +150,7 @@ const Cart = () => {
                                     <h4><span class="text">Subtotal</span><span class="price">{jatot}</span></h4>
                                     <h4><span class="text">Discount</span><span class="price">₱0</span></h4>
                                     <h4><span class="text">Total</span><span class="price">{jatot}</span></h4>
-                                    <button class="btn btn-primary btn-lg d-block w-100" type="button" onClick={() => checkout}>Place Order</button>
+                                    <button class="btn btn-primary btn-lg d-block w-100" type="button" onClick={() => checkout()}>Place Order</button>
                                     
                                 </div>
                             </div>
