@@ -10,6 +10,7 @@ import {Nav} from 'react-bootstrap'
 const Shop = () => {
     const [data, setData] = useState([])
     const [category, setCategory] = useState()
+    
     useEffect(() => {
         axios.get('getallproducts')
         .then((res) => {

@@ -43,6 +43,8 @@ const ProductInfo = () => {
         api.post('addtocart',{ product_id : id})
         .then((res) => {
             console.log(res);
+            alert('Add to cart succressfully!')
+            window.location.href = '/shop'
         }) 
         .catch((err) => {
             console.log('error!');
