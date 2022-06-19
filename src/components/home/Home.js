@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 
-import bentocake from '../../assets/img/bento.jpg'
+import bentocake from '../../assets/img/build.jpg'
 import weddingcake from '../../assets/img/wedding.jpg'
 import gendercake from '../../assets/img/gender.jpeg'
 
@@ -19,12 +19,11 @@ import Footer from '../templates/Footer'
 const Home = () => {
  return(
     <>
-    <Navbar/>
-    <main class="page landing-page">
+    <div class="page landing-page">
         <section class="clean-block clean-hero" id="mainbanner">{/*style="background-image: url(&quot;assets/img/luzzy1.jpg&quot;);color: rgba(9, 162, 255, 0.85);" */}
             <div class="text">
                 <h2>LUZZY'S SUPREME SWEETS</h2>
-                <p>CAKES MAKE EVERYTHING BETTER</p><button class="btn btn-outline-light btn-lg" type="button">SHOP NOW</button>
+                <p>CAKES MAKE EVERYTHING BETTER</p><button class="btn btn-outline-light btn-lg" type="button" onClick={() => window.location.href="/shop"}>SHOP NOW</button>
             </div>
         </section>
         
@@ -41,10 +40,10 @@ const Home = () => {
             <div class="row align-items-center">
                     <div class="col-md-6 align-items-center"><img class="img-thumbnail cakebox" src={bentocake}/></div>
                     <div class="col-md-6">
-                        <h3>Bento Cake</h3>
+                        <h3>Build a Cake</h3>
                         <div class="getting-started-info">
-                            <p>Surpries you love ones with our bento cake themed cakes.</p>
-                        </div><button class="btn btn-primary btn-lg" type="button" onClick={() => window.location.href="/shop?product_category=MONEY"}>Shop Now</button>
+                            <p>Build your dream cake online.</p>
+                        </div><button class="btn btn-primary btn-lg" type="button" onClick={() => window.location.href="/build-a-cake"}>Build Now</button>
                     </div>
                 </div>
             </div>
@@ -114,11 +113,13 @@ const Home = () => {
                     <div class="col-12 feature-box"><i class="icon-phone icon"></i>
                         <p>Number : 123-123123</p>
                     </div>
+                    <div class="col-12 feature-box"><i class="icon-clock icon"></i>
+                        <p>Store Hours : 8am to 7pm</p>
+                    </div>
                 </div>
             </div>
         </section>
-    </main>
-    <Footer/>
+    </div>
     </>
     )
 }

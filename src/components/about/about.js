@@ -8,7 +8,6 @@ import Footer from '../templates/Footer'
 const About = () => {
     return(
         <>
-        <Navbar/>
         <div class="about-section">
             <div class="inner-container">
                 <h1>About Us</h1>
@@ -17,7 +16,6 @@ const About = () => {
                 </p>
             </div>
         </div>
-        <Footer/>
         </>
     )
 }

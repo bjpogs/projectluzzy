@@ -53,93 +53,89 @@ const Myaccount = () => {
         })
     }
     return(
-        <>
-        <Navbar />
-            <main class="page">
-                <section class="clean-block clean-catalog dark">
-                <div class="block-heading"/>
-                    <div class="container">
-                        <div class='reservationcard'>
-                            <h2>My Account</h2>
-                            <p>Manage and protect your account</p>
-                            <hr/>
-                            <Form onSubmit={updateInfo}>
-                            <div class = "row">
-                                <div class="col-12">
-                                <InputGroup className="mb-3">
-                                    <InputGroup.Text id="basic-addon3">
-                                    First Name
-                                    </InputGroup.Text>
-                                    <FormControl id="first_name" defaultValue={data.first_name} aria-describedby="basic-addon3" />
-                                </InputGroup>
-                                </div>
-                                <div class="col-12">
-                                <InputGroup className="mb-3">
-                                    <InputGroup.Text id="basic-addon3">
-                                    Last Name
-                                    </InputGroup.Text>
-                                    <FormControl id="last_name" defaultValue={data.last_name} aria-describedby="basic-addon3" />
-                                </InputGroup>
-                                </div>
-                                <div class="col-12">
-                                <InputGroup className="mb-3">
-                                    <InputGroup.Text id="basic-addon3">
-                                    House No.
-                                    </InputGroup.Text>
-                                    <FormControl id="add_house" defaultValue={data.add_house} aria-describedby="basic-addon3" />
-                                </InputGroup>
-                                </div>
-                                <div class="col-12">
-                                <InputGroup className="mb-3">
-                                    <InputGroup.Text id="basic-addon3">
-                                    Barangay
-                                    </InputGroup.Text>
-                                    <FormControl id="add_brgy" defaultValue={data.add_brgy} aria-describedby="basic-addon3" />
-                                </InputGroup>
-                                </div>
-                                <div class="col-12">
-                                <InputGroup className="mb-3">
-                                    <InputGroup.Text id="basic-addon3">
-                                    City
-                                    </InputGroup.Text>
-                                    <FormControl id="add_city" defaultValue={data.add_city} aria-describedby="basic-addon3" />
-                                </InputGroup>
-                                </div>
-                                <div class="col-12">
-                                <InputGroup className="mb-3">
-                                    <InputGroup.Text id="basic-addon3">
-                                    Province
-                                    </InputGroup.Text>
-                                    <FormControl id="add_province" defaultValue={data.add_province} aria-describedby="basic-addon3" />
-                                </InputGroup>
-                                <div class="col-12">
-                                <InputGroup className="mb-3">
-                                    <InputGroup.Text id="basic-addon3">
-                                    Contact No.
-                                    </InputGroup.Text>
-                                    <FormControl id="contact_no" defaultValue={data.contact_no} aria-describedby="basic-addon3" />
-                                </InputGroup>
-                                </div>
-                                <div class="col-12">
-                                <InputGroup className="mb-3">
-                                    <InputGroup.Text id="basic-addon3">
-                                    Email
-                                    </InputGroup.Text>
-                                    <FormControl id="email_address" defaultValue={data.email_address} aria-describedby="basic-addon3" />
-                                </InputGroup>
-                                </div>
-                                <div class="col">
-                                    <Button type="submit">Update Information</Button>
-                                </div>
-                                </div>
+        <main class="page">
+            <section class="clean-block clean-catalog dark">
+            <div class="block-heading"/>
+                <div class="container">
+                    <div class='reservationcard'>
+                        <h2>My Account</h2>
+                        <p>Manage and protect your account</p>
+                        <hr/>
+                        <Form onSubmit={updateInfo}>
+                        <div class = "row">
+                            <div class="col-12">
+                            <InputGroup className="mb-3">
+                                <InputGroup.Text id="basic-addon3">
+                                First Name
+                                </InputGroup.Text>
+                                <FormControl id="first_name" defaultValue={data.first_name} aria-describedby="basic-addon3" />
+                            </InputGroup>
                             </div>
-                            </Form>
+                            <div class="col-12">
+                            <InputGroup className="mb-3">
+                                <InputGroup.Text id="basic-addon3">
+                                Last Name
+                                </InputGroup.Text>
+                                <FormControl id="last_name" defaultValue={data.last_name} aria-describedby="basic-addon3" />
+                            </InputGroup>
+                            </div>
+                            <div class="col-12">
+                            <InputGroup className="mb-3">
+                                <InputGroup.Text id="basic-addon3">
+                                House No.
+                                </InputGroup.Text>
+                                <FormControl id="add_house" defaultValue={data.add_house} aria-describedby="basic-addon3" />
+                            </InputGroup>
+                            </div>
+                            <div class="col-12">
+                            <InputGroup className="mb-3">
+                                <InputGroup.Text id="basic-addon3">
+                                Barangay
+                                </InputGroup.Text>
+                                <FormControl id="add_brgy" defaultValue={data.add_brgy} aria-describedby="basic-addon3" />
+                            </InputGroup>
+                            </div>
+                            <div class="col-12">
+                            <InputGroup className="mb-3">
+                                <InputGroup.Text id="basic-addon3">
+                                City
+                                </InputGroup.Text>
+                                <FormControl id="add_city" defaultValue={data.add_city} aria-describedby="basic-addon3" />
+                            </InputGroup>
+                            </div>
+                            <div class="col-12">
+                            <InputGroup className="mb-3">
+                                <InputGroup.Text id="basic-addon3">
+                                Province
+                                </InputGroup.Text>
+                                <FormControl id="add_province" defaultValue={data.add_province} aria-describedby="basic-addon3" />
+                            </InputGroup>
+                            <div class="col-12">
+                            <InputGroup className="mb-3">
+                                <InputGroup.Text id="basic-addon3">
+                                Contact No.
+                                </InputGroup.Text>
+                                <FormControl id="contact_no" defaultValue={data.contact_no} aria-describedby="basic-addon3" />
+                            </InputGroup>
+                            </div>
+                            <div class="col-12">
+                            <InputGroup className="mb-3">
+                                <InputGroup.Text id="basic-addon3">
+                                Email
+                                </InputGroup.Text>
+                                <FormControl id="email_address" defaultValue={data.email_address} aria-describedby="basic-addon3" />
+                            </InputGroup>
+                            </div>
+                            <div class="col">
+                                <Button type="submit">Update Information</Button>
+                            </div>
+                            </div>
                         </div>
+                        </Form>
                     </div>
-                </section>
-            </main>
-        <Footer />
-        </>
+                </div>
+            </section>
+        </main>
     )
 }
 export default Myaccount

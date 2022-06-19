@@ -22,14 +22,14 @@
 
 .inner-container h1{
     margin-bottom: 30px;
-    font-size: 30px;
+    font-size: 40px;
     font-weight: 900;
 }
 
 .text{
-    font-size: 13px;
+    font-size: 30px;
     color: #545454;
-    line-height: 30px;
+    line-height: 40px;
     text-align: justify;
     margin-bottom: 40px;
 }
@@ -80,4 +80,64 @@
     border-radius: 5px; /* 5px rounded corners */
     margin-left: auto;
     margin-right: auto;
+}
+
+#nav-dropdown{
+    font-weight: bold;
+}
+
+#navbrand{
+    font-size : 25px;
+}
+
+/* build cake */
+
+.tutbox{
+    height: flex;
+    margin-bottom: 20px;
+}
+
+.tutcard{
+    position: flex;
+    width : auto;
+    height : flex;
+    padding : 0px 15% 0px 15%;
+    margin-left: auto;
+    margin-right : auto;
+    margin-bottom: 10px;
+}
+
+@media only screen and (max-width : 1024px){
+    .tutcard{
+        padding : 0px 40px 0px 20px;
+    }
+}
+
+@media only screen and (max-width : 768px){
+    .tutcard{
+        padding : 0px 5% 0px 5%;
+    }
+}
+
+.tutbuild{
+    height : flex;
+    background-color: rgb(61, 181, 255);
+    width: auto;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    padding : 5%;
+}
+
+.tutimg{
+    width: 100%;
+    height: 100%;
+}
+
+.bot-dropdown{
+    position: flex;
+    bottom: 0;
+    width : flex;
 }

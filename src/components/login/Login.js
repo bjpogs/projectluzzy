@@ -18,7 +18,8 @@ const Login = () => {
             console.log(res.data);
             localStorage.setItem('fname', res.data.fname)
             localStorage.setItem('accessToken', res.data.accessToken)
-            localStorage.setItem('isAuthenticated', true)
+            if (res.data.usercategory === 123) localStorage.setItem('adminAuthenticated', true)
+            else localStorage.setItem('isAuthenticated', true)
             window.location.href = '/'
         })
         .catch((err) => {
@@ -28,7 +29,6 @@ const Login = () => {
 
     return (
         <>
-        <Navbar/>
         <main class="page login-page">
         <section class="dark">
         <div class="container">
@@ -49,7 +49,6 @@ const Login = () => {
         </section>
     
         </main>
-        <Footer/>
         </>
     )
 }

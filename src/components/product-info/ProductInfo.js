@@ -38,22 +38,26 @@ const ProductInfo = () => {
     // add to cart
 
     const addtocart = (e) => {
-        console.log('here');
-        const id = queryParams.get('product_id')
-        api.post('addtocart',{ product_id : id})
-        .then((res) => {
-            console.log(res);
-            alert('Add to cart succressfully!')
-            window.location.href = '/shop'
-        }) 
-        .catch((err) => {
-            console.log('error!');
-        })
+        if (!localStorage.getItem('isAuthenticated')) {
+            alert("You need to login to continue.")
+            window.location.href = "/login"
+        }
+        else{
+            const id = queryParams.get('product_id')
+            api.post('addtocart',{ product_id : id})
+            .then((res) => {
+                console.log(res);
+                alert('Add to cart succressfully!')
+                window.location.href = '/shop'
+            }) 
+            .catch((err) => {
+                console.log('error!');
+            })
+        }
     }
 
     return (
         <>
-        <Navbar/>
         <main class="page product-page">
             <section class="clean-block clean-product dark">
                 <div class="container">
@@ -63,7 +67,7 @@ const ProductInfo = () => {
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="gallery">
-                                        <div id="product-preview" class="vanilla-zoom">
+                                        <div id="product-preview">
                                             <div class="zoomed-image"></div>
                                             <div class="sidebar"><img class="img-fluid d-block small-preview" src={data.product_image}/></div>
                                         </div>
@@ -119,7 +123,6 @@ const ProductInfo = () => {
                 </div>
             </section>
         </main>
-        <Footer/>
         </>
     )
 }

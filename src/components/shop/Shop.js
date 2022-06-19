@@ -4,7 +4,8 @@ import React, {useState, useEffect} from 'react'
 import Navbar from '../templates/Navbar'
 import Footer from '../templates/Footer'
 import axios from '../../api/api'
-import {Nav} from 'react-bootstrap'
+import {Nav, Dropdown, Form} from 'react-bootstrap'
+import imahe from '../../assets/img/sample.jpg'
 
 
 const Shop = () => {
@@ -35,7 +36,7 @@ const Shop = () => {
                 }
             }).map(meow => {
                 return (
-                    <div class="col-12 col-md-6 col-lg-4">
+                    <div class="col-12 col-sm-6 col-lg-6 col-xl-4">
                         <div class="clean-product-item">
                             <div class="image"><a onClick={() => {window.location.href = "/Product-info?product_id=" + meow.product_id}}><img class="shopimage d-block mx-auto" src={meow.product_image}/></a></div>
                             <div class="product-name"><a href="/Product-Info">{meow.product_name}</a></div>
@@ -59,15 +60,14 @@ const Shop = () => {
     }
     return(
         <>
-        <Navbar/>
-        <main class="page catalog-page">
+        <div class="page catalog-page">
             <section class="clean-block clean-catalog dark">
                 <div class="container">
                     <div class="block-heading">
                     </div>
                     <div class="shopcontainer">
                         <div class="row">
-                            <div class="col-md-3">
+                            <div class="col-lg-3">
                                 <div class="d-none d-lg-block">
                                     <div class="filters">
                                         <div class="filter-item">
@@ -88,36 +88,41 @@ const Shop = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div class="d-lg-none"><a class="btn btn-link d-md-none filter-collapse" data-bs-toggle="collapse" aria-expanded="false" aria-controls="filters" href="#filters" role="button">Filters<i class="icon-arrow-down filter-caret"></i></a>
-                                    <div class="collapse" id="filters">
-                                        <div class="filters">
-                                            <div class="filter-item">
-                                                <h3>Categories</h3>
-                                                <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-1"/><label class="form-check-label" for="formCheck-1">Phones</label></div>
-                                                <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-2"/><label class="form-check-label" for="formCheck-2">Laptops</label></div>
-                                                <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-3"/><label class="form-check-label" for="formCheck-3">PC</label></div>
-                                                <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-4"/><label class="form-check-label" for="formCheck-4">Tablets</label></div>
-                                            </div>
-                                            <div class="filter-item">
-                                                <h3>Brands</h3>
-                                                <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-5"/><label class="form-check-label" for="formCheck-5">Samsung</label></div>
-                                                <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-6"/><label class="form-check-label" for="formCheck-6">Apple</label></div>
-                                                <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-7"/><label class="form-check-label" for="formCheck-7">HTC</label></div>
-                                            </div>
-                                            <div class="filter-item">
-                                                <h3>OS</h3>
-                                                <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-8"/><label class="form-check-label" for="formCheck-8">Android</label></div>
-                                                <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-9"/><label class="form-check-label" for="formCheck-9">iOS</label></div>
-                                            </div>
-                                        </div>
+                                <div class="d-lg-none">
+                                <div class="col-12 mb-2">
+                                        <Form.Label htmlFor="basic-url"><b>Category</b></Form.Label>
+                                        <Form.Select aria-label="Default select example" id="top1" onChange={(e)=>setCategory(e.target.value)}>
+                                            <option value='ALL'>All Item</option>
+                                            <option value='ANNIVERSARY'>Anniversary</option>
+                                            <option value='BENTO'>Bento</option>
+                                            <option value='BIRTHDAY'>Birthday</option>
+                                            <option value='CHARACTER'>Character</option>
+                                            <option value='CHRISTENING'>Christening</option>
+                                            <option value='CUPCAKE'>Cupcake</option>
+                                            <option value='DEBUT'>Debut</option>
+                                            <option value='GENDER'>Gender</option>
+                                            <option value='NUMBER'>Number</option>  
+                                            <option value='WEDDING'>Wedding</option>
+                                        </Form.Select>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-lg-9">
                                 <div class="products">
                                     <div class="row g-0">
                                         { /* items */ }
-                                        
+                                        <div class="col-12 col-sm-6 col-lg-6 col-xl-4">
+                                            <div class="clean-product-item">
+                                                <div class="image"><a onClick={() => {window.location.href = "/build-a-cake"}}><img class="shopimage d-block mx-auto" src={imahe}/></a></div>
+                                                <div class="product-name"><a href="/Product-Info">Build your dream cake</a></div>
+                                                <div class="about">
+                                                    <div class="rating"></div>
+                                                    <div class="price">
+                                                        <h3></h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         {generateItem()}
                                     </div>
                                 </div>
@@ -126,8 +131,7 @@ const Shop = () => {
                     </div>
                 </div>
             </section>
-        </main>
-        <Footer/>
+        </div>
         </>
     )
 }

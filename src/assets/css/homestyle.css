@@ -33,7 +33,7 @@ body{
     position: flex;
     margin-top: 10%;
     margin-bottom: 5%;
-    width : 50vh;
+    width : auto;
     height: flex;
     padding: 5%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -42,6 +42,12 @@ body{
     border-radius: 5px; /* 5px rounded corners */
     margin-left: auto;
     margin-right: auto;
+}
+
+@media only screen and (min-width : 900px) {
+    .logincard{
+        width : 60vh;
+    }
 }
 
 /* shop product image */
@@ -76,4 +82,11 @@ body{
     height:20vh;
     margin-left: auto
     ;margin-right: auto;
+}
+.notfound{
+    min-height: 65vh;
+}
+.img-fluids{
+    max-width: 100%;
+    height: auto;
 }

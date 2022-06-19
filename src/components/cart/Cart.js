@@ -2,10 +2,11 @@ import React, {useState, useEffect} from 'react'
 import axios from '../../api/api'
 
 // navbar and footer template
-import Navbar from '../templates/Navbar'
-import Footer from '../templates/Footer'
-import cake from '../../assets/img/gradcake.jpg'
+import {Button, Form, InputGroup, FormControl} from 'react-bootstrap'
+
+
 const Cart = () => {
+    const [reserve, setReserve] = useState(false)
     const [data, setData] = useState([])
     const [edit, setEdit] = useState(false)
     const [tempdata, setTempdata] = useState([])
@@ -21,6 +22,8 @@ const Cart = () => {
             console.log(err);
         })
     },[])
+
+
 
     const generateProduct = () => {
         return(
@@ -84,6 +87,7 @@ const Cart = () => {
     }
 
     const checkout = () => {
+        if (!reserve) data.order_date = ""
         axios.post('placeorder', data)
         .then((res) => {
             alert("Order placed successfully! We will contact you once your order is finish.")
@@ -94,10 +98,15 @@ const Cart = () => {
         })
     }
 
+    const handleChange = (e) => {
+        const newdata = {...data}
+        newdata[e.target.id] = e.target.value
+        setData(newdata)
+    }
+
 
     return(
         <>
-        <Navbar/>
         <main class="page shopping-cart-page">
             <section class="clean-block clean-cart dark">
                 <div class="container">
@@ -112,31 +121,42 @@ const Cart = () => {
                                 <div class="items">
                                 <div class="product">
                                     <div class="row justify-content-center align-items-center">
-                                        { edit ? 
-                                        <>
-                                            <div class="col-md-5">
-                                            </div>
-                                            <div class="col-md-3 product-info">
-                                            </div>
-                                            <div class="col-6 col-md-2 price">
-                                                <button class="btn btn-success d-block w-100" type="button" onClick={() => removeItem()}>Save</button>
-                                            </div>
-                                            <div class="col-6 col-md-2 price">
-                                                <button class="btn btn-danger d-block w-100" type="button" onClick={() => cancelremove()}>Cancel</button>
-                                            </div>
-                                        </> : 
+                                        { !data.length ? 
+                                            <>
+                                                <div class="col-md-10">
+                                                    <h3>Your cart is empty.</h3>
+                                                </div>
+                                            </>
+                                        : 
 
-
-                                        <>
-                                            <div class="col-md-5">
+                                        edit ? 
+                                            <>
+                                                <div class="col-md-5">
+                                                </div>
+                                                <div class="col-md-3 product-info">
+                                                </div>
+                                                <div class="col-6 col-md-2 price">
+                                                    <button class="btn btn-success d-block w-100" type="button" onClick={() => removeItem()}>Save</button>
+                                                </div>
+                                                <div class="col-6 col-md-2 price">
+                                                    <button class="btn btn-danger d-block w-100" type="button" onClick={() => cancelremove()}>Cancel</button>
+                                                </div>
+                                            </> : 
+    
+    
+                                            <>
+                                                <div class="col-md-5">
+                                                </div>
+                                                <div class="col-md-5 product-info">
+                                                </div>
+                                                <div class="col-6 col-md-2 price">
+                                                    <button class="btn btn-primary d-block w-100" type="button" onClick={() => setEdit(!edit)}>Edit</button>
                                             </div>
-                                            <div class="col-md-5 product-info">
-                                            </div>
-                                            <div class="col-6 col-md-2 price">
-                                                <button class="btn btn-primary d-block w-100" type="button" onClick={() => setEdit(!edit)}>Edit</button>
-                                        </div>
-                                        </> 
+                                            </> 
+                                            
+                                            
                                         }
+                                        
                                         
                                     </div>
                                 </div>
@@ -147,10 +167,32 @@ const Cart = () => {
                             <div class="col-md-12 col-lg-4">
                                 <div class="summary">
                                     <h3>Summary</h3>
-                                    <h4><span class="text">Subtotal</span><span class="price">{jatot}</span></h4>
+                                    <h4><span class="text">Subtotal</span><span class="price">₱{jatot}</span></h4>
                                     <h4><span class="text">Discount</span><span class="price">₱0</span></h4>
-                                    <h4><span class="text">Total</span><span class="price">{jatot}</span></h4>
-                                    <button class="btn btn-primary btn-lg d-block w-100" type="button" onClick={() => checkout()}>Place Order</button>
+                                    <h4><span class="text">Total</span><span class="price">₱{jatot}</span></h4>
+                                    
+                                    <button type="button" class="btn btn-success btn-lg d-block w-100" onClick={() => setReserve(!reserve)}>{!reserve? 'For Reservation' : 'For Pick Up'}</button>
+                                    {
+                                        reserve ? 
+                                        <>
+                                        <div class="col-12 mt-3">
+                                            <Form.Label htmlFor="basic-url">Select Pickup Date</Form.Label>
+                                            <InputGroup className="mb-3">
+                                                <FormControl
+                                                aria-label="Username"
+                                                aria-describedby="basic-addon1"
+                                                type="date"
+                                                id="order_date"
+                                                onChange={handleChange}
+                                                />
+                                            </InputGroup>
+                                        </div>
+                                        </>
+                                        : 
+                                        <></>
+                                    }
+
+                                    {!data.length ? <button class="btn btn-primary btn-lg d-block w-100" type="button" disabled >Place Order</button> : <button class="btn btn-primary btn-lg d-block w-100" type="button" onClick={() => checkout()} >Place Order</button>}
                                     
                                 </div>
                             </div>
@@ -159,7 +201,6 @@ const Cart = () => {
                 </div>
             </section>
         </main>
-        <Footer/>
         </>
     )
 }

@@ -39,14 +39,14 @@ api.interceptors.response.use(
             const origconfig = err.config
             if(origconfig.url !== 'login' && err.response){
                 // Access Token was expired
-                if(err.response.status === 400 && !origconfig._retry) {
+                if(err.response.status === 401 && !origconfig._retry) {
                     console.log('Access token was expired!');
                     origconfig._retry = true
                     try{
                         const meow = await api.post('refreshmeow')
                         
                         console.log('data : ',meow.data);
-                        if(meow.status === 400){
+                        if(meow.status === 401){
                             alert('please login again.')
                             localStorage.clear();
                             window.location.href = '/'
@@ -62,7 +62,7 @@ api.interceptors.response.use(
                         return Promise.reject(error)
                     }
                 }
-                else if (err.response.status === 401){
+                else if (err.response.status === 403){
                     alert('Please log in again.')
                     localStorage.clear()
                     window.location.href = '/'

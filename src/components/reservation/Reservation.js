@@ -38,7 +38,6 @@ const Reservation = () => {
 
     return (
         <>
-        <Navbar/>
         <main class="page">
             <section class="clean-block clean-catalog dark">
                 <div class="container">
@@ -187,7 +186,6 @@ const Reservation = () => {
                 </div>
             </section>
         </main>
-        <Footer/>
         </>
         
     )

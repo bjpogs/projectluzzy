@@ -15,6 +15,7 @@ import Cart from '../cart/Cart'
 import Reservation from '../reservation/Reservation'
 import TrackOrder from '../trackorder/Trackorder'
 import Myaccount from '../myaccount/myaccount'
+import Build from '../build/build'
 
 // admin directories
 import AdminHome from '../adminhome/Adminhome'
@@ -26,6 +27,7 @@ function RouteTree() {
     return (
         <div>
             <Switch>
+                <Route exact path="/index" component={Home}/>
                 <Route exact path="/" component={Home}/>
                 <Route exact path="/About" component={About}/>
                 <Route exact path="/Contact-Us" component={ContactUs}/>
@@ -36,6 +38,7 @@ function RouteTree() {
                 <Route exact path="/Cart" component={Cart}/>
                 <Route exact path="/Reservation" component={Reservation}/>
                 <Route exact path="/Track" component={TrackOrder}/>
+                <Route exact path="/build-a-cake" component={Build}/>
                 <ProtectedRoute exact path="/myaccount" component={Myaccount}/>
                 <AdminRoute exact path="/admindashboard" component={AdminHome}/>
                 <Route component={Notfound} /> 
