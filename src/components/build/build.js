@@ -11,6 +11,7 @@ import img2 from '../../assets/img/tuts/step2.jpg'
 
 const Build = () => {
     const [reserve, setReserve] = useState(false)
+    const [bdaynum, setbdaynum] = useState(false)
     const [data, setData] = useState({
         size : '6x2',
         sizeprice : 600,
@@ -22,6 +23,8 @@ const Build = () => {
         top2price : 0,
         topper : '',
         topperprice : 0,
+        number : '',
+        icing : '',
         message : '',
         date : '',
     })
@@ -42,6 +45,7 @@ const Build = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault()
+        bdaynum ? data['number'] = document.getElementById('bdaynum').value : data['number'] = 0
         if (!reserve) data.date = ""
         axios.post('savecustom', data)
         .then((res) => {
@@ -56,11 +60,17 @@ const Build = () => {
     
     const handleChange = (e) => {
         const newdata = {...data}
+        e.target.value == "Number" ? setbdaynum(true) : setbdaynum(false)
         if (e.target.id == "size"){
             if (e.target.value == "6x2") newdata['sizeprice'] = 600
             else if (e.target.value == "7x3") newdata['sizeprice'] = 1200
             else if (e.target.value == "8x3") newdata['sizeprice'] = 1300
-            else if (e.target.value == "8x5") newdata['sizeprice'] = 3000
+            else if (e.target.value == "7x3 2 tier") newdata['sizeprice'] = 1400
+            else if (e.target.value == "8x5 2 tier") newdata['sizeprice'] = 1500
+            else if (e.target.value == "7x3 2 layer") newdata['sizeprice'] = 2000
+            else if (e.target.value == "8x5 2 layer") newdata['sizeprice'] = 2500
+            else if (e.target.value == "7x3 3 layer") newdata['sizeprice'] = 3000
+            else if (e.target.value == "8x5 3 layer") newdata['sizeprice'] = 3500
         }
         else if (e.target.id == "top1"){
             if (e.target.value == "None") newdata['top2price'] = 0
@@ -80,9 +90,7 @@ const Build = () => {
         }
         else if (e.target.id =="topper"){
             if (e.target.value == 'None') newdata['topperprice'] = 0
-            else if (e.target.value == '1') newdata['topperprice'] = 100
-            else if (e.target.value == '18') newdata['topperprice'] = 200
-            else if (e.target.value == '21') newdata['topperprice'] = 200
+            else if (e.target.value == 'Number') newdata['topperprice'] = 100
             else if (e.target.value == 'Happy Anniversary') newdata['topperprice'] = 300
             else if (e.target.value == 'Happy Birthday') newdata['topperprice'] = 300
             else if (e.target.value == 'Congratulations') newdata['topperprice'] = 300
@@ -140,7 +148,12 @@ const Build = () => {
                                             <option value='6x2'>6 by 2 inch (1 layer) - ₱600</option>
                                             <option value='7x3'>7 by 3 inch (1 layer) - ₱1200</option>
                                             <option value='8x3'>8 by 3 inch (1 layer) - ₱1300</option>
-                                            <option value='8x5'>8 by 5 inch (2 layer) - ₱3000</option>
+                                            <option value='7x3 2 tier'>7 by 3 inch 2 tier (1 layer) - ₱1400</option>
+                                            <option value='8x5 2 tier'>8 by 5 inch 2 tier (1 layer) - ₱1500</option>
+                                            <option value='7x3 2 layer'>7 by 3 inch 2 tier (2 layer) - ₱2000</option>
+                                            <option value='8x5 2 layer'>8 by 5 inch 2 tier (2 layer) - ₱2500</option>
+                                            <option value='7x3 3 layer'>7 by 3 inch 2 tier (3 layer) - ₱3000</option>
+                                            <option value='8x5 3 layer'>8 by 5 inch 2 tier (3 layer) - ₱3500</option>
                                         </Form.Select>
                                     </div>
                                     <div class="col-12 mb-2">
@@ -187,13 +200,31 @@ const Build = () => {
                                         <Form.Label htmlFor="basic-url"><b>Step 5. Select a Topper</b></Form.Label>
                                         <Form.Select aria-label="Default select example" id="topper" onChange={handleChange}>
                                             <option value='None'>None</option>
-                                            <option value='1'>1 - ₱100</option>
-                                            <option value='18'>18 - ₱200</option>
-                                            <option value='21'>21 - ₱200</option>
+                                            <option value='Number'>Number - ₱100</option>
                                             <option value='Happy Anniversary'>Happy Anniversary - ₱300</option>
                                             <option value='Happy Birthday'>Happy Birthday - ₱300</option>
                                             <option value='Congratulations'>Congratulations - ₱300</option>
                                             <option value='Gender Reveal'>Gender Reveal - ₱400</option>
+                                        </Form.Select>
+                                    </div>
+                                    {
+                                        bdaynum ? 
+                                        <div class="col-12 mb-2">
+                                            <Form.Label htmlFor="basic-url"><b>Birthday Number : </b></Form.Label>
+                                            <input class="form-control item" type="number" id="bdaynum" required/>
+                                        </div>
+                                        :
+                                        <></>
+                                    }
+                                    <div class="col-12 mb-2">
+                                        <Form.Label htmlFor="basic-url"><b>Step 6. Select a Icing</b></Form.Label>
+                                        <Form.Select aria-label="Default select example" id="icing" onChange={handleChange}>
+                                            <option value='None'>None</option>
+                                            <option value='White'>White</option>
+                                            <option value='Blue'>Blue</option>
+                                            <option value='Green'>Green</option>
+                                            <option value='Yellow'>Yellow</option>
+                                            <option value='Black'>Black</option>
                                         </Form.Select>
                                     </div>
 
@@ -231,6 +262,8 @@ const Build = () => {
                                             <div class="col-2"><p>₱{data.top2price}</p></div>
                                             <div class="col-10"><p>Step 5. Select Topper : <b>{data.topper}</b></p></div>
                                             <div class="col-2"><p>₱{data.topperprice}</p></div>
+                                            <div class="col-10"><p>Step 6. Select Icing : <b>{data.icing}</b></p></div>
+                                            <div class="col-2"><p>₱0</p></div>
                                             <div class="col-10"><p><b>Subtotal : </b></p></div>
                                             <div class="col-2"><p><b>₱{data.sizeprice + data.top1price + data.top2price + data.topperprice}</b></p></div>
                                         </div>

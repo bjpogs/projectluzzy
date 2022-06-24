@@ -7,17 +7,16 @@
 
 .about-section{
     background: url('../img/luzzybrand.jpg') no-repeat left;
-    background-size: 55%;
+    background-size: 50%;
     background-color: #f0ecec;
     overflow: hidden;
-    padding: 100px 0;
 }
 
 .inner-container{
-    width: 55%;
+    width: 50%;
     float: right;
-    background-color: #fdfdfd;
-    padding: 150px;
+    background-color: #f0ecec;
+    padding: 200px 100px 200px 100px;
 }
 
 .inner-container h1{
@@ -34,26 +33,32 @@
     margin-bottom: 40px;
 }
 
-.skills{
-    display: flex;
-    justify-content: space-between;
-    font-weight: 700;
-    font-size: 13px;
+@media screen and (max-width:1500px){
+    .inner-container{
+        padding: 100px;
+    }
 }
 
 @media screen and (max-width:1200px){
     .inner-container{
-        padding: 80px;
+        padding: 60px;
     }
 }
 
 @media screen and (max-width:1000px){
     .about-section{
-        background-size: 100%;
+        background-size: cover;
         padding: 100px 40px;
     }
     .inner-container{
         width: 100%;
+        background-color: rgba(78, 77, 77, 0.5);
+    }
+    .text{
+        color: white;
+    }
+    .inner-container h1{
+        color: white;
     }
 }
 
@@ -63,6 +68,10 @@
     }
     .inner-container{
         padding: 60px;
+    }
+    .text{
+        font-size: 15px;
+        line-height: 20px;
     }
 }
 
