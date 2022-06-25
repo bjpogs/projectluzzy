@@ -33,3 +33,6 @@
     height : auto;
     padding: 25px 5px 25px 5px
 }
+.pointed{
+    cursor: pointer;
+}

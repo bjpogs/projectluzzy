@@ -1,12 +1,8 @@
 import React from 'react'
-
-// navbar and footer template
-import Navbar from '../templates/Navbar'
-import Footer from '../templates/Footer'
+ 
 import axios from '../../api/api'
 
 const Login = () => {
-
     const checkcredentials = () => {
         
         let data = {
@@ -15,12 +11,12 @@ const Login = () => {
         }
         axios.post('login', data)
         .then((res) => {
+            // check usercategory
             console.log(res.data);
             localStorage.setItem('fname', res.data.fname)
             localStorage.setItem('accessToken', res.data.accessToken)
-            if (res.data.usercategory === 123) localStorage.setItem('adminAuthenticated', true)
-            else localStorage.setItem('isAuthenticated', true)
-            window.location.href = '/'
+            res.data.usercategory == '123' ? localStorage.setItem('adminAuthenticated', true) : localStorage.setItem('isAuthenticated', true)
+            window.location.href = res.data.usercategory == '123' ? '/admin/regular-order' : '/'
         })
         .catch((err) => {
             alert('incorrect username / passowrd!')
