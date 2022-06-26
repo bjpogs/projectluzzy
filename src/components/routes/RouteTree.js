@@ -20,6 +20,8 @@ import Build from '../build/build'
 // admin directories
 import AdminHome from '../adminhome/Adminhome'
 import Customorder from '../customorder/customorder'
+import Reservationorder from '../reservationorder/Reservationorder'
+import Products from '../products/Products'
 
 // not found page 
 import Notfound from '../templates/Notfound'
@@ -43,7 +45,8 @@ function RouteTree() {
                 <ProtectedRoute exact path="/myaccount" component={Myaccount}/>
                 <AdminRoute exact path="/admin/regular-order" component={AdminHome}/>
                 <AdminRoute exact path="/admin/custom-order" component={Customorder}/>
-
+                <AdminRoute exact path="/admin/reservation-order" component={Reservationorder}/>
+                <AdminRoute exact path="/admin/products" component={Products}/>
                 <Route component={Notfound} /> 
             </Switch>
         </div>

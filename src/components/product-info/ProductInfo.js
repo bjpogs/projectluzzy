@@ -80,7 +80,7 @@ const ProductInfo = () => {
                                             <h3>₱{data.product_price}</h3>
                                         </div>
                                         {
-                                            data.product_qty <= 0 ? 
+                                            data.product_status != 0 ? 
                                             <button class="btn btn-primary" type="button" disabled><i class="icon-basket"></i>Out of Stock</button>
                                             :
                                             <button class="btn btn-primary" type="button" onClick={() => addtocart()}><i class="icon-basket"></i>Add to Cart</button>
@@ -109,8 +109,24 @@ const ProductInfo = () => {
                                                         <td>{data.product_size}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td class="stat">Stock</td>
-                                                        <td>{data.product_qty}</td>
+                                                        <td class="stat">Flavor</td>
+                                                        <td>{data.product_flavor}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="stat">Icing</td>
+                                                        <td>{data.product_icing}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="stat">Shape</td>
+                                                        <td>{data.product_shape}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="stat">Layer</td>
+                                                        <td>{data.product_layer}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td class="stat">Tier</td>
+                                                        <td>{data.product_tier}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>

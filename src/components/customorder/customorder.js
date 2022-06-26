@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react"
 import {Table, Tab, Tabs, Spinner, Modal, Button} from 'react-bootstrap'
 import axios from '../../api/api.js'
+import emailjs from '@emailjs/browser'
 
 const Customorder = () => {
     const [data, setData] = useState([])
@@ -9,6 +10,7 @@ const Customorder = () => {
     const [statusdata, setStatusdata] = useState(null)
     const [loading, setLoading] = useState(false)
     const [modalShow, setModalShow] = useState(false)
+    const [modaldata, setmodaldata] = useState([])
 
     useEffect(() => {
         setLoading(true)
@@ -25,12 +27,12 @@ const Customorder = () => {
         })
     },[])
 
-    const saveStatus = (id) => {
+    const saveStatus = (meows) => {
         console.log(data);
         if (statusdata === null) setEdit(!edit)
         else {
             var temps = {
-                order_id : id,
+                order_id : meows.order_id,
                 status : statusdata
             }
             axios.post('updatestatus', temps)
@@ -38,7 +40,7 @@ const Customorder = () => {
                 setEdit(!edit)
                 setEditingRow(null)
                 var tempi = data.map(obj => {
-                    if (obj.order_id == id){
+                    if (obj.order_id == meows.order_id){
                         return {...obj, status : statusdata }
                     }
                     return obj
@@ -48,6 +50,29 @@ const Customorder = () => {
             .catch((err) => {
                 console.log(err);
             })
+            if (statusdata == "To Pick Up"){
+                var template = {
+                    order_id : meows.order_id,
+                    first_name : meows.first_name,
+                    last_name : meows.last_name,
+                    size : meows.size,
+                    flavor : meows.flavor,
+                    design : meows.design,
+                    topping1 : meows.topping1 == "" ? "None" : meows.topping1,
+                    topping2 : meows.topping2 == "" ? "None" : meows.topping2,
+                    topper : meows.topper == "" ? "None" : meows.topper == "Number" ? meows.topper + " - " + meows.number : meows.topper,
+                    icing : meows.icing,
+                    message : meows.message == "" ? "None" : meows.message,
+                    price : meows.price,
+                    email_address : 'bjpogs26@gmail.com'
+                }
+                emailjs.send('service_hkloqw4', 'template_5x78v0g', template, 'zpZhnlO2TsbRcuocB')
+                .then((res) => {
+                    console.log(res.text);
+                }, (err) => {
+                    console.log(err.text);
+                })
+            }
         }
     }
 
@@ -63,11 +88,12 @@ const Customorder = () => {
             return data.map((meows, index) => {
                 return (
                     <tr key = {meows.order_id}>
-                        <td class="text-success fw-bold pointed" onClick={() => alert('achuchu')}>{meows.order_id}</td>
+                        <td class="text-success fw-bold pointed" onClick={() => {setmodaldata(meows); setModalShow(true)}}>{meows.order_id}</td>
                         <td>{meows.last_name}</td>
                         <td>{meows.first_name}</td>
                         <td>{meows.email_address}</td>
                         <td>{meows.contact_no}</td>
+                        <td>{meows.order_date == "" ? meows.order_date : "Not Applicable"}</td>
                         <td>
                             {!edit ? 
                                 meows.status
@@ -80,6 +106,7 @@ const Customorder = () => {
                                             <option value="Pending">Pending</option>
                                             <option value="Processing">Processing</option>
                                             <option value="To Deliver">To Deliver</option>
+                                            <option value="To Pick Up">To Pick Up</option>
                                             <option value="Complete">Complete</option>
                                             <option value="Cancelled">Cancelled</option>
                                         </select>
@@ -95,17 +122,26 @@ const Customorder = () => {
                         </td>
                         <td>
                             {!edit ? 
-                                <button class="btn btn-outline-primary btn-sm" type="button" onClick={() => editbtn(index)}>
-                            
+                                <button class="btn btn-outline-primary btn-sm" type="button" onClick={() => editbtn(index)}>              
                                         <i class="icon-pencil icon"/>
                                         Edit
                                 </button>
                                 :
                                 <>
-                                    <button class="btn w-100 btn-outline-success btn-sm" type="button" onClick={() => saveStatus(meows.order_id)}><i class="icon-check icon"/>Save</button>
-                                
-                                    <button class="btn w-100 btn-outline-danger btn-sm d-lg-block" type="button" onClick={() => {setEdit(!edit); setEditingRow('null')}}><i class="icon-close icon"/>Cancel</button>
-                                    
+                                    {
+                                        editingRow == index ? 
+                                        <>
+                                        <button class="btn w-100 btn-outline-success btn-sm" type="button" onClick={() => saveStatus(meows)}><i class="icon-check icon"/>Save</button>
+                                        <button class="btn w-100 btn-outline-danger btn-sm d-lg-block" type="button" onClick={() => {setEdit(!edit); setEditingRow('null')}}><i class="icon-close icon"/>Cancel</button>
+                                        </>
+                                        :
+                                        <>
+                                        <button class="btn btn-outline-primary btn-sm" type="button" onClick={() => {setEditingRow(index); setEdit(!edit)}}>
+                                            <i class="icon-pencil icon"/>
+                                            Edit
+                                        </button>
+                                        </>
+                                    }
                                 </>
                             }
                             
@@ -125,25 +161,64 @@ const Customorder = () => {
         return (
           <Modal
             {...props}
-            size="lg"
+            size="md"
             aria-labelledby="contained-modal-title-vcenter"
             centered
           >
             <Modal.Header closeButton>
               <Modal.Title id="contained-modal-title-vcenter">
-                Customer Information
+                Order details
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <div class="row">
-                    <div class="col-4">
-                        <span>Name : </span>
-                    </div>
-                    <div class="col-6">
-                        <span class="rw-bold">Sectret 
-                        </span>
-                    </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Size</label>
+                <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.size}/>
                 </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Flavor</label>
+                <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.flavor}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Design</label>
+                <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.design}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Topping 1</label>
+                <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.topping1 == "" ? "None" : modaldata.topping1}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Topping 2</label>
+                <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.topping2 == "" ? "None" : modaldata.topping2}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Topper</label>
+                <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.topper == "" ? "None" : modaldata.topper == "Number" ? modaldata.topper + " - " + modaldata.number : modaldata.topper}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Icing</label>
+                <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.icing == "" ? "None" : modaldata.icing}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Written Card</label>
+                <div class="col-sm-7">
+                <textarea rows="5" type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.message == "" ? "Not Applicable" : modaldata.message}/>
+                </div>
+            </div>
             </Modal.Body>
             <Modal.Footer>
               <Button onClick={props.onHide}>Close</Button>
@@ -171,6 +246,7 @@ const Customorder = () => {
                                 <th>First Name</th>
                                 <th>Email Address</th>
                                 <th>Mobile Number</th>
+                                <th>Target Date</th>
                                 <th>Status</th>
                                 <th>Action</th>
                                 </tr>
@@ -183,14 +259,11 @@ const Customorder = () => {
                             </tbody>
                         </Table>
                     </div>
-                    <Button variant="primary" onClick={() => setModalShow(true)}>
-        Launch vertically centered modal
-      </Button>
 
-      <MyVerticallyCenteredModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
+                    <MyVerticallyCenteredModal
+                        show={modalShow}
+                        onHide={() => setModalShow(false)}
+                    />
                     
             </section>
         </main>

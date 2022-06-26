@@ -24,7 +24,7 @@ const Build = () => {
         topper : '',
         topperprice : 0,
         number : '',
-        icing : '',
+        icing : 'Butter Cream',
         message : '',
         date : '',
     })
@@ -219,12 +219,9 @@ const Build = () => {
                                     <div class="col-12 mb-2">
                                         <Form.Label htmlFor="basic-url"><b>Step 6. Select a Icing</b></Form.Label>
                                         <Form.Select aria-label="Default select example" id="icing" onChange={handleChange}>
-                                            <option value='None'>None</option>
-                                            <option value='White'>White</option>
-                                            <option value='Blue'>Blue</option>
-                                            <option value='Green'>Green</option>
-                                            <option value='Yellow'>Yellow</option>
-                                            <option value='Black'>Black</option>
+                                            <option value='Butter Cream'>Butter Cream</option>
+                                            <option value='Fondant'>Fondant</option>
+                                            <option value='Whipped Cream'>Whipped Cream</option>
                                         </Form.Select>
                                     </div>
 

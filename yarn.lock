@@ -1158,6 +1158,11 @@
   resolved "https://registry.npmjs.org/@csstools/normalize.css/-/normalize.css-10.1.0.tgz"
   integrity sha512-ij4wRiunFfaJxjB0BdrYHIH8FxBJpOwNPhhAcunlmPdXudL1WQV1qoP9un6JsEBAgQH+7UXyyjh0g7jTxXK6tg==
 
+"@emailjs/browser@^3.6.2":
+  version "3.6.2"
+  resolved "https://registry.yarnpkg.com/@emailjs/browser/-/browser-3.6.2.tgz#8124b656953fae490405ba330aa3aebc1aeb6cd2"
+  integrity sha512-Swc8w+vwDX4XPy6tPegOFGSwHqNiEmEsIKbtAkqHo2WqnS0ORZUnnuZats2R3XqwfxNQD0F6RwnlVWHIMf6sCQ==
+
 "@eslint/eslintrc@^0.3.0":
   version "0.3.0"
   resolved "https://registry.npmjs.org/@eslint/eslintrc/-/eslintrc-0.3.0.tgz"
@@ -4380,10 +4385,10 @@ dotenv@8.2.0:
   resolved "https://registry.npmjs.org/dotenv/-/dotenv-8.2.0.tgz"
   integrity sha512-8sJ78ElpbDJBHNeBzUbUVLsqKdccaa/BXF1uPTw3GrvQTBgrQrtObr2mUrE38vzYd8cEv+m/JBfDLioYcfXoaw==
 
-dotenv@^15.0.0:
-  version "15.0.0"
-  resolved "https://registry.npmjs.org/dotenv/-/dotenv-15.0.0.tgz"
-  integrity sha512-/l1sXXm79ry34KwwS0y4oVZjB468iw/6u9g1W26dtexKcIJAnVL2pMF+hxQwzZ7LutxOwEgtym9eIxvX33CMKg==
+dotenv@^16.0.1:
+  version "16.0.1"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.0.1.tgz#8f8f9d94876c35dac989876a5d3a82a267fdce1d"
+  integrity sha512-1K6hR6wtk2FviQ4kEiSjFiH5rpzEVi8WW0x96aztHVMhEspNpc4DVOUTEHtEva5VThQ8IaBX1Pe4gSzpVVUsKQ==
 
 duplexer@^0.1.1:
   version "0.1.2"
