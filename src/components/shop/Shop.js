@@ -24,16 +24,11 @@ const Shop = () => {
     },[])
 
     const generateItem = () => {
-        
         return (
-
             data.filter(user =>{
                 if (!category) return user
                 else if (category == "") return user
-                else if (user.product_category.includes(category)){
-                    console.log(user);
-                    return user
-                }
+                else if (user.product_category.includes(category))return user
             }).map(meow => {
                 return (
                     <div class="col-12 col-sm-6 col-lg-6 col-xl-4">

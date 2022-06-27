@@ -56,7 +56,7 @@ const Adminhome = () => {
                     product_name : meows.product_name,
                     product_category : meows.product_category,
                     product_price : meows.product_price,
-                    email_address : 'bjpogs26@gmail.com'
+                    email_address : meows.email_address,
                 }
                 emailjs.send('service_hkloqw4', 'template_y39gciu', template, 'zpZhnlO2TsbRcuocB')
                 .then((res) => {
