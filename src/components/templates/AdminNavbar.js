@@ -30,6 +30,7 @@ const AdminNavbar = () => {
                     <Nav.Link  as={NavLink} to ="/admin/custom-order"><b>Custom Orders</b></Nav.Link>
                     <Nav.Link  as={NavLink} to ="/admin/reservation-order"><b>Reservation Orders</b></Nav.Link>
                     <Nav.Link  as={NavLink} to ="/admin/products"><b>Products</b></Nav.Link>
+                    <Nav.Link  as={NavLink} to ="/admin/build"><b>Build</b></Nav.Link>
                     <NavDropdown  title={localStorage.getItem('fname')} id="nav-dropdown">
                     <NavDropdown.Item href='/myaccount'>My Account</NavDropdown.Item>
                     <NavDropdown.Divider />

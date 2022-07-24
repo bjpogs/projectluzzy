@@ -12,29 +12,24 @@ import img2 from '../../assets/img/tuts/step2.jpg'
 const Build = () => {
     const [reserve, setReserve] = useState(false)
     const [bdaynum, setbdaynum] = useState(false)
-    const [data, setData] = useState({
-        size : '6x2',
-        sizeprice : 600,
-        flavor : 'Ube',
-        design : 'Design 1',
-        top1 : '',
-        top2 : '',
-        top1price : 0,
-        top2price : 0,
-        topper : '',
-        topperprice : 0,
-        number : '',
-        icing : 'Butter Cream',
-        message : '',
-        date : '',
-    })
+    const [selectdata, setSelectData] = useState([])
+    const [data, setData] = useState([])
 
     useEffect(() => {
         if (!localStorage.getItem('isAuthenticated')){
             alert('Please login first to continue.')
             window.location.href = "/login"
         }
-    })
+        else{
+            axios.get('buildselect')
+            .then(res => {
+                setSelectData(res.data)
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        }
+    },[])
 
     const settings = {
         dots: false,
@@ -43,6 +38,7 @@ const Build = () => {
         slidesToShow: 1,
         slidesToScroll: 1
     }
+
     const handleSubmit = (e) => {
         e.preventDefault()
         bdaynum ? data['number'] = document.getElementById('bdaynum').value : data['number'] = 0
@@ -61,43 +57,80 @@ const Build = () => {
     const handleChange = (e) => {
         const newdata = {...data}
         e.target.value == "Number" ? setbdaynum(true) : setbdaynum(false)
-        if (e.target.id == "size"){
-            if (e.target.value == "6x2") newdata['sizeprice'] = 600
-            else if (e.target.value == "7x3") newdata['sizeprice'] = 1200
-            else if (e.target.value == "8x3") newdata['sizeprice'] = 1300
-            else if (e.target.value == "7x3 2 tier") newdata['sizeprice'] = 1400
-            else if (e.target.value == "8x5 2 tier") newdata['sizeprice'] = 1500
-            else if (e.target.value == "7x3 2 layer") newdata['sizeprice'] = 2000
-            else if (e.target.value == "8x5 2 layer") newdata['sizeprice'] = 2500
-            else if (e.target.value == "7x3 3 layer") newdata['sizeprice'] = 3000
-            else if (e.target.value == "8x5 3 layer") newdata['sizeprice'] = 3500
-        }
-        else if (e.target.id == "top1"){
-            if (e.target.value == "None") newdata['top2price'] = 0
-            else if (e.target.value == "topping1") newdata['top1price'] = 50
-            else if (e.target.value == "topping2") newdata['top1price'] = 100
-            else if (e.target.value == "topping3") newdata['top1price'] = 150
-            else if (e.target.value == "topping4") newdata['top1price'] = 200
-            else if (e.target.value == "topping5") newdata['top1price'] = 250
-        }
-        else if (e.target.id == "top2"){
-            if (e.target.value == "None") newdata['top2price'] = 0
-            else if (e.target.value == "topping1") newdata['top2price'] = 50
-            else if (e.target.value == "topping2") newdata['top2price'] = 100
-            else if (e.target.value == "topping3") newdata['top2price'] = 150
-            else if (e.target.value == "topping4") newdata['top2price'] = 200
-            else if (e.target.value == "topping5") newdata['top2price'] = 250
-        }
-        else if (e.target.id =="topper"){
-            if (e.target.value == 'None') newdata['topperprice'] = 0
-            else if (e.target.value == 'Number') newdata['topperprice'] = 100
-            else if (e.target.value == 'Happy Anniversary') newdata['topperprice'] = 300
-            else if (e.target.value == 'Happy Birthday') newdata['topperprice'] = 300
-            else if (e.target.value == 'Congratulations') newdata['topperprice'] = 300
-            else if (e.target.value == 'Gender Reveal') newdata['topperprice'] = 400
-        }
         newdata[e.target.id] = e.target.value
         setData(newdata)
+    }
+
+    const selectsize = () => {
+        return (
+            selectdata.map(meow => {
+                if (meow.id == "size"){
+                    return (
+                        <option value={meow.name}>{meow.name} - {meow.price}</option>
+                    )
+                }
+            })
+        )
+    }
+    
+    const selectflavor = () => {
+        return (
+            selectdata.map(meow => {
+                if (meow.id == "flavor"){
+                    return (
+                        <option value={meow.name}>{meow.name}</option>
+                    )
+                }
+            })
+        )
+    }
+
+    const selectdesign = () => {
+        return (
+            selectdata.map(meow => {
+                if (meow.id == "design"){
+                    return (
+                        <option value={meow.name}>{meow.name}</option>
+                    )
+                }
+            })
+        )
+    }
+
+    const selecttopping = () => {
+        return (
+            selectdata.map(meow => {
+                if (meow.id == "topping"){
+                    return (
+                        <option value={meow.name}>{meow.name} - {meow.price}</option>
+                    )
+                }
+            })
+        )
+    }
+
+    const selecttopper = () => {
+        return (
+            selectdata.map(meow => {
+                if (meow.id == "topper"){
+                    return (
+                        <option value={meow.name}>{meow.name} - {meow.price}</option>
+                    )
+                }
+            })
+        )
+    }
+
+    const selecticing = () => {
+        return (
+            selectdata.map(meow => {
+                if (meow.id == "icing"){
+                    return (
+                        <option value={meow.name}>{meow.name}</option>
+                    )
+                }
+            })
+        )
     }
 
     return(
@@ -145,66 +178,40 @@ const Build = () => {
                                     <div class="col-12 mb-2">
                                         <Form.Label htmlFor="basic-url"><b>Step 1. Select Size *</b></Form.Label>
                                         <Form.Select aria-label="Default select example" id="size" onChange={handleChange}>
-                                            <option value='6x2'>6 by 2 inch (1 layer) - ₱600</option>
-                                            <option value='7x3'>7 by 3 inch (1 layer) - ₱1200</option>
-                                            <option value='8x3'>8 by 3 inch (1 layer) - ₱1300</option>
-                                            <option value='7x3 2 tier'>7 by 3 inch 2 tier (1 layer) - ₱1400</option>
-                                            <option value='8x5 2 tier'>8 by 5 inch 2 tier (1 layer) - ₱1500</option>
-                                            <option value='7x3 2 layer'>7 by 3 inch 2 tier (2 layer) - ₱2000</option>
-                                            <option value='8x5 2 layer'>8 by 5 inch 2 tier (2 layer) - ₱2500</option>
-                                            <option value='7x3 3 layer'>7 by 3 inch 2 tier (3 layer) - ₱3000</option>
-                                            <option value='8x5 3 layer'>8 by 5 inch 2 tier (3 layer) - ₱3500</option>
+                                            {selectsize()}
                                         </Form.Select>
                                     </div>
                                     <div class="col-12 mb-2">
                                         <Form.Label htmlFor="basic-url"><b>Step 2. Select Flavor *</b></Form.Label>
                                         <Form.Select aria-label="Default select example" id="flavor" onChange={handleChange}>
-                                            <option value='Ube'>Ube</option>
-                                            <option value='Moist-Chocolate'>Moist Chocolate</option>
-                                            <option value='Vanilla-Caramel'>Vanilla Caramel</option>
+                                            {selectflavor()}
                                         </Form.Select>
                                     </div>
                                     <div class="col-12 mb-2">
                                         <Form.Label htmlFor="basic-url"><b>Step 3. Select Design *</b></Form.Label>
                                         <Form.Select aria-label="Default select example" id="design" onChange={handleChange}>
-                                            <option value='Design1'>Design 1</option>
-                                            <option value='Design2'>Design 2</option>
-                                            <option value='Design3'>Design 3</option>
-                                            <option value='Design4'>Design 4</option>
-                                            <option value='Design5'>Design 5</option>
+                                            {selectdesign()}
                                         </Form.Select>
                                     </div>
                                     <div class="col-12 mb-2">
                                         <Form.Label htmlFor="basic-url"><b>Step 4. Select Topping 1 *</b></Form.Label>
                                         <Form.Select aria-label="Default select example" id="top1" onChange={handleChange}>
                                             <option value='None'>None</option>
-                                            <option value='topping1'>Topping 1 - ₱50</option>
-                                            <option value='topping2'>Topping 2 - ₱100</option>
-                                            <option value='topping3'>Topping 3 - ₱150</option>
-                                            <option value='topping4'>Topping 4 - ₱200</option>
-                                            <option value='topping5'>Topping 5 - ₱250</option>
+                                            {selecttopping()}
                                         </Form.Select>
                                     </div>
                                     <div class="col-12 mb-2">
                                         <Form.Label htmlFor="basic-url"><b>Select Topping 2 *</b></Form.Label>
                                         <Form.Select aria-label="Default select example" id="top2" onChange={handleChange}>
                                             <option value='None'>None</option>
-                                            <option value='topping1'>Topping 1 - ₱50</option>
-                                            <option value='topping2'>Topping 2 - ₱100</option>
-                                            <option value='topping3'>Topping 3 - ₱150</option>
-                                            <option value='topping4'>Topping 4 - ₱200</option>
-                                            <option value='topping5'>Topping 5 - ₱250</option>
+                                            {selecttopping()}
                                         </Form.Select>
                                     </div>
                                     <div class="col-12 mb-2">
                                         <Form.Label htmlFor="basic-url"><b>Step 5. Select a Topper</b></Form.Label>
                                         <Form.Select aria-label="Default select example" id="topper" onChange={handleChange}>
                                             <option value='None'>None</option>
-                                            <option value='Number'>Number - ₱100</option>
-                                            <option value='Happy Anniversary'>Happy Anniversary - ₱300</option>
-                                            <option value='Happy Birthday'>Happy Birthday - ₱300</option>
-                                            <option value='Congratulations'>Congratulations - ₱300</option>
-                                            <option value='Gender Reveal'>Gender Reveal - ₱400</option>
+                                            {selecttopper()}
                                         </Form.Select>
                                     </div>
                                     {
@@ -219,9 +226,7 @@ const Build = () => {
                                     <div class="col-12 mb-2">
                                         <Form.Label htmlFor="basic-url"><b>Step 6. Select a Icing</b></Form.Label>
                                         <Form.Select aria-label="Default select example" id="icing" onChange={handleChange}>
-                                            <option value='Butter Cream'>Butter Cream</option>
-                                            <option value='Fondant'>Fondant</option>
-                                            <option value='Whipped Cream'>Whipped Cream</option>
+                                            {selecticing()}
                                         </Form.Select>
                                     </div>
 
@@ -247,7 +252,7 @@ const Build = () => {
                                     <div class="col-12 mt-2 mb-2">
                                         <h4>Summary :</h4>
                                         <div class="row">
-                                            <div class="col-10"><p>Step 1. Select Size : <b>{data.size}</b></p></div>
+                                            <div class="col-10"><p>Step 1. Select Size : <b></b></p></div>
                                             <div class="col-2"><p>₱{data.sizeprice}</p></div>
                                             <div class="col-10"><p>Step 2. Select Flavor : <b>{data.flavor}</b></p></div>
                                             <div class="col-2"><p>₱0</p></div>
