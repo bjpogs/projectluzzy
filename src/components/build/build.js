@@ -41,9 +41,22 @@ const Build = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        // price coming soon.
         bdaynum ? data['number'] = document.getElementById('bdaynum').value : data['number'] = 0
         if (!reserve) data.date = ""
-        axios.post('savecustom', data)
+        var tempdata = {
+            size : document.getElementById('size').value,
+            flavor : document.getElementById('flavor').value,
+            design: document.getElementById('design').value,
+            topping1 : document.getElementById('top1').value,
+            topping2 : document.getElementById('top2').value,
+            topper : document.getElementById('topper').value,
+            number : bdaynum ? document.getElementById('bdaynum').value : 0,
+            icing : document.getElementById('icing').value,
+            message : document.getElementById('message').value,
+            date : reserve ? document.getElementById('date').value : 'not applicable'
+        }
+        axios.post('savecustom', tempdata)
         .then((res) => {
             alert('Success!')
             window.location.reload()

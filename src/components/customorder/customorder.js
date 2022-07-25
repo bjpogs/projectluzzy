@@ -93,7 +93,7 @@ const Customorder = () => {
                         <td>{meows.first_name}</td>
                         <td>{meows.email_address}</td>
                         <td>{meows.contact_no}</td>
-                        <td>{meows.order_date == "" ? meows.order_date : "Not Applicable"}</td>
+                        <td>{meows.order_date !== "" || meows.order_date !== null ? meows.order_date : "Not Applicable"}</td>
                         <td>
                             {!edit ? 
                                 meows.status
