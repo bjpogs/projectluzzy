@@ -4,7 +4,7 @@ import axios from '../../api/api'
 
 import {Form, InputGroup, FormControl, Button, Accordion} from 'react-bootstrap'
 
-// image for tutorials
+// image for tutorials asdasd
 import img0 from '../../assets/img/tuts/img1.jpg'
 import img1 from '../../assets/img/tuts/step1.jpg'
 import img2 from '../../assets/img/tuts/step2.jpg'
