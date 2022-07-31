@@ -8,6 +8,11 @@ import {Form, InputGroup, FormControl, Button, Accordion} from 'react-bootstrap'
 import img0 from '../../assets/img/tuts/img1.jpg'
 import img1 from '../../assets/img/tuts/step1.jpg'
 import img2 from '../../assets/img/tuts/step2.jpg'
+import img3 from '../../assets/img/tuts/step3.jpg'
+import img41 from '../../assets/img/tuts/step4.1.jpg'
+import img42 from '../../assets/img/tuts/step4.2.jpg'
+import img5 from '../../assets/img/tuts/step5.jpg'
+import img6 from '../../assets/img/tuts/step6.jpg'
 
 const Build = () => {
     const [reserve, setReserve] = useState(false)
@@ -46,12 +51,12 @@ const Build = () => {
         if (!reserve) data.date = ""
         var tempdata = {
             size : document.getElementById('size').value,
+            shape : document.getElementById('shape').value,
             flavor : document.getElementById('flavor').value,
             design: document.getElementById('design').value,
-            topping1 : document.getElementById('top1').value,
-            topping2 : document.getElementById('top2').value,
+            topping : document.getElementById('top1').value,
             topper : document.getElementById('topper').value,
-            number : bdaynum ? document.getElementById('bdaynum').value : 0,
+            number : bdaynum ? document.getElementById('bdaynum').value : '',
             icing : document.getElementById('icing').value,
             message : document.getElementById('message').value,
             date : reserve ? document.getElementById('date').value : 'not applicable'
@@ -85,6 +90,19 @@ const Build = () => {
             })
         )
     }
+
+    const selectshape= () => {
+        return (
+            selectdata.map(meow => {
+                if (meow.id == "shape"){
+                    return (
+                        <option value={meow.name}>{meow.name}</option>
+                    )
+                }
+            })
+        )
+    }
+
     
     const selectflavor = () => {
         return (
@@ -170,13 +188,19 @@ const Build = () => {
                                         <img class="tutimg" src={img2} />
                                     </div>
                                     <div>
-                                        <h3>4</h3>
+                                        <img class="tutimg" src={img3} />
                                     </div>
                                     <div>
-                                        <h3>5</h3>
+                                        <img class="tutimg" src={img41} />
                                     </div>
                                     <div>
-                                        <h3>6</h3>
+                                        <img class="tutimg" src={img42} />
+                                    </div>
+                                    <div>
+                                        <img class="tutimg" src={img5} />
+                                    </div>
+                                    <div>
+                                        <img class="tutimg" src={img6} />
                                     </div>
                                 </Slider>
                             </div>
@@ -189,53 +213,50 @@ const Build = () => {
                                     <h3><b>Build a Cake</b></h3>
                                     </div>
                                     <div class="col-12 mb-2">
-                                        <Form.Label htmlFor="basic-url"><b>Step 1. Select Size *</b></Form.Label>
+                                        <Form.Label htmlFor="basic-url"><b>Step 1. Select Size</b></Form.Label>
                                         <Form.Select aria-label="Default select example" id="size" onChange={handleChange}>
                                             {selectsize()}
                                         </Form.Select>
                                     </div>
+                                    {/*new choice added */}
                                     <div class="col-12 mb-2">
-                                        <Form.Label htmlFor="basic-url"><b>Step 2. Select Flavor *</b></Form.Label>
+                                        <Form.Label htmlFor="basic-url"><b>Step 2. Select Shape</b></Form.Label>
+                                        <Form.Select aria-label="Default select example" id="shape" onChange={handleChange}>
+                                            {selectshape()}
+                                        </Form.Select>
+                                    </div>
+
+                                
+                                    <div class="col-12 mb-2">
+                                        <Form.Label htmlFor="basic-url"><b>Step 3. Select Flavor</b></Form.Label>
                                         <Form.Select aria-label="Default select example" id="flavor" onChange={handleChange}>
                                             {selectflavor()}
                                         </Form.Select>
                                     </div>
                                     <div class="col-12 mb-2">
-                                        <Form.Label htmlFor="basic-url"><b>Step 3. Select Design *</b></Form.Label>
+                                        <Form.Label htmlFor="basic-url"><b>Step 4. Select Design</b></Form.Label>
                                         <Form.Select aria-label="Default select example" id="design" onChange={handleChange}>
                                             {selectdesign()}
                                         </Form.Select>
                                     </div>
                                     <div class="col-12 mb-2">
-                                        <Form.Label htmlFor="basic-url"><b>Step 4. Select Topping 1 *</b></Form.Label>
+                                        <Form.Label htmlFor="basic-url"><b>Step 5. Select Topping</b></Form.Label>
                                         <Form.Select aria-label="Default select example" id="top1" onChange={handleChange}>
                                             <option value='None'>None</option>
                                             {selecttopping()}
                                         </Form.Select>
                                     </div>
                                     <div class="col-12 mb-2">
-                                        <Form.Label htmlFor="basic-url"><b>Select Topping 2 *</b></Form.Label>
-                                        <Form.Select aria-label="Default select example" id="top2" onChange={handleChange}>
-                                            <option value='None'>None</option>
-                                            {selecttopping()}
-                                        </Form.Select>
-                                    </div>
-                                    <div class="col-12 mb-2">
-                                        <Form.Label htmlFor="basic-url"><b>Step 5. Select a Topper</b></Form.Label>
+                                        <Form.Label htmlFor="basic-url"><b>Step 6. Select a Topper</b></Form.Label>
                                         <Form.Select aria-label="Default select example" id="topper" onChange={handleChange}>
                                             <option value='None'>None</option>
                                             {selecttopper()}
                                         </Form.Select>
                                     </div>
-                                    {
-                                        bdaynum ? 
-                                        <div class="col-12 mb-2">
-                                            <Form.Label htmlFor="basic-url"><b>Birthday Number : </b></Form.Label>
-                                            <input class="form-control item" type="number" id="bdaynum" required/>
-                                        </div>
-                                        :
-                                        <></>
-                                    }
+                                    <div class="col-12 mb-2">
+                                        <Form.Label htmlFor="basic-url"><b>Topper Message : </b></Form.Label>
+                                        <input class="form-control item" type="text" id="bdaynum" placeholder="Example : Number / Gender"/>
+                                    </div>
                                     <div class="col-12 mb-2">
                                         <Form.Label htmlFor="basic-url"><b>Step 6. Select a Icing</b></Form.Label>
                                         <Form.Select aria-label="Default select example" id="icing" onChange={handleChange}>
@@ -261,6 +282,7 @@ const Build = () => {
                                     <div class="col-12 mb-2 mt-3">
                                         <p>Disclaimer: Please keep in mind that each cake is handcrafted individually by a professional baker so there may be subtle differences in design and flowers (due to seasonal changes)</p>
                                     </div>
+                                    { /* 
                                     <hr/>
                                     <div class="col-12 mt-2 mb-2">
                                         <h4>Summary :</h4>
@@ -283,6 +305,7 @@ const Build = () => {
                                             <div class="col-2"><p><b>₱{data.sizeprice + data.top1price + data.top2price + data.topperprice}</b></p></div>
                                         </div>
                                     </div>
+                                    */}
                                     <div class="col-12 mt-2 mb-3">
                                         { /* reservation button */ }
                                         <Button type="button" class="btn btn-success w-100" onClick={() => setReserve(!reserve)}>{!reserve? 'For Reservation' : 'For Pick Up'}</Button>

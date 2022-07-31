@@ -17,7 +17,7 @@ const Order = () => {
     },[])
 
     const renderTable = () => {
-        if (data) {
+        if (data.length > 0) {
             return (
                 data.map(meow => {
                     return(

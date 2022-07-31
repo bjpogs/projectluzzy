@@ -494,16 +494,9 @@ const Products = () => {
                         <div class="col-12 mb-3">
                             <Form.Label htmlFor="basic-url">Category</Form.Label>
                             <Form.Select aria-label="Default select example" id="product_category">
-                                <option value="ANNIVERSARY">Anniversary</option>
-                                <option value="BENTO">Bento</option>
-                                <option value="BIRTHDAY">Birthday</option>
-                                <option value="CHARACTER">Character</option>
-                                <option value="CHRISTENING">Christening</option>
-                                <option value="CUPCAKE">Cupcake</option>
-                                <option value="DEBUT">Debut</option>
-                                <option value="GENDER">Gender</option>
-                                <option value="NUMBER">Number</option>
-                                <option value="WEDDING">Wedding</option>
+                                <option value="Events">Events</option>
+                                <option value="Simple">Simple</option>
+                                <option value="Cupcake">Cupcake</option>
                             </Form.Select>
                         </div>
                         <div class="col-12">

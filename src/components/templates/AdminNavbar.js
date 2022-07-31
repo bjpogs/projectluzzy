@@ -32,8 +32,8 @@ const AdminNavbar = () => {
                     <Nav.Link  as={NavLink} to ="/admin/products"><b>Products</b></Nav.Link>
                     <Nav.Link  as={NavLink} to ="/admin/build"><b>Build</b></Nav.Link>
                     <NavDropdown  title={localStorage.getItem('fname')} id="nav-dropdown">
-                    <NavDropdown.Item href='/myaccount'>My Account</NavDropdown.Item>
-                    <NavDropdown.Divider />
+                    { /*<NavDropdown.Item href='/myaccount'>My Account</NavDropdown.Item> <NavDropdown.Divider />*/ }
+                    
                     <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
                 </NavDropdown>
                 </Nav>

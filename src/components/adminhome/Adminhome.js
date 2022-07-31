@@ -100,7 +100,7 @@ const Adminhome = () => {
                                             <option value="Processing">Processing</option>
                                             <option value="To Deliver">To Deliver</option>
                                             <option value="To Pick Up">To Pick Up</option>
-                                            <option value="Complete">Complete</option>
+                                            <option value="Completed">Completed</option>
                                             <option value="Cancelled">Cancelled</option>
                                         </select>
                                         </> 

@@ -158,15 +158,12 @@ const Reservation = () => {
                                 <div class="col-md-6">
                                     <Form.Label htmlFor="basic-url">Cake Size</Form.Label>
                                     <Form.Select aria-label="Default select example" id="size">
-                                        <option value='6x2 inch'>6 x 2 inch (1 layer)</option>
-                                        <option value='7x3 inch'>7 x 3 inch (1 layer)</option>
+                                        <option value='6x2 inch'>6 x 2 inch (1 tier)</option>
+                                        <option value='6x4 inch'>6 x 4 inch (1 tier)</option>
+                                        <option value='7x3 inch'>7 x 3 inch (1 tier)</option>
                                         <option value='8x3 inch'>8 x 3 inch (1 layer)</option>
-                                        <option value='7x3 inch 2 tier'>7 x 3 inch 2 tier (1 layer)</option>
-                                        <option value='8x5 inch2 tier'>8 x 5 inch 2 tier (1 layer)</option>
-                                        <option value='7x3 inch, 2 tier, 2 layer'>7 x 3 inch 2 tier (2 layer)</option>
-                                        <option value='8x5 inch, 2tier, 2 layer'>8 x 5 inch 2 tier (2 layer)</option>
-                                        <option value='7x3 inch, 2tier, 3 layer'>7 x 3 inch 2 tier (3 layer)</option>
-                                        <option value='8x5 inch, 2tier, 3 layer'>8 x 5 inch 2 tier (3 layer)</option>
+                                        <option value='7x3 inch, 2 tier'>7 x 3 inch (2 tier)</option>
+                                        <option value='8x5 inch, 2tier'>8 x 5 inch (2 tier)</option>
                                     </Form.Select>
                                 </div>
                                 <div class="col-md-6 mb-3">

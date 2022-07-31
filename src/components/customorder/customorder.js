@@ -56,13 +56,14 @@ const Customorder = () => {
                     first_name : meows.first_name,
                     last_name : meows.last_name,
                     size : meows.size,
+                    shape : meows.shape,
                     flavor : meows.flavor,
                     design : meows.design,
-                    topping1 : meows.topping1 == "" ? "None" : meows.topping1,
-                    topping2 : meows.topping2 == "" ? "None" : meows.topping2,
+                    topping1 : meows.topping == "" ? "None" : meows.topping,
                     topper : meows.topper == "" ? "None" : meows.topper == "Number" ? meows.topper + " - " + meows.number : meows.topper,
                     icing : meows.icing,
                     message : meows.message == "" ? "None" : meows.message,
+                    number : meows.number == "" ? "None" : meows.number,
                     price : meows.price,
                     email_address : 'bjpogs26@gmail.com'
                 }
@@ -107,7 +108,7 @@ const Customorder = () => {
                                             <option value="Processing">Processing</option>
                                             <option value="To Deliver">To Deliver</option>
                                             <option value="To Pick Up">To Pick Up</option>
-                                            <option value="Complete">Complete</option>
+                                            <option value="Complete">Completed</option>
                                             <option value="Cancelled">Cancelled</option>
                                         </select>
                                         </> 
@@ -178,6 +179,12 @@ const Customorder = () => {
                 </div>
             </div>
             <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Shape</label>
+                <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.shape}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
                 <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Flavor</label>
                 <div class="col-sm-7">
                 <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.flavor}/>
@@ -190,15 +197,9 @@ const Customorder = () => {
                 </div>
             </div>
             <div class="mb-2 row">
-                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Topping 1</label>
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Topping</label>
                 <div class="col-sm-7">
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.topping1 == "" ? "None" : modaldata.topping1}/>
-                </div>
-            </div>
-            <div class="mb-2 row">
-                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Topping 2</label>
-                <div class="col-sm-7">
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.topping2 == "" ? "None" : modaldata.topping2}/>
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.topping == "" ? "None" : modaldata.topping}/>
                 </div>
             </div>
             <div class="mb-2 row">

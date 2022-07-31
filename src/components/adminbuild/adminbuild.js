@@ -30,6 +30,18 @@ const Adminbuild = () => {
             })
         )
     }
+
+    const selectshape = () => {
+        return (
+            data.map(meow => {
+                if (meow.id == "shape"){
+                    return (
+                        <option value={meow.name}>{meow.name}</option>
+                    )
+                }
+            })
+        )
+    }
     
     const selectflavor = () => {
         return (
@@ -258,7 +270,7 @@ const Adminbuild = () => {
                     <br/>
                     <div class="row">
                         <div class="col-12 mb-3">
-                            <Form.Label htmlFor="basic-url"><h4><b>Select Size </b></h4></Form.Label>
+                            <Form.Label htmlFor="basic-url"><h4><b>Size </b></h4></Form.Label>
                             <Form.Select aria-label="Default select example" id="size">
                                 {selectsize()}
                             </Form.Select>
@@ -288,7 +300,37 @@ const Adminbuild = () => {
                             </button>
                         </div>
                         <div class="col-12 mb-3">
-                            <Form.Label htmlFor="basic-url"><h4><b>Select Flavor </b></h4></Form.Label>
+                            <Form.Label htmlFor="basic-url"><h4><b>Shape </b></h4></Form.Label>
+                            <Form.Select aria-label="Default select example" id="shape">
+                                {selectshape()}
+                            </Form.Select>
+                        </div>
+                        <div class="col-lg-3 col-xl-2 mb-2">
+                            <button class="btn btn-outline-success w-100" type="button" onClick={() => {setid('shape'); setModalShow(true)}}>
+                                <i class="icon-plus icon"/>
+                                Add
+                            </button>
+                        </div>
+                        <div class="col-lg-3 col-xl-2 mb-2">
+                            <button class="btn btn-outline-primary w-100" type="button" onClick={() => {beforeedit('shape')}}>
+                                <i class="icon-pencil icon"/>
+                                Edit
+                            </button>
+                        </div>
+                        <div class="col-lg-3 col-xl-2 mb-2">
+                            <button class="btn btn-outline-danger w-100" type="button" onClick={() => {
+                                if (window.confirm('Are you sure you want to delete?')) {
+                                    // Save it!
+                                    setid('shape');
+                                    deleteselect('shape')
+                                }
+                            }}>
+                                <i class="icon-trash icon"/>
+                                Delete
+                            </button>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <Form.Label htmlFor="basic-url"><h4><b>Flavor </b></h4></Form.Label>
                             <Form.Select aria-label="Default select example" id="flavor">
                                 {selectflavor()}
                             </Form.Select>
@@ -318,7 +360,7 @@ const Adminbuild = () => {
                             </button>
                         </div>
                         <div class="col-12 mb-3">
-                            <Form.Label htmlFor="basic-url"><h4><b>Select Design</b></h4></Form.Label>
+                            <Form.Label htmlFor="basic-url"><h4><b>Design</b></h4></Form.Label>
                             <Form.Select aria-label="Default select example" id="design">
                                 {selectdesign()}
                             </Form.Select>
@@ -348,7 +390,7 @@ const Adminbuild = () => {
                             </button>
                         </div>
                         <div class="col-12 mb-3">
-                            <Form.Label htmlFor="basic-url"><h4><b>Select Topping</b></h4></Form.Label>
+                            <Form.Label htmlFor="basic-url"><h4><b>Topping</b></h4></Form.Label>
                             <Form.Select aria-label="Default select example" id="topping">
                                 {selecttopping()}
                             </Form.Select>
@@ -378,7 +420,7 @@ const Adminbuild = () => {
                             </button>
                         </div>
                         <div class="col-12 mb-3">
-                            <Form.Label htmlFor="basic-url"><h4><b>Select Topper</b></h4></Form.Label>
+                            <Form.Label htmlFor="basic-url"><h4><b>Topper</b></h4></Form.Label>
                             <Form.Select aria-label="Default select example" id="topper">
                                 {selecttopper()}
                             </Form.Select>
@@ -408,7 +450,7 @@ const Adminbuild = () => {
                             </button>
                         </div>
                         <div class="col-12 mb-3">
-                            <Form.Label htmlFor="basic-url"><h4><b>Select Icing </b></h4></Form.Label>
+                            <Form.Label htmlFor="basic-url"><h4><b>Icing </b></h4></Form.Label>
                             <Form.Select aria-label="Default select example" id="icing">
                                 {selecticing()}
                             </Form.Select>

@@ -68,17 +68,10 @@ const Shop = () => {
                                         <div class="filter-item">
                                             <h3>Categories</h3>
                                             <Nav className="flex-column" variant="pills">
-                                            <Nav.Link eventKey="link" onClick={categoryChange} title="">All Item</Nav.Link>
-                                            <Nav.Link eventKey="link-1" onClick={categoryChange} title="ANNIVERSARY">Anniversary</Nav.Link>
-                                            <Nav.Link eventKey="link-2" onClick={categoryChange} title="BENTO">Bento</Nav.Link>
-                                            <Nav.Link eventKey="link-3" onClick={categoryChange} title="BIRTHDAY">Birthday</Nav.Link>
-                                            <Nav.Link eventKey="link-4" onClick={categoryChange} title="CHARACTER">Character</Nav.Link>
-                                            <Nav.Link eventKey="link-5" onClick={categoryChange} title="CHRISTENING">Christening</Nav.Link>
-                                            <Nav.Link eventKey="link-6" onClick={categoryChange} title="CUPCAKE">Cupcake</Nav.Link>
-                                            <Nav.Link eventKey="link-7" onClick={categoryChange} title="DEBUT">Debut</Nav.Link>
-                                            <Nav.Link eventKey="link-8" onClick={categoryChange} title="GENDER">Gender</Nav.Link>
-                                            <Nav.Link eventKey="link-9" onClick={categoryChange} title="NUMBER">Number</Nav.Link>
-                                            <Nav.Link eventKey="link-10" onClick={categoryChange} title="WEDDING">Wedding</Nav.Link>
+                                            <Nav.Link eventKey="link" onClick={categoryChange} title="">All Items</Nav.Link>
+                                            <Nav.Link eventKey="link-1" onClick={categoryChange} title="Events">Events</Nav.Link>
+                                            <Nav.Link eventKey="link-2" onClick={categoryChange} title="Simple">Simple</Nav.Link>
+                                            <Nav.Link eventKey="link-6" onClick={categoryChange} title="Cupcake">Cupcake</Nav.Link>
                                             </Nav>
                                         </div>
                                     </div>
@@ -87,17 +80,10 @@ const Shop = () => {
                                 <div class="col-12 mb-2">
                                         <Form.Label htmlFor="basic-url"><b>Category</b></Form.Label>
                                         <Form.Select aria-label="Default select example" id="top1" onChange={(e)=>setCategory(e.target.value)}>
-                                            <option value='ALL'>All Item</option>
-                                            <option value='ANNIVERSARY'>Anniversary</option>
-                                            <option value='BENTO'>Bento</option>
-                                            <option value='BIRTHDAY'>Birthday</option>
-                                            <option value='CHARACTER'>Character</option>
-                                            <option value='CHRISTENING'>Christening</option>
-                                            <option value='CUPCAKE'>Cupcake</option>
-                                            <option value='DEBUT'>Debut</option>
-                                            <option value='GENDER'>Gender</option>
-                                            <option value='NUMBER'>Number</option>  
-                                            <option value='WEDDING'>Wedding</option>
+                                            <option value='ALL'>All Items</option>
+                                            <option value='Events'>Events</option>
+                                            <option value='Simple'>Simple</option>
+                                            <option value='Cupcake'>Cupcakes</option>
                                         </Form.Select>
                                     </div>
                                 </div>
