@@ -19,6 +19,9 @@ const Build = () => {
     const [bdaynum, setbdaynum] = useState(false)
     const [selectdata, setSelectData] = useState([])
     const [data, setData] = useState([])
+    const [sizeprice, setSizeprice] = useState(0)
+    const [toppingprice, setToppingprice] = useState(0)
+    const [topperprice, setTopperprice] = useState(0)
 
     useEffect(() => {
         if (!localStorage.getItem('isAuthenticated')){
@@ -29,6 +32,7 @@ const Build = () => {
             axios.get('buildselect')
             .then(res => {
                 setSelectData(res.data)
+                setSizeprice(res.data[0].price)
             })
             .catch(err => {
                 console.log(err);
@@ -59,6 +63,7 @@ const Build = () => {
             number : bdaynum ? document.getElementById('bdaynum').value : '',
             icing : document.getElementById('icing').value,
             message : document.getElementById('message').value,
+            price : sizeprice + toppingprice + topperprice,
             date : reserve ? document.getElementById('date').value : 'not applicable'
         }
         axios.post('savecustom', tempdata)
@@ -77,6 +82,14 @@ const Build = () => {
         e.target.value == "Number" ? setbdaynum(true) : setbdaynum(false)
         newdata[e.target.id] = e.target.value
         setData(newdata)
+        let tempprice = 0
+        let tempval = e.target.value
+        selectdata.map(meow => {
+            if (meow.name == tempval && meow.id == "size") setSizeprice(meow.price)
+            else if (meow.name == tempval && meow.id == "topping") setToppingprice(meow.price) 
+            else if (meow.name == tempval && meow.id == "topper") setTopperprice(meow.price)
+        })
+
     }
 
     const selectsize = () => {
@@ -258,7 +271,7 @@ const Build = () => {
                                         <input class="form-control item" type="text" id="bdaynum" placeholder="Example : Number / Gender"/>
                                     </div>
                                     <div class="col-12 mb-2">
-                                        <Form.Label htmlFor="basic-url"><b>Step 6. Select a Icing</b></Form.Label>
+                                        <Form.Label htmlFor="basic-url"><b>Step 7. Select a Icing</b></Form.Label>
                                         <Form.Select aria-label="Default select example" id="icing" onChange={handleChange}>
                                             {selecticing()}
                                         </Form.Select>
@@ -282,30 +295,32 @@ const Build = () => {
                                     <div class="col-12 mb-2 mt-3">
                                         <p>Disclaimer: Please keep in mind that each cake is handcrafted individually by a professional baker so there may be subtle differences in design and flowers (due to seasonal changes)</p>
                                     </div>
-                                    { /* 
                                     <hr/>
                                     <div class="col-12 mt-2 mb-2">
                                         <h4>Summary :</h4>
                                         <div class="row">
                                             <div class="col-10"><p>Step 1. Select Size : <b></b></p></div>
-                                            <div class="col-2"><p>₱{data.sizeprice}</p></div>
-                                            <div class="col-10"><p>Step 2. Select Flavor : <b>{data.flavor}</b></p></div>
+                                            { /* price for size */ }
+                                            <div class="col-2"><p>₱{sizeprice}</p></div>
+                                            <div class="col-10"><p>Step 2. Select Shape : <b>{data.flavor}</b></p></div>
                                             <div class="col-2"><p>₱0</p></div>
-                                            <div class="col-10"><p>Step 3. Select Design : <b>{data.design}</b></p></div>
+                                            <div class="col-10"><p>Step 3. Select Flavor : <b>{data.design}</b></p></div>
                                             <div class="col-2"><p>₱0</p></div>
-                                            <div class="col-10"><p>Step 4. Select Topping 1 : <b>{data.top1}</b></p></div>
-                                            <div class="col-2"><p>₱{data.top1price}</p></div>
-                                            <div class="col-10"><p>Select Topping 2 : <b>{data.top2}</b></p></div>
-                                            <div class="col-2"><p>₱{data.top2price}</p></div>
-                                            <div class="col-10"><p>Step 5. Select Topper : <b>{data.topper}</b></p></div>
-                                            <div class="col-2"><p>₱{data.topperprice}</p></div>
-                                            <div class="col-10"><p>Step 6. Select Icing : <b>{data.icing}</b></p></div>
+                                            <div class="col-10"><p>Step 4. Select Design : <b>{data.top1}</b></p></div>
+                                            <div class="col-2"><p>₱0</p></div>
+                                            <div class="col-10"><p>Step 5. Select Topping : <b>{data.top2}</b></p></div>
+                                            { /* price for topping */ }
+                                            <div class="col-2"><p>₱{toppingprice}</p></div>
+                                            <div class="col-10"><p>Step 6. Select Topper : <b>{data.topper}</b></p></div>
+                                            { /* price for topper */ }
+                                            <div class="col-2"><p>₱{topperprice}</p></div>
+                                            <div class="col-10"><p>Step 7. Select Icing : <b>{data.icing}</b></p></div>
                                             <div class="col-2"><p>₱0</p></div>
                                             <div class="col-10"><p><b>Subtotal : </b></p></div>
-                                            <div class="col-2"><p><b>₱{data.sizeprice + data.top1price + data.top2price + data.topperprice}</b></p></div>
+                                            { /* total price */ }
+                                            <div class="col-2"><p><b>₱{sizeprice + toppingprice + topperprice}</b></p></div>
                                         </div>
                                     </div>
-                                    */}
                                     <div class="col-12 mt-2 mb-3">
                                         { /* reservation button */ }
                                         <Button type="button" class="btn btn-success w-100" onClick={() => setReserve(!reserve)}>{!reserve? 'For Reservation' : 'For Pick Up'}</Button>
