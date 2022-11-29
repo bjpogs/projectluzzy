@@ -3,11 +3,26 @@ import React from 'react'
 // navbar and footer template
 import Navbar from '../templates/Navbar'
 import Footer from '../templates/Footer'
-import { InputGroup, FormControl, Form, Button } from 'react-bootstrap'
+import { InputGroup, FormControl, Form, Button, Modal } from 'react-bootstrap'
 import axios from '../../api/api'
+import { useState } from 'react'
 
 const Reservation = () => {
-
+    const [modalShow, setModalShow] = useState(false)
+    const [data, setData] = useState ({
+        
+        first_name : '',
+        last_name :'',
+        address : '',
+        contact_number : '',
+        email : '',
+        pickupdate : '',
+        pickuptime : '',
+        size : '',
+        flavor : '',
+        icing : '',
+        specialrequest :''
+    })
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = new FormData()
@@ -31,13 +46,53 @@ const Reservation = () => {
         axios.post('reservecake', form)
         .then((res) => {
             console.log(res.data);
+            setData(res.data)
             alert('Success!')
-            window.location.reload()
+            setModalShow(true)
         })
         .catch((err) =>{
             console.log(err);
         })
 
+
+    }
+
+    function SuccessModal(props) {
+        return (
+          <Modal
+                {...props}
+                size="md"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+          >
+            <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                    Reservation Details
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <h4>Order number : <b>{data.reservation_id}</b></h4>
+                <span>Note: save your order number for tracking of order.</span>
+                <hr/>
+                <span>Name : <b>{data.last_name}, {data.first_name}</b></span>
+                <br/>
+                <span>Address :<b>{data.address}</b></span>
+                <br/>
+                <span>Contact Number : <b>{data.contact_number}</b></span><br/>
+                <span>Email : <b>{data.email}</b></span><br/>
+                <span>Pick-up date : <b>{data.pickupdate}</b></span><br/>
+                <span>Time : <b>{data.pickuptime}</b></span><br/>
+                <span>Cake size : <b>{data.size}</b></span><br/>
+                <span>Flavor : <b>{data.flavor}</b></span><br/>
+                <span>Icing : <b>{data.icing}</b></span><br/>
+                <span>Special Request : <b>{data.specialrequest}</b></span>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button onClick={()=>window.location.reload()}>Close</Button> .
+                {/* onClick={()=>window.location.reload()} */}
+            </Modal.Footer>
+          </Modal>
+        );
     }
 
     return (
@@ -205,6 +260,10 @@ const Reservation = () => {
                         </Form>
                     </div>
                 </div>
+                <SuccessModal
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
+                />
             </section>
         </main>
         </>
