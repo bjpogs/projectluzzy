@@ -88,7 +88,8 @@ const Cart = () => {
 
     const checkout = () => {
         if (!reserve) data.order_date = ""
-        axios.post('placeorder', data)
+		
+        axios.post('placeorder', data) 
         .then((res) => {
             alert("Order placed successfully! We will contact you once your order is finish.")
             window.location.href = "/"
@@ -183,7 +184,7 @@ const Cart = () => {
                                                 aria-describedby="basic-addon1"
                                                 type="date"
                                                 id="order_date"
-                                                onChange={handleChange}
+                                                onChange={() => handleChange}
                                                 />
                                             </InputGroup>
                                         </div>

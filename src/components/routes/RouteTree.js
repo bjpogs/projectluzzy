@@ -17,6 +17,7 @@ import TrackOrder from '../trackorder/Trackorder'
 import Myaccount from '../myaccount/myaccount'
 import Build from '../build/build'
 import Order from '../order/order.js'
+import Trackreservation from '../trackreservation/trackreservation'
 
 // admin directories
 import AdminHome from '../adminhome/Adminhome'
@@ -45,6 +46,7 @@ function RouteTree() {
                 <Route exact path="/Reservation" component={Reservation}/>
                 <Route exact path="/Track" component={TrackOrder}/>
                 <Route exact path="/build-a-cake" component={Build}/>
+				<Route exact path="/trackreservation" component={Trackreservation}/>
                 <ProtectedRoute exact path="/myaccount" component={Myaccount}/>
                 <AdminRoute exact path="/admin/regular-order" component={AdminHome}/>
                 <AdminRoute exact path="/admin/custom-order" component={Customorder}/>

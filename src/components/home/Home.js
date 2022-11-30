@@ -111,7 +111,7 @@ const Home = () => {
                         <p>Email : elimancoluzell@gmail.com</p>
                     </div>
                     <div class="col-12 feature-box"><i class="icon-phone icon"></i>
-                        <p>Number : 123-123123</p>
+                        <p>Number : 09150215630</p>
                     </div>
                     <div class="col-12 feature-box"><i class="icon-clock icon"></i>
                         <p>Store Hours : 8am to 7pm</p>

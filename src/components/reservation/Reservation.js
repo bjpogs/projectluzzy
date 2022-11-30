@@ -43,6 +43,9 @@ const Reservation = () => {
         for (const value of form.values()){
             console.log(value);
         }
+		alert('Success!')
+            setModalShow(true)
+		/*
         axios.post('reservecake', form)
         .then((res) => {
             console.log(res.data);
@@ -53,6 +56,7 @@ const Reservation = () => {
         .catch((err) =>{
             console.log(err);
         })
+		*/
 
 
     }
