@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {Table, Tab, Tabs, Spinner} from 'react-bootstrap'
+import {Table, Tab, Tabs, Spinner, Modal, Button} from 'react-bootstrap'
 import axios from '../../api/api.js'
 import emailjs from '@emailjs/browser'
 
@@ -10,6 +10,8 @@ const Adminhome = () => {
     const [editingRow, setEditingRow] = useState(null)
     const [statusdata, setStatusdata] = useState(null)
     const [loading, setLoading] = useState(false)
+    const [modalShow, setModalShow] = useState(false)
+    const [modaldata, setmodaldata] = useState([])
     useEffect(() => {
         setLoading(true)
         axios.get('allorders')
@@ -68,6 +70,69 @@ const Adminhome = () => {
         }
     }
 
+    function MyVerticallyCenteredModal(props) {
+        return (
+          <Modal
+            {...props}
+            size="md"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+          >
+            <Modal.Header closeButton>
+              <Modal.Title id="contained-modal-title-vcenter">
+                Order details
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Size</label>
+                <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.product_size}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Shape</label>
+                <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.product_shape}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Flavor</label>
+                <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.product_flavor}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Icing</label>
+                <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.product_icing == "" ? "None" : modaldata.product_icing}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Layer</label>
+                <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.product_layer == "" ? "None" : modaldata.product_layer}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Tier</label>
+                <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.product_tier == "" ? "None" : modaldata.product_tier}/>
+                </div>
+            </div><div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Price</label>
+                <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.product_price}/>
+                </div>
+            </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={props.onHide}>Close</Button>
+            </Modal.Footer>
+          </Modal>
+        );
+      }
+
     const editbtn = (id) => {
         console.log(id);
         setEditingRow(id)
@@ -80,7 +145,7 @@ const Adminhome = () => {
             return data.map((meows, index) => {
                 return (
                     <tr key = {meows.order_id}>
-                        <td>{meows.order_id}</td>
+                        <td class="text-success fw-bold pointed" onClick={() => {setmodaldata(meows); setModalShow(true)}}>{meows.order_id}</td>
                         <td>{meows.product_name}</td>
                         <td>{meows.last_name}</td>
                         <td>{meows.first_name}</td>
@@ -183,6 +248,10 @@ const Adminhome = () => {
                             </tbody>
                         </Table>
                     </div>
+                    <MyVerticallyCenteredModal
+                        show={modalShow}
+                        onHide={() => setModalShow(false)}
+                    />
             </section>
         </main>
     )

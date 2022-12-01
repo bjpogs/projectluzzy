@@ -43,9 +43,6 @@ const Reservation = () => {
         for (const value of form.values()){
             console.log(value);
         }
-		alert('Success!')
-            setModalShow(true)
-		/*
         axios.post('reservecake', form)
         .then((res) => {
             console.log(res.data);
@@ -56,7 +53,6 @@ const Reservation = () => {
         .catch((err) =>{
             console.log(err);
         })
-		*/
 
 
     }
@@ -76,7 +72,7 @@ const Reservation = () => {
             </Modal.Header>
             <Modal.Body>
                 <h4>Order number : <b>{data.reservation_id}</b></h4>
-                <span>Note: save your order number for tracking of order.</span>
+                <span>Note: save your order number for reference.</span>
                 <hr/>
                 <span>Name : <b>{data.last_name}, {data.first_name}</b></span>
                 <br/>

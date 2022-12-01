@@ -11,6 +11,10 @@ const Reservationorder = () => {
     const [loading, setLoading] = useState(false)
     const [imagesrc, setImagesrc] = useState(null)
     const [modalShow, setModalShow] = useState(false)
+    const [productmodalShow, setProductmodalShow] = useState(false)
+    const [modaldata, setmodaldata] = useState([])
+    const [pricemodal, setpricemodal] = useState(false)
+    const [priceid, setpriceid] = useState(0)
     useEffect(() => {
         setLoading(true)
         axios.get('allreservation')
@@ -49,7 +53,6 @@ const Reservationorder = () => {
             .catch((err) => {
                 console.log(err);
             })
-            /*
             if (statusdata == "To Pick Up"){
                 var template = {
                     order_id : meows.order_id,
@@ -58,7 +61,7 @@ const Reservationorder = () => {
                     product_name : meows.product_name,
                     product_category : meows.product_category,
                     product_price : meows.product_price,
-                    email_address : 'bjpogs26@gmail.com'
+                    email_address : 'ariel.atienzajr@cvsu.edu.ph'
                 }
                 emailjs.send('service_hkloqw4', 'template_y39gciu', template, 'zpZhnlO2TsbRcuocB')
                 .then((res) => {
@@ -67,7 +70,6 @@ const Reservationorder = () => {
                     console.log(err.text);
                 })
             }
-            */
         }
     }
 
@@ -78,24 +80,25 @@ const Reservationorder = () => {
     }
 
     const renderTable = () => {
-        //<td colSpan={2}>Larry the Bird</td>
         if (data){
             return data.map((meows, index) => {
                 return (
                     <tr key = {index}>
-                        <td>{meows.reservation_id}</td>
+                        <td class="text-success fw-bold pointed" onClick={() => {setmodaldata(meows); setProductmodalShow(true)}}>{meows.reservation_id}</td>
                         <td>
                             <button class="btn btn-outline-primary btn-sm w-100"  type="button" onClick={() => {setImagesrc(meows.image); setModalShow(true)} }>
                                 <i class="icon-eye icon"/>
                                 View
                             </button>
                         </td>
-                        <td>{meows.size}</td>
-                        <td>{meows.flavor}</td>
-                        <td>{meows.icing}</td>
-                        <td>{meows.specialrequest == "" ? "Not Applicable" : meows.specialrequest}</td>
                         <td>{meows.pickupdate}</td>
                         <td>{meows.pickuptime}</td>
+                        <td>
+                            <button class="btn btn-outline-primary btn-sm w-100" type="button" onClick={() => {setpriceid(meows.reservation_id); setmodaldata(meows); setpricemodal(true)}}>
+                                <i class="icon-pencil icon"/>
+                                Set Price
+                            </button>
+                        </td>
                         <td>
                             {!edit ? 
                                 meows.status
@@ -120,8 +123,7 @@ const Reservationorder = () => {
                         </td>
                         <td>
                             {!edit ? 
-                                <button class="btn btn-outline-primary btn-sm" type="button" onClick={() => editbtn(index)}>
-                            
+                                <button class="btn btn-outline-primary btn-sm w-100" type="button" onClick={() => editbtn(index)}>
                                         <i class="icon-pencil icon"/>
                                         Edit
                                 </button>
@@ -167,7 +169,123 @@ const Reservationorder = () => {
             </Modal.Footer>
           </Modal>
         );
-      }
+    }
+
+    function Pricemodal(props) {
+        return (
+        <Modal
+            {...props}
+            size="md"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+        >
+            <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                    Set Price
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <input type="text" class="form-control" id="price" defaultValue={modaldata.price}/>
+            </Modal.Body>
+            <Modal.Footer>
+                <Button onClick={() => Saveprice()}>Save</Button>
+                <Button onClick={props.onHide}>Close</Button>
+            </Modal.Footer>
+        </Modal>
+        );
+    }
+
+    const Saveprice = () => {
+        console.log(document.getElementById('price').value);
+        console.log(modaldata.reservation_id);
+        var presyo = document.getElementById('price').value
+        let datos = {
+            reservation_id : modaldata.reservation_id,
+            price : presyo
+        }
+        axios.post('updatereservationprice', datos)
+        .then((res) => {
+            var tempi = data.map(obj => {
+                if (obj.reservation_id == modaldata.reservation_id){
+                    return {...obj, price : presyo }
+                }
+                return obj
+            })
+            setData(tempi)
+            alert('success!')
+            setpricemodal(false)
+            // emailjs next
+            var template ={
+                order_number : modaldata.reservation_id,
+                date : modaldata.pickupdate,
+                time : modaldata.pickuptime,
+                size : modaldata.size,
+                flavor : modaldata.flavor,
+                icing : modaldata.icing,
+                price : presyo,
+                first_name : modaldata.first_name,
+                last_name : modaldata.last_name,
+                email_address : modaldata.email
+            }
+            emailjs.send('service_fa3wafr', 'template_95n0gvq', template, 'LdHTOyTJG5lKy7e4s')
+                .then((res) => {
+                    console.log(res.text);
+                }, (err) => {
+                    console.log(err.text);
+                })
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }   
+
+
+    function Productdetails(props) {
+        return (
+          <Modal
+            {...props}
+            size="md"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+          >
+            <Modal.Header closeButton>
+              <Modal.Title id="contained-modal-title-vcenter">
+                Order details
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Size</label>
+                <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.size}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Flavor</label>
+                <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.flavor}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Icing</label>
+                <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.icing == "" ? "None" : modaldata.icing}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Special Request</label>
+                <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.specialrequest == "" ? "None" : modaldata.specialrequest}/>
+                </div>
+            </div>
+            
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={props.onHide}>Close</Button>
+            </Modal.Footer>
+          </Modal>
+        );
+    }
 
     return(
         <main class="page">
@@ -184,12 +302,9 @@ const Reservationorder = () => {
                                 <tr>
                                 <th>Reservation ID</th>
                                 <th>Requested Design</th>
-                                <th>Cake Size</th>
-                                <th>Flavor</th>
-                                <th>Icing</th>
-                                <th>Special Request</th>
                                 <th>Pick Up date</th>
                                 <th>Time</th>
+                                <th>Price</th>
                                 <th>Status</th>
                                 <th>Action</th>
                                 </tr>
@@ -205,6 +320,14 @@ const Reservationorder = () => {
                     <MyVerticallyCenteredModal
                         show={modalShow}
                         onHide={() => setModalShow(false)}
+                    />
+                    <Productdetails
+                        show={productmodalShow}
+                        onHide={() => setProductmodalShow(false)}
+                    />
+                    <Pricemodal
+                        show={pricemodal}
+                        onHide={() => setpricemodal(false)}
                     />
             </section>
         </main>

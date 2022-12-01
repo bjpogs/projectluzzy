@@ -33,7 +33,7 @@ const Navbars = () => {
                         <Nav.Link  as={NavLink} to ="/Shop"><b>Shop</b></Nav.Link>
                         <Nav.Link  as={NavLink} to ="/Reservation"><b>Reservation</b></Nav.Link>
                         <Nav.Link  as={NavLink} to ="/About" ><b>About</b></Nav.Link>
-                        <Nav.Link  as={NavLink} to ="/trackreservation" ><b>Track Reservation</b></Nav.Link>
+                        { /* <Nav.Link  as={NavLink} to ="/trackreservation" ><b>Track Reservation</b></Nav.Link> */ }
                         { !localStorage.getItem('fname') ? 
                         <Nav.Link href="/login"><b>Login</b></Nav.Link> 
                         : 

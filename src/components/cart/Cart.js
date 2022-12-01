@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from '../../api/api'
 
 // navbar and footer template
-import {Button, Form, InputGroup, FormControl} from 'react-bootstrap'
+import {Button, Form, InputGroup, FormControl, ButtonGroup, ToggleButton} from 'react-bootstrap'
 
 
 const Cart = () => {
@@ -51,7 +51,6 @@ const Cart = () => {
                                 <div class="product-specs">
                                     <div><span>Category:&nbsp;</span><span class="value">{meow.product_category}</span></div>
                                     <div><span>Size:&nbsp;</span><span class="value">{meow.product_size}</span></div>
-                                    <div><span>Special Request:&nbsp;</span><span class="value">{meow.request}</span></div>
                                 </div>
                             </div>
                             <div class="col-6 col-md-2 price"><span>₱{meow.product_price}</span></div>
@@ -171,13 +170,25 @@ const Cart = () => {
                                     <h4><span class="text">Subtotal</span><span class="price">₱{jatot}</span></h4>
                                     <h4><span class="text">Discount</span><span class="price">₱0</span></h4>
                                     <h4><span class="text">Total</span><span class="price">₱{jatot}</span></h4>
-                                    
-                                    <button type="button" class="btn btn-success btn-lg d-block w-100" onClick={() => setReserve(!reserve)}>{!reserve? 'For Reservation' : 'For Pick Up'}</button>
+                                    <div class="col-12 mt-3">
+                                        <ButtonGroup className="mb-2 d-block">
+                                            <ToggleButton
+                                            id="toggle-check"
+                                            type="checkbox"
+                                            variant="outline-primary"
+                                            checked={reserve}
+                                            value="1"
+                                            onChange={(e) => setReserve(!reserve)}
+                                            >
+                                            For Reservation
+                                            </ToggleButton>
+                                        </ButtonGroup>
+                                    </div>
                                     {
                                         reserve ? 
                                         <>
                                         <div class="col-12 mt-3">
-                                            <Form.Label htmlFor="basic-url">Select Pickup Date</Form.Label>
+                                            <Form.Label htmlFor="basic-url">Select Reservation Date</Form.Label>
                                             <InputGroup className="mb-3">
                                                 <FormControl
                                                 aria-label="Username"

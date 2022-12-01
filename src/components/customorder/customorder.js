@@ -65,7 +65,7 @@ const Customorder = () => {
                     message : meows.message == "" ? "None" : meows.message,
                     number : meows.number == "" ? "None" : meows.number,
                     price : meows.price,
-                    email_address : 'bjpogs26@gmail.com'
+                    email_address : meows.email_address
                 }
                 emailjs.send('service_hkloqw4', 'template_5x78v0g', template, 'zpZhnlO2TsbRcuocB')
                 .then((res) => {
@@ -172,6 +172,12 @@ const Customorder = () => {
               </Modal.Title>
             </Modal.Header>
             <Modal.Body>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Prize</label>
+                <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.price}/>
+                </div>
+            </div>
             <div class="mb-2 row">
                 <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Size</label>
                 <div class="col-sm-7">

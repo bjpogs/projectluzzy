@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import Slider from 'react-slick'
 import axios from '../../api/api'
 
-import {Form, InputGroup, FormControl, Button, Accordion} from 'react-bootstrap'
+import {Form, InputGroup, FormControl, Button, Accordion, ButtonGroup, ToggleButton} from 'react-bootstrap'
 
 // image for tutorials asdasd
 import img0 from '../../assets/img/tuts/img1.jpg'
@@ -321,15 +321,25 @@ const Build = () => {
                                             <div class="col-2"><p><b>₱{sizeprice + toppingprice + topperprice}</b></p></div>
                                         </div>
                                     </div>
-                                    <div class="col-12 mt-2 mb-3">
-                                        { /* reservation button */ }
-                                        <Button type="button" class="btn btn-success w-100" onClick={() => setReserve(!reserve)}>{!reserve? 'For Reservation' : 'For Pick Up'}</Button>
+                                    <div class="col-12 mt-3">
+                                        <ButtonGroup className="mb-2 d-block">
+                                            <ToggleButton
+                                            id="toggle-check"
+                                            type="checkbox"
+                                            variant="outline-success"
+                                            checked={reserve}
+                                            value="1"
+                                            onChange={(e) => setReserve(!reserve)}
+                                            >
+                                            For Reservation
+                                            </ToggleButton>
+                                        </ButtonGroup>
                                     </div>
                                     {
                                         reserve ? 
                                         <>
                                         <div class="col-12">
-                                            <Form.Label htmlFor="basic-url">Select Pickup Date</Form.Label>
+                                            <Form.Label htmlFor="basic-url">Select Reservation Date</Form.Label>
                                             <InputGroup className="mb-3">
                                                 <FormControl
                                                 aria-label="Username"
