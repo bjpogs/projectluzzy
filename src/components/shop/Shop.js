@@ -5,7 +5,7 @@ import Navbar from '../templates/Navbar'
 import Footer from '../templates/Footer'
 import axios from '../../api/api'
 import {Nav, Dropdown, Form} from 'react-bootstrap'
-import imahe from '../../assets/img/sample.jpg'
+import imahe from '../../assets/img/buildlogo.jpg'
 
 
 const Shop = () => {
@@ -95,7 +95,7 @@ const Shop = () => {
                                         <div class="col-12 col-sm-6 col-lg-6 col-xl-4">
                                             <div class="clean-product-item">
                                                 <div class="image"><a onClick={() => {window.location.href = "/build-a-cake"}}><img class="shopimage d-block mx-auto" src={imahe}/></a></div>
-                                                <div class="product-name"><a href="/build-a-cake">Build your dream cake</a></div>
+                    
                                                 <div class="about">
                                                     <div class="rating"></div>
                                                     <div class="price">

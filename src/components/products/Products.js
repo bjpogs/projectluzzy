@@ -17,6 +17,9 @@ const Products = () => {
     const [tempimg, setTempimg] = useState(null)
     const [imgdata, setImgdata] = useState(null)
     const [tempid, setTempid] = useState(null)
+    const [modaldata, setmodaldata] = useState([])
+    const [modalShow, setModalShow] = useState(false)
+    const [productedit, setproductedit] = useState(false)
     useEffect(() => {
         axios.get('getallproducts')
         .then((res) => {
@@ -115,218 +118,14 @@ const Products = () => {
             }).map((meows, index) => {
                 return(
                     <tr key = {index}>
-                        <td>{meows.product_id}</td>
+                        <td class="text-success fw-bold pointed" onClick={() => {setmodaldata(meows); setModalShow(true)}}>{meows.product_id}</td>
                         <td>
                             <button class="btn btn-outline-primary btn-sm w-100"  type="button" onClick={() => {setImagesrc(meows.product_image); setTempid(meows.product_id); setImageModalShow(true)} }>
                                 <i class="icon-eye icon"/>
                                 View
                             </button>
                         </td>
-                        <td>
-                            {edit ? 
-                                editingRow == index ? 
-                                <>
-                                    <InputGroup className="mb-3">
-                                        <Form.Control
-                                        aria-label="Username"
-                                        aria-describedby="basic-addon1"
-                                        defaultValue={meows.product_name}
-                                        id="product_name"
-                                        onChange={e => handleChange(e)}
-                                        />
-                                    </InputGroup>
-                                </>
-                                :
-                                meows.product_name  
-                            :
-                                meows.product_name 
-                            }
-                        </td>
-                        <td>
-                            {edit ? 
-                                editingRow == index ? 
-                                <>
-                                    <InputGroup className="mb-3">
-                                        <Form.Control
-                                        aria-label="Username"
-                                        aria-describedby="basic-addon1"
-                                        defaultValue={meows.product_category}
-                                        id="product_category"
-                                        onChange={e => handleChange(e)}
-                                        />
-                                    </InputGroup>
-                                </>
-                                :
-                                meows.product_category   
-                            :
-                                meows.product_category   
-                            }
-                        </td>
-                        <td>
-                            {edit ? 
-                                editingRow == index ? 
-                                <>
-                                    <InputGroup className="mb-3">
-                                        <Form.Control
-                                        aria-label="Username"
-                                        aria-describedby="basic-addon1"
-                                        defaultValue={meows.product_price}
-                                        id="product_price"
-                                        type="number"
-                                        onChange={e => handleChange(e)}
-                                        />
-                                    </InputGroup>
-                                </>
-                                :
-                                meows.product_price  
-                            :
-                                meows.product_price  
-                            }
-                        </td>
-                        <td>
-                            {edit ? 
-                                editingRow == index ? 
-                                <>
-                                    <InputGroup className="mb-3">
-                                        <Form.Control
-                                        aria-label="Username"
-                                        aria-describedby="basic-addon1"
-                                        defaultValue={meows.product_size}
-                                        id="product_size"
-                                        onChange={e => handleChange(e)}
-                                        />
-                                    </InputGroup>
-                                </>
-                                :
-                                meows.product_size
-                            :
-                                meows.product_size
-                            }
-                        </td>
-                        <td>
-                            {edit ? 
-                                editingRow == index ? 
-                                <>
-                                    <InputGroup className="mb-3">
-                                        <Form.Control
-                                        aria-label="Username"
-                                        aria-describedby="basic-addon1"
-                                        defaultValue={meows.product_flavor}
-                                        id="product_flavor"
-                                        onChange={e => handleChange(e)}
-                                        />
-                                    </InputGroup>
-                                </>
-                                :
-                                meows.product_flavor 
-                            :
-                                meows.product_flavor  
-                            }
-                        </td>
-                        <td>
-                            {edit ? 
-                                editingRow == index ? 
-                                <>
-                                    <InputGroup className="mb-3">
-                                        <Form.Control
-                                        aria-label="Username"
-                                        aria-describedby="basic-addon1"
-                                        defaultValue={meows.product_shape}
-                                        id="product_shape"
-                                        onChange={e => handleChange(e)}
-                                        />
-                                    </InputGroup>
-                                </>
-                                :
-                                meows.product_shape
-                            :
-                                meows.product_shape 
-                            }
-                        </td>
-                        <td>
-                            {edit ? 
-                                editingRow == index ? 
-                                <>
-                                    <InputGroup className="mb-3">
-                                        <Form.Control
-                                        aria-label="Username"
-                                        aria-describedby="basic-addon1"
-                                        defaultValue={meows.product_icing}
-                                        id="product_icing"
-                                        onChange={e => handleChange(e)}
-                                        />
-                                    </InputGroup>
-                                </>
-                                :
-                                meows.product_icing 
-                            :
-                                meows.product_icing 
-                            }
-                        </td>
-                        <td>
-                            {edit ? 
-                                editingRow == index ? 
-                                <>
-                                    <InputGroup className="mb-3">
-                                        <Form.Control
-                                        aria-label="Username"
-                                        aria-describedby="basic-addon1"
-                                        defaultValue={meows.product_layer}
-                                        id="product_layer"
-                                        type="number"
-                                        onChange={e => handleChange(e)}
-                                        />
-                                    </InputGroup>
-                                </>
-                                :
-                                meows.product_layer 
-                            :
-                                meows.product_layer 
-                            }
-                        </td>
-                        <td>
-                            {edit ? 
-                                editingRow == index ? 
-                                <>
-                                    <InputGroup className="mb-3">
-                                        <Form.Control
-                                        aria-label="Username"
-                                        aria-describedby="basic-addon1"
-                                        defaultValue={meows.product_tier}
-                                        id="product_tier"
-                                        type="number"
-                                        onChange={e => handleChange(e)}
-                                        />
-                                    </InputGroup>
-                                </>
-                                :
-                                meows.product_tier  
-                            :
-                                meows.product_tier  
-                            }
-                        </td>
-                        <td>
-                            {edit ? 
-                                editingRow == index ? 
-                                <>
-                                    <InputGroup className="mb-3">
-                                        <Form.Control
-                                        aria-label="Username"
-                                        aria-describedby="basic-addon1"
-                                        defaultValue={meows.product_description}
-                                        id="product_description"
-                                        as="textarea"
-                                        rows={10}
-                                        onChange={e => handleChange(e)}
-                                        />
-                                    </InputGroup>
-                                </>
-                                :
-                                meows.product_description  
-                            :
-                                meows.product_description 
-                            }
-                        </td>
+                        <td>{meows.product_name}</td>
                         <td>
                             {!edit ? 
                                 meows.product_status == 0 ? 'Active' : 'Inactive'
@@ -636,6 +435,117 @@ const Products = () => {
         );
     }
 
+    const saveproductedit = () => {
+
+    }
+    const handleproductedit = (e) => {
+        e.preventDefault()
+        const newdata = {...tempdata}
+        newdata[e.target.id] = e.target.value
+        setTempdata(newdata)
+        console.log(e);
+    }
+
+    function MyVerticallyCenteredModal(props) {
+        return (
+          <Modal
+            {...props}
+            size="md"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+          >
+            <Modal.Header closeButton>
+              <Modal.Title id="contained-modal-title-vcenter">
+                Product Details
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Name</label>
+                <div class="col-sm-7">
+                <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="staticEmail" defaultValue={modaldata.product_name} onChange={(e) => {handleproductedit(e)}}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Category</label>
+                <div class="col-sm-7">
+                <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="staticEmail" defaultValue={modaldata.product_category} onChange={(e) => {handleproductedit(e)}}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">sub category</label>
+                <div class="col-sm-7">
+                <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="staticEmail" defaultValue={modaldata.product_subcategory} onChange={(e) => {handleproductedit(e)}}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Size</label>
+                <div class="col-sm-7">
+                <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="staticEmail" defaultValue={modaldata.product_size} onChange={(e) => {handleproductedit(e)}}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Shape</label>
+                <div class="col-sm-7">
+                <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="staticEmail" defaultValue={modaldata.product_shape} onChange={(e) => {handleproductedit(e)}}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Flavor</label>
+                <div class="col-sm-7">
+                <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="staticEmail" defaultValue={modaldata.product_flavor} onChange={(e) => {handleproductedit(e)}}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Icing</label>
+                <div class="col-sm-7">
+                <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="staticEmail" defaultValue={modaldata.product_icing == "" ? "None" : modaldata.product_icing} onChange={(e) => {handleproductedit(e)}}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Layer</label>
+                <div class="col-sm-7">
+                <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="staticEmail" defaultValue={modaldata.product_layer == "" ? "None" : modaldata.product_layer} onChange={(e) => {handleproductedit(e)}}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Tier</label>
+                <div class="col-sm-7">
+                <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="staticEmail" defaultValue={modaldata.product_tier == "" ? "None" : modaldata.product_tier} onChange={(e) => {handleproductedit(e)}}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Description</label>
+                <div class="col-sm-7">
+                <input type="text-area" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="staticEmail" defaultValue={modaldata.product_description == "" ? "None" : modaldata.product_description} onChange={(e) => {handleproductedit(e)}}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Price</label>
+                <div class="col-sm-7">
+                <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="staticEmail" defaultValue={modaldata.product_price} onChange={(e) => {handleproductedit(e)}}/>
+                </div>
+            </div>
+            </Modal.Body>
+            <Modal.Footer>
+                { !productedit ? 
+                    <>
+                    <Button onClick={() =>{setproductedit(!productedit)}}>Edit</Button>
+                    <Button onClick={props.onHide}>Close</Button>
+                    </>
+                    :
+                    <>
+                    <Button onClick={() =>{saveproductedit()}}>Save</Button>
+                    <Button onClick={() =>{setproductedit(!productedit)}}>Cancel</Button>
+                    </>
+                }
+                
+                
+            </Modal.Footer>
+          </Modal>
+        );
+    }
+
     return (
         <main class="page">
             <section class="clean-block clean-product dark">
@@ -654,16 +564,9 @@ const Products = () => {
                         <div class="col-sm-12 col-md-8 col-lg-5 col-xl-3">
                             <select class="form-select" id="product_status" aria-label=".form-select-sm example" onChange={(e) => setDisplaycategory(e.target.value)}>
                                 <option value="DEFAULT">ALL</option>
-                                <option value="ANNIVERSARY">ANNIVERSARY</option>
-                                <option value="BENTO">BENTO</option>
-                                <option value="BIRTHDAY">BIRTHDAY</option>
-                                <option value="CHARACTER">CHARACTER</option>
-                                <option value="CHRISTENING">CHRISTENING</option>
-                                <option value="CUPCAKE">CUPCAKE</option>
-                                <option value="DEBUT">DEBUT</option>
-                                <option value="GENDER">GENDER</option>
-                                <option value="NUMBER">NUMBER</option>
-                                <option value="WEDDING">WEDDING</option>
+                                <option value="Events">Events</option>
+                                <option value="Simple">Simple</option>
+                                <option value="Cupcake">Cupcake</option>
                             </select>
                         </div>
                     </div>
@@ -673,15 +576,6 @@ const Products = () => {
                                 <th>Product ID</th>
                                 <th>Image</th>
                                 <th>Name</th>
-                                <th>Category</th>
-                                <th>Price</th>
-                                <th>Size</th>
-                                <th>Flavor</th>
-                                <th>Shape</th>
-                                <th>Icing</th>
-                                <th>Layer</th>
-                                <th>Tier</th>
-                                <th>Description</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -711,6 +605,10 @@ const Products = () => {
                     show={productModalShow}
                     onHide={() => setProductModalShow(false)}
                 />
+                <MyVerticallyCenteredModal
+                        show={modalShow}
+                        onHide={() => setModalShow(false)}
+                    />
             </section>
         </main>
     )
