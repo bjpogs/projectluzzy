@@ -299,36 +299,7 @@ const Adminbuild = () => {
                                 Delete
                             </button>
                         </div>
-                        <div class="col-12 mb-3">
-                            <Form.Label htmlFor="basic-url"><h4><b>Shape </b></h4></Form.Label>
-                            <Form.Select aria-label="Default select example" id="shape">
-                                {selectshape()}
-                            </Form.Select>
-                        </div>
-                        <div class="col-lg-3 col-xl-2 mb-2">
-                            <button class="btn btn-outline-success w-100" type="button" onClick={() => {setid('shape'); setModalShow(true)}}>
-                                <i class="icon-plus icon"/>
-                                Add
-                            </button>
-                        </div>
-                        <div class="col-lg-3 col-xl-2 mb-2">
-                            <button class="btn btn-outline-primary w-100" type="button" onClick={() => {beforeedit('shape')}}>
-                                <i class="icon-pencil icon"/>
-                                Edit
-                            </button>
-                        </div>
-                        <div class="col-lg-3 col-xl-2 mb-2">
-                            <button class="btn btn-outline-danger w-100" type="button" onClick={() => {
-                                if (window.confirm('Are you sure you want to delete?')) {
-                                    // Save it!
-                                    setid('shape');
-                                    deleteselect('shape')
-                                }
-                            }}>
-                                <i class="icon-trash icon"/>
-                                Delete
-                            </button>
-                        </div>
+                        
                         <div class="col-12 mb-3">
                             <Form.Label htmlFor="basic-url"><h4><b>Flavor </b></h4></Form.Label>
                             <Form.Select aria-label="Default select example" id="flavor">
@@ -359,6 +330,7 @@ const Adminbuild = () => {
                                 Delete
                             </button>
                         </div>
+                        
                         <div class="col-12 mb-3">
                             <Form.Label htmlFor="basic-url"><h4><b>Design</b></h4></Form.Label>
                             <Form.Select aria-label="Default select example" id="design">
@@ -389,36 +361,9 @@ const Adminbuild = () => {
                                 Delete
                             </button>
                         </div>
-                        <div class="col-12 mb-3">
-                            <Form.Label htmlFor="basic-url"><h4><b>Topping</b></h4></Form.Label>
-                            <Form.Select aria-label="Default select example" id="topping">
-                                {selecttopping()}
-                            </Form.Select>
-                        </div>
-                        <div class="col-lg-3 col-xl-2 mb-2">
-                            <button class="btn btn-outline-success w-100" type="button" onClick={() => {setid('topping'); setModalShow(true)}}>
-                                <i class="icon-plus icon"/>
-                                Add
-                            </button>
-                        </div>
-                        <div class="col-lg-3 col-xl-2 mb-2">
-                            <button class="btn btn-outline-primary w-100" type="button" onClick={() => {beforeedit('topping')}}>
-                                <i class="icon-pencil icon"/>
-                                Edit
-                            </button>
-                        </div>
-                        <div class="col-lg-3 col-xl-2 mb-2">
-                            <button class="btn btn-outline-danger w-100" type="button" onClick={() => {
-                                if (window.confirm('Are you sure you want to delete?')) {
-                                    // Save it!
-                                    setid('topping');
-                                    deleteselect('topping')
-                                }
-                            }}>
-                                <i class="icon-trash icon"/>
-                                Delete
-                            </button>
-                        </div>
+
+                        { /* --------------------------------------- topper ------------------------------------------ */}
+
                         <div class="col-12 mb-3">
                             <Form.Label htmlFor="basic-url"><h4><b>Topper</b></h4></Form.Label>
                             <Form.Select aria-label="Default select example" id="topper">
@@ -443,36 +388,6 @@ const Adminbuild = () => {
                                     // Save it!
                                     setid('topper');
                                     deleteselect('topper')
-                                }
-                            }}>
-                                <i class="icon-trash icon"/>
-                                Delete
-                            </button>
-                        </div>
-                        <div class="col-12 mb-3">
-                            <Form.Label htmlFor="basic-url"><h4><b>Icing </b></h4></Form.Label>
-                            <Form.Select aria-label="Default select example" id="icing">
-                                {selecticing()}
-                            </Form.Select>
-                        </div>
-                        <div class="col-lg-3 col-xl-2 mb-2">
-                            <button class="btn btn-outline-success w-100" type="button" onClick={() => {setid('icing'); setModalShow(true)}}>
-                                <i class="icon-plus icon"/>
-                                Add
-                            </button>
-                        </div>
-                        <div class="col-lg-3 col-xl-2 mb-2">
-                            <button class="btn btn-outline-primary w-100" type="button" onClick={() => {beforeedit('icing')}}>
-                                <i class="icon-pencil icon"/>
-                                Edit
-                            </button>
-                        </div>
-                        <div class="col-lg-3 col-xl-2 mb-2">
-                            <button class="btn btn-outline-danger w-100" type="button" onClick={() => {
-                                if (window.confirm('Are you sure you want to delete?')) {
-                                    // Save it!
-                                    setid('icing');
-                                    deleteselect('icing')
                                 }
                             }}>
                                 <i class="icon-trash icon"/>

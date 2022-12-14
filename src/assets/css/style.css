@@ -175,7 +175,7 @@
 .leftbuildcard{
     background-color: red;    
     background: url('../img/sampletable.jpg') no-repeat center center;
-    background-size: fixed;
+    background-size: 100% 100%;
     min-height: 90vh;
 }
 
@@ -191,35 +191,41 @@
 .cakebase{
     background-color: white;
     min-height: 50px;
-    left: 28%;
-    top: 20vh;
+    top: 30vh;
     width: 45%;
     height: 140px; 
     position: relative;  
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 .cakebase2{
     background-color: red;
     min-height: 90px;
-    left: 33%;
-    top: 20vh;
+    top: 30vh;
     width: 35%;
     height: 110px; 
     position: relative;  
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 .cakebase3{
     background-color: transparent;
     min-height: 90px;
-    left: 33%;
-    top: 20vh;
+    top: 30vh;
     width: 35%;
     height: 110px; 
     position: relative;  
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 .topper{
     background-color: blue;
     min-height: 90px;
     left:45%;
-    top:20vh;
+    top:30vh;
     width:10%;
     height: 100px;
     position: relative;
@@ -228,7 +234,7 @@
     background-color: blue;
     min-height: 90px;
     left:40%;
-    top:20vh;
+    top:30vh;
     width:10%;
     height: 100px;
     position: relative;
@@ -237,7 +243,7 @@
     background-color: blue;
     min-height: 90px;
     left:42%;
-    top:20vh;
+    top:30vh;
     width:10%;
     height: 100px;
     position: relative;
@@ -251,7 +257,7 @@
     background-color: blue;
     min-height: 90px;
     left:45%;
-    top:20vh;
+    top:30vh;
     width:10%;
     height: 100px;
     position: relative;

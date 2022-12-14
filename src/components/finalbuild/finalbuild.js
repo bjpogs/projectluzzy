@@ -200,8 +200,12 @@ const Finalbuild = () => {
                                 </div>
                                 :
                                 <>
-                                <div class="topper1 px-0 py-0"/>
-                                <div class="topper2 px-0 py-0"/>
+                                <div class="topper1 px-0 py-0">
+                                    <img class="imahe" src={unaimahe} alt="" />
+                                </div>
+                                <div class="topper2 px-0 py-0">
+                                    <img class="imahe" src={unaimahe} alt="" />
+                                </div>
                                 </>
                             }
                             </div>

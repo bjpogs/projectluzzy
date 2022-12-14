@@ -29,6 +29,7 @@ const Shop = () => {
                 if (!category) return user
                 else if (category == "") return user
                 else if (user.product_category.includes(category))return user
+                else if (user.product_subcategory == category) return user
             }).map(meow => {
                 return (
                     <div class="col-12 col-sm-6 col-lg-6 col-xl-4">

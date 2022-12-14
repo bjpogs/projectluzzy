@@ -20,6 +20,8 @@ const Products = () => {
     const [modaldata, setmodaldata] = useState([])
     const [modalShow, setModalShow] = useState(false)
     const [productedit, setproductedit] = useState(false)
+    const [subcategory, setsubcategory] = useState('DEFAULT')
+    const [addsub, setaddsub] = useState('default')
     useEffect(() => {
         axios.get('getallproducts')
         .then((res) => {
@@ -78,6 +80,7 @@ const Products = () => {
         e.preventDefault()
         const form = new FormData()
         form.append('product_category', document.getElementById('product_category').value)
+        form.append('product_subcategory', document.getElementById('product_subcategory').value)
         form.append('product_name', document.getElementById('product_name').value)
         form.append('product_price', document.getElementById('product_price').value)
         form.append('product_size', document.getElementById('product_size').value)
@@ -111,10 +114,18 @@ const Products = () => {
                 if(displayname == "" && displaycategory == "DEFAULT") return meows
                 else if (meows.product_name.toUpperCase().includes(displayname.toUpperCase()) && displaycategory == "DEFAULT") return meows
                 // else if (meows.product_category.includes(displaycategory) && meows.product_name.toUpperCase().includes(displayname.toUpperCase())) return meows
-                else if (meows.product_category.includes(displaycategory) && displayname == "") return meows
+                
+                else if (meows.product_category == displaycategory && meows.product_subcategory == subcategory && displayname == "") {
+                    console.log('ture');
+                    return meows
+                }
                 else if (displayname !== "" && displaycategory !== "DEFAULT"){
                     if (meows.product_category == displaycategory && meows.product_name.toUpperCase().includes(displayname.toUpperCase())) return meows
                 }
+                else if (displayname !== "" && displaycategory !== "DEFAULT" && subcategory !== "DEFAULT"){
+                    if (meows.product_category == displaycategory && meows.product_subcategory == subcategory && meows.product_name.toUpperCase().includes(displayname.toUpperCase())) return meows
+                }
+                else if (meows.product_category == displaycategory && displayname == "" && subcategory == "DEFAULT") return meows
             }).map((meows, index) => {
                 return(
                     <tr key = {index}>
@@ -298,6 +309,18 @@ const Products = () => {
                                 <option value="Cupcake">Cupcake</option>
                             </Form.Select>
                         </div>
+                        <div class="col-12 mb-3">
+                            <Form.Label htmlFor="basic-url">Sub-category</Form.Label>
+                            <Form.Select aria-label="Default select example" id="product_subcategory">
+                                <option value="Anniversary">Anniversary</option>
+                                <option value="Birthday">Birthday</option>
+                                <option value="Character">Character</option>
+                                <option value="Christening">Christening</option>
+                                <option value="Debut">Debut</option>
+                                <option value="Gender">Gender</option>
+                                <option value="Wedding">Wedding</option>
+                            </Form.Select>
+                        </div>
                         <div class="col-12">
                         <Form.Label htmlFor="basic-url">Name</Form.Label>
                         <InputGroup className="mb-3">
@@ -472,6 +495,7 @@ const Products = () => {
                 <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="staticEmail" defaultValue={modaldata.product_category} onChange={(e) => {handleproductedit(e)}}/>
                 </div>
             </div>
+            
             <div class="mb-2 row">
                 <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">sub category</label>
                 <div class="col-sm-7">
@@ -561,14 +585,33 @@ const Products = () => {
                     </div>
                     <div class="mb-3 row">
                         <label for="staticEmail" class="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label fw-bold">Select By Category</label>
-                        <div class="col-sm-12 col-md-8 col-lg-5 col-xl-3">
-                            <select class="form-select" id="product_status" aria-label=".form-select-sm example" onChange={(e) => setDisplaycategory(e.target.value)}>
+                        <div class="col-sm-12 col-md-8 col-lg-5 col-xl-3 mb-2">
+                            <select class="form-select" id="product_category" aria-label=".form-select-sm example" onChange={(e) => {setDisplaycategory(e.target.value); if(e.target.value !== "Events") setsubcategory("DEFAULT")}}>
                                 <option value="DEFAULT">ALL</option>
                                 <option value="Events">Events</option>
                                 <option value="Simple">Simple</option>
                                 <option value="Cupcake">Cupcake</option>
                             </select>
                         </div>
+                        { displaycategory == "Events" ? 
+                        <>
+                        <div class="col-sm-12 col-md-8 col-lg-5 col-xl-3">
+                            <select class="form-select" id="product_subcategory" aria-label=".form-select-sm example" onChange={(e) => setsubcategory(e.target.value)}>
+                                <option value="DEFAULT">ALL</option>
+                                <option value="Anniversary">Anniversary</option>
+                                <option value="Birthday">Birthday</option>
+                                <option value="Character">Character</option>
+                                <option value="Christening">Christening</option>
+                                <option value="Debut">Debut</option>
+                                <option value="Gender">Gender</option>
+                                <option value="Wedding">Wedding</option>
+                            </select>
+                        </div>
+                        </>
+                        
+                        : 
+                        <></>    
+                    }
                     </div>
                     <Table striped bordered hover responsive>
                         <thead>
