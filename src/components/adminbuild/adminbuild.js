@@ -149,12 +149,15 @@ const Adminbuild = () => {
                 console.log('price required!');
             }
         }
+		console.log(document.getElementById('prodimage').value)
         // save
         var items = {
             id : editname,
             name : document.getElementById('editname').value,
-            price : id === 'size' || id === 'topping' || id === 'topper' ? document.getElementById('editprice').value : 0
+            price : id === 'size' || id === 'topping' || id === 'topper' ? document.getElementById('editprice').value : 0,
+			image : document.getElementById('prdimage').value
         }
+		/*
         axios.post('editbuildselect', items)
         .then(res => {
             alert('Success!')
@@ -167,13 +170,20 @@ const Adminbuild = () => {
         .catch(err => {
             alert('something went wrong. please try again later.')
         })
+		*/
     }
 
     const beforeedit = (tempid) => {
         setid(tempid); 
         seteditname(document.getElementById(`${tempid}`).value); 
-        var found = data.find(e => e.name === document.getElementById(`${tempid}`).value);
-        seteditprice(found.price)
+		try{
+			var found = data.find(e => e.name === document.getElementById(`${tempid}`).value);
+			seteditprice(found.price)
+		}
+		catch(err){
+			seteditprice(0)
+		}
+        
         setEditModalShow(true);
     }
 
@@ -206,7 +216,26 @@ const Adminbuild = () => {
                     </div> 
                 :
                 <></>
-            }
+				}
+				{id === 'design' || id === 'topper' ?
+					 /*
+					 <div class="mb-2 row">
+						<Form.Group controlId="formFile" className="mb-3">
+							<Form.Label>Upload {id}</Form.Label>
+							<Form.Control type="file" id="image" accept="image/*"
+							required/>
+						</Form.Group>
+					</div>
+					*/
+					<div class="mb-2 row">
+						<label for="staticEmail" class="col-12 col-form-label fw-bold">Image</label>
+						<div class="col-12">
+						<input type="file" class="form-control" id="addimage" accept="image/*" required/>
+						</div>
+					</div>
+				:
+				<></>
+				}
 
             </Modal.Body>
             <Modal.Footer>
@@ -246,7 +275,26 @@ const Adminbuild = () => {
                       </div> 
                   :
                   <></>
-              }
+				  }
+				  {id === 'design' || id === 'topper' ?
+					 /*
+					 <div class="mb-2 row">
+						<Form.Group controlId="formFile" className="mb-3">
+							<Form.Label>Upload {id}</Form.Label>
+							<Form.Control type="file" id="image" accept="image/*"
+							required/>
+						</Form.Group>
+					</div>
+					*/
+					<div class="mb-2 row">
+						<label for="staticEmail" class="col-12 col-form-label fw-bold">Image</label>
+						<div class="col-12">
+						<input type="file" class="form-control" id="prodimage" accept="image/*" required/>
+						</div>
+					</div>
+				  :
+				  <></>
+				  }
   
               </Modal.Body>
               <Modal.Footer>

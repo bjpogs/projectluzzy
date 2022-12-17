@@ -4,7 +4,7 @@ import React, {useState, useEffect} from 'react'
 import Navbar from '../templates/Navbar'
 import Footer from '../templates/Footer'
 import axios from '../../api/api'
-import {Nav, Dropdown, Form} from 'react-bootstrap'
+import {Nav, NavDropdown, Form} from 'react-bootstrap'
 import imahe from '../../assets/img/buildlogo.jpg'
 
 
@@ -24,14 +24,18 @@ const Shop = () => {
     },[])
 
     const generateItem = () => {
+        console.log('cat : ',category)
         return (
             data.filter(user =>{
                 if (!category) return user
                 else if (category == "") return user
                 else if (user.product_category.includes(category))return user
+                else if (user.product_subcategory.includes(category)) return user
                 else if (user.product_subcategory == category) return user
+                
             }).map(meow => {
                 return (
+                    
                     <div class="col-12 col-sm-6 col-lg-6 col-xl-4">
                         <div class="clean-product-item">
                             <div class="image"><a onClick={() => {window.location.href = "/Product-info?product_id=" + meow.product_id}}><img class="shopimage d-block mx-auto" src={meow.product_image}/></a></div>
@@ -70,7 +74,14 @@ const Shop = () => {
                                             <h3>Categories</h3>
                                             <Nav className="flex-column" variant="pills">
                                             <Nav.Link eventKey="link" onClick={categoryChange} title="">All Items</Nav.Link>
-                                            <Nav.Link eventKey="link-1" onClick={categoryChange} title="Events">Events</Nav.Link>
+                                            <Nav.Link eventKey="link-1" onClick={categoryChange} title="Events1">Events</Nav.Link>
+                                            <NavDropdown title="Events" id="nav-dropdown" onSelect={console.log("puta")}>
+                                                <NavDropdown.Item eventKey="4.1" >Anniversary</NavDropdown.Item>
+                                                <NavDropdown.Item eventKey="4.2">Another action</NavDropdown.Item>
+                                                <NavDropdown.Item eventKey="4.3">Something else here</NavDropdown.Item>
+                                                <NavDropdown.Divider />
+                                                <NavDropdown.Item eventKey="4.4">Separated link</NavDropdown.Item>
+                                            </NavDropdown>
                                             <Nav.Link eventKey="link-2" onClick={categoryChange} title="Simple">Simple</Nav.Link>
                                             <Nav.Link eventKey="link-6" onClick={categoryChange} title="Cupcake">Cupcake</Nav.Link>
                                             </Nav>
@@ -95,8 +106,7 @@ const Shop = () => {
                                         { /* items */ }
                                         <div class="col-12 col-sm-6 col-lg-6 col-xl-4">
                                             <div class="clean-product-item">
-                                                <div class="image"><a onClick={() => {window.location.href = "/build-a-cake"}}><img class="shopimage d-block mx-auto" src={imahe}/></a></div>
-                    
+                                                <div class="image"><a onClick={() => {window.location.href = "/build-a-cake"}}><img class="shopimage d-block mx-auto" src={imahe}/></a></div>                    
                                                 <div class="about">
                                                     <div class="rating"></div>
                                                     <div class="price">
