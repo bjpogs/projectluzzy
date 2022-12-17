@@ -104,16 +104,17 @@ const Adminbuild = () => {
     }
 
     const addsave = () => {
-        if (!document.getElementById('addname').value) {
+        console.log(document.getElementById('addimage').files[0]);
+        if (!document.getElementById('addname').value || !document.getElementById('addimage').files[0]) {
             console.log('name required!');
         }
         else{
-            var items = {
-                id : id,
-                name : document.getElementById('addname').value,
-                price : id === 'size' || id === 'topping' || id === 'topper' ? document.getElementById('addprice').value : 0
-            }
-            axios.post('addbuildselect', items)
+            const form = new FormData()
+            form.append('id', id)
+            form.append('name', document.getElementById('addname').value)
+            form.append('price',  id === 'size' || id === 'topping' || id === 'topper' ? document.getElementById('addprice').value == "" ? 0 : document.getElementById('addprice').value : 0)
+            form.append('image', id == 'design' || id == 'topper' ? document.getElementById('addimage').files[0] : '')
+            axios.post('addbuildselect', form)
             .then(res => {
                 alert('Success!')
                 setModalShow(false)
@@ -140,37 +141,40 @@ const Adminbuild = () => {
     }
 
     const editsave = () => {
-        console.log(editname);
+        var foul = false
         if (!document.getElementById('editname').value) {
-            console.log('name required!');
+            alert('name required!')
         }
-        if (id === 'size' || id === 'topping' || id === 'topper'){
-            if (!document.getElementById('editprice').value) {
-                console.log('price required!');
+        else{
+            if (id =='size'|| id == 'topper'){
+                if (document.getElementById('editprice').value) {
+                    console.log('price required!');
+                    foul = true
+                }
+            }
+            if(!foul){
+                // save
+                const form = new FormData()
+                form.append('id', editname)
+                form.append('name', document.getElementById('editname').value)
+                form.append('price',  id === 'size' || id === 'topping' || id === 'topper' ? document.getElementById('editprice').value : 0)
+                form.append('image', id == 'design' || id == 'topper' ? document.getElementById('editimage').files[0] != '' ? document.getElementById('editimage').files[0] : '' : '')
+                axios.post('editbuildselect', form)
+                .then(res => {
+                    alert('Success!')
+                    setid(null)
+                    seteditname(null)
+                    seteditprice(null)
+                    setEditModalShow(false)
+                    window.location.reload()
+                })
+                .catch(err => {
+                    alert('something went wrong. please try again later.')
+                })
             }
         }
-		console.log(document.getElementById('prodimage').value)
-        // save
-        var items = {
-            id : editname,
-            name : document.getElementById('editname').value,
-            price : id === 'size' || id === 'topping' || id === 'topper' ? document.getElementById('editprice').value : 0,
-			image : document.getElementById('prdimage').value
-        }
-		/*
-        axios.post('editbuildselect', items)
-        .then(res => {
-            alert('Success!')
-            setid(null)
-            seteditname(null)
-            seteditprice(null)
-            setEditModalShow(false)
-            window.location.reload()
-        })
-        .catch(err => {
-            alert('something went wrong. please try again later.')
-        })
-		*/
+        
+        
     }
 
     const beforeedit = (tempid) => {
@@ -289,7 +293,7 @@ const Adminbuild = () => {
 					<div class="mb-2 row">
 						<label for="staticEmail" class="col-12 col-form-label fw-bold">Image</label>
 						<div class="col-12">
-						<input type="file" class="form-control" id="prodimage" accept="image/*" required/>
+						<input type="file" class="form-control" id="editimage" accept="image/*" required/>
 						</div>
 					</div>
 				  :
