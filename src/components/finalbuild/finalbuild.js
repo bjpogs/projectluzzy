@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 //import basecake from ''
 import unaimahe from '../../assets/img/0.png'
 import axios from '../../api/api'
-import {Form, Button, InputGroup, FormControl} from 'react-bootstrap'
+import {Form, Button, InputGroup, FormControl, ButtonGroup, ToggleButton} from 'react-bootstrap'
 
 //---------------------------------------------------------------
 // to fix : default value!
@@ -18,6 +18,7 @@ const Finalbuild = () => {
     const [topper, setTopper] = useState('')
     const [num1, setnum1] = useState('')
     const [num2, setnum2] = useState('')
+    const [reserve, setReserve] = useState(false)
     const [order,setOrder] = useState([{
         size : '',
         flavor : '',
@@ -60,52 +61,45 @@ const Finalbuild = () => {
     },[])
 
     const handleChange = (e) => {
-        console.log('orders : ',e.target.value);
+        console.log('orderss : ',e.target.id);
         e.preventDefault()
         var splitted = false
         var val = ''
-        console.log('asdzza');
         if (e.target.id == "layer" && e.target.value == "2") setlayer(true)
         else if (e.target.id == "layer" && e.target.value != "2") setlayer(false)
         if(e.target.id == 'design'){
             splitted = true
             var test = e.target.value.split('|')
-            console.log(test)
             setDesign(test[0] == "Plain" ? "" : test[1])
             val = test[0]
         }
         if(e.target.id == 'design1'){
             splitted = true
             var test = e.target.value.split('|')
-            console.log('design1', test)
             setDesign1(test[0] == "Plain" ? "" : test[1])
             val = test[0]
         }
         if(e.target.id == 'topper'){
             splitted = true
             var test = e.target.value.split('|')
-            console.log(test)
             setTopper(test[0] == "None" ? "" : test[1])
             val = test[0]
         }
         if(e.target.id == 'number'){
             splitted = true
             var test = e.target.value.split('|')
-            console.log(test)
             setnum1(test[1])
             val = test[0]
         }
         if(e.target.id == 'number1'){
             splitted = true
             var test = e.target.value.split('|')
-            console.log(test)
             setnum1(test[1])
             val = test[0]
         }
         if(e.target.id == 'number2'){
             splitted = true
             var test = e.target.value.split('|')
-            console.log(test)
             setnum2(test[1])
             val = test[0]
         }
@@ -115,15 +109,46 @@ const Finalbuild = () => {
         else if (e.target.id == 'topper' && val != "number - double") setChecknumber(false)
         const newdata = {...order}
         newdata[e.target.id] = !splitted ? e.target.value : val
-        let findid = e.target.id == 'design1' ? 'design' : e.target.value
+        // ---------------------------------------------------------
+        
+        let findid = e.target.id == 'design1' ? 'design' : !splitted ? e.target.value : val
         let oldprice = data.find(meow => meow.name === findid)
-        console.log('old pricse : ', oldprice);
         if(e.target.id == 'size') setSizeprice(oldprice.price)
         else if(e.target.id == 'layer') setLayerprice(oldprice.price)
         else if(e.target.id == 'design') setDesignprice(oldprice.price)
         else if(e.target.id == 'design1') setDesign1price(oldprice.price)
-        if(e.target.id == 'topper') setTopperprice(oldprice.price)
+        else if(e.target.id == 'topper') setTopperprice(oldprice.price)
+        console.log('newdata : ', newdata);
         setOrder(newdata)
+    }
+
+    // checkouy
+    const checkout = () => {
+        console.log('order summarys : ', order);
+        let numero = cnum ? order.number : ''
+        var datos = {
+            size : order.size,
+            flavor : order.flavor,
+            layer : order.layer,
+            design : order.design,
+            design1 : order.design1 ? order.design1 : '',
+            topper: order.topper,
+            number : order.number1 && order.number2 ? order.number1 + " - " + order.number2 : order.number1 ? order.number1 : '', 
+            date : order.date ? order.date : '',
+            price : sizeprice + layerprice + designprice + design1price + topperprice,
+            message : order.message ? order.message : '',
+            specialrequest : order.specialrequest ? order.specialrequest : '',
+            
+        }
+        console.log('final datas : ', datos);
+        axios.post('savecustom', datos)
+        .then((res) => {
+            alert('Success!')
+            window.location.reload()
+        })
+        .catch((err) => {
+            console.log(err);
+        })
     }
 
     const selectSize = () => {
@@ -197,7 +222,7 @@ const Finalbuild = () => {
             data.map(meow => {
                 if(meow.id == 'topper-number'){
                     return(
-                        <option value={meow.name + "|" + meow.image} selected={order.number==meow.name}>{meow.name}</option>
+                        <option value={meow.name + "|" + meow.image} selected={order.number1==meow.name}>{meow.name}</option>
                     )
                 }
             })
@@ -348,32 +373,32 @@ const Finalbuild = () => {
                                             cnum ? 
                                             <div class="col-6 mb-2">
                                                 <Form.Label htmlFor="basic-url"><b>Select Number</b></Form.Label>
-                                                <Form.Select aria-label="Default select example" id="number" onChange={handleChange}>
+                                                <Form.Select aria-label="Default select example" id="number1" onChange={handleChange}>
                                                     {selectNumber()}
                                                 </Form.Select>
                                             </div>
                                         : 
+                                        checknumber ? 
+                                        <>
+                                            <div class="col-6 mb-2">
+                                                <Form.Label htmlFor="basic-url"><b>Select Number</b></Form.Label>
+                                                <Form.Select aria-label="Default select example" id="number1" onChange={handleChange}>
+                                                    {selectNumber()}
+                                                </Form.Select>
+                                            </div>
+                                            <div class="col-6 mb-2">
+                                                <Form.Label htmlFor="basic-url"><b>Number 2</b></Form.Label>
+                                                <Form.Select aria-label="Default select example" id="number2" onChange={handleChange}>
+                                                    {selectNumber2()}
+                                                </Form.Select>
+                                            </div>
+                                            </>
+                                        :
                                         <></>
                                         }
                                         
                                         {
-                                            checknumber ? 
-                                            <>
-                                                <div class="col-6 mb-2">
-                                                    <Form.Label htmlFor="basic-url"><b>Select Number</b></Form.Label>
-                                                    <Form.Select aria-label="Default select example" id="number1" onChange={handleChange}>
-                                                        {selectNumber()}
-                                                    </Form.Select>
-                                                </div>
-                                                <div class="col-6 mb-2">
-                                                    <Form.Label htmlFor="basic-url"><b>Number 2</b></Form.Label>
-                                                    <Form.Select aria-label="Default select example" id="number2" onChange={handleChange}>
-                                                        {selectNumber2()}
-                                                    </Form.Select>
-                                                </div>
-                                                </>
-                                            :
-                                            <></>
+                                           
                                         }
                                         <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
                                             <button type="button" class="btn btn-primary" onClick={()=>{setPage(page-1)}}>Previous</button>
@@ -414,7 +439,7 @@ const Finalbuild = () => {
                                                 placeholder="Allergic to sample ingredient..."
                                                 aria-label="request"
                                                 aria-describedby="basic-addon1"
-                                                id="request"
+                                                id="specialrequest"
                                                 as="textarea"
                                                 style={{ height: '130px' }}
                                                 onChange={handleChange}
@@ -436,9 +461,9 @@ const Finalbuild = () => {
                                         </center>
                                     </div>
                                     <div class="row">
-                                        <div class="col-10 mt-5"><p>Size : <b>{order.size}</b></p></div>
+                                        <div class="col-10"><p>Size : <b>{order.size}</b></p></div>
                                         { /* price for size */ console.log(order)}
-                                        <div class="col-2 mt-5"><p>₱{sizeprice}</p></div>
+                                        <div class="col-2"><p>₱{sizeprice}</p></div>
                                         <div class="col-10"><p>Flavor : <b>{order.flavor}</b></p></div>
                                         <div class="col-2"><p>₱0</p></div>
                                         <div class="col-10"><p>Number of layer : <b>{order.layer}</b></p></div>
@@ -461,9 +486,42 @@ const Finalbuild = () => {
                                         <div class="col-10"><p><b>Subtotal : </b></p></div>
                                         { /* total price */ }
                                         <div class="col-2"><p><b>₱{sizeprice + layerprice + designprice + design1price + topperprice}</b></p></div>
+                                        <div class="col-12 mt-3">
+                                            <ButtonGroup className="mb-2 d-block">
+                                                <ToggleButton
+                                                id="toggle-check"
+                                                type="checkbox"
+                                                variant="outline-success"
+                                                checked={reserve}
+                                                value="1"
+                                                onChange={(e) => setReserve(!reserve)}
+                                                >
+                                                For Reservation
+                                                </ToggleButton>
+                                            </ButtonGroup>
+                                        </div>
+                                        {
+                                            reserve ? 
+                                            <>
+                                            <div class="col-12">
+                                                <Form.Label htmlFor="basic-url">Select Reservation Date</Form.Label>
+                                                <InputGroup className="mb-3">
+                                                    <FormControl
+                                                    aria-label="Username"
+                                                    aria-describedby="basic-addon1"
+                                                    type="date"
+                                                    id="date"
+                                                    onChange={handleChange}
+                                                    />
+                                                </InputGroup>
+                                            </div>
+                                            </>
+                                            : 
+                                            <></>
+                                        }
                                         <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
                                             <button type="button" class="btn btn-primary" onClick={()=>{setPage(page-1)}}>Previous</button>
-                                            <button type="button" class="btn btn-primary" onClick={()=>{setPage(page+1)}}>Checkout</button>
+                                            <button type="button" class="btn btn-primary" onClick={()=>{checkout()}}>Checkout</button>
                                         </div>
                                     </div>
                                 </div>

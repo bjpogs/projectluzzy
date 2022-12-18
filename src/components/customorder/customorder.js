@@ -56,12 +56,11 @@ const Customorder = () => {
                     first_name : meows.first_name,
                     last_name : meows.last_name,
                     size : meows.size,
-                    shape : meows.shape,
                     flavor : meows.flavor,
+                    layer : meows.layer,
                     design : meows.design,
-                    topping1 : meows.topping == "" ? "None" : meows.topping,
-                    topper : meows.topper == "" ? "None" : meows.topper == "Number" ? meows.topper + " - " + meows.number : meows.topper,
-                    icing : meows.icing,
+                    design1 : meows.design1,
+                    topper : meows.topper == "" ? "None" : meows.topper,
                     message : meows.message == "" ? "None" : meows.message,
                     number : meows.number == "" ? "None" : meows.number,
                     price : meows.price,
@@ -173,7 +172,7 @@ const Customorder = () => {
             </Modal.Header>
             <Modal.Body>
             <div class="mb-2 row">
-                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Prize</label>
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Price</label>
                 <div class="col-sm-7">
                 <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.price}/>
                 </div>
@@ -185,15 +184,15 @@ const Customorder = () => {
                 </div>
             </div>
             <div class="mb-2 row">
-                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Shape</label>
-                <div class="col-sm-7">
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.shape}/>
-                </div>
-            </div>
-            <div class="mb-2 row">
                 <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Flavor</label>
                 <div class="col-sm-7">
                 <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.flavor}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Layer</label>
+                <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.layer}/>
                 </div>
             </div>
             <div class="mb-2 row">
@@ -202,24 +201,34 @@ const Customorder = () => {
                 <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.design}/>
                 </div>
             </div>
-            <div class="mb-2 row">
-                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Topping</label>
-                <div class="col-sm-7">
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.topping == "" ? "None" : modaldata.topping}/>
+            {
+                modaldata.design1 != "" ?
+                <div class="mb-2 row">
+                    <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Design</label>
+                    <div class="col-sm-7">
+                    <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.design}/>
+                    </div>
                 </div>
-            </div>
+                : 
+                <></>
+            }
             <div class="mb-2 row">
                 <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Topper</label>
                 <div class="col-sm-7">
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.topper == "" ? "None" : modaldata.topper == "Number" ? modaldata.topper + " - " + modaldata.number : modaldata.topper}/>
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.topper}/>
                 </div>
             </div>
-            <div class="mb-2 row">
-                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Icing</label>
-                <div class="col-sm-7">
-                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.icing == "" ? "None" : modaldata.icing}/>
+            {
+                modaldata.number != "" ?
+                <div class="mb-2 row">
+                    <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Number</label>
+                    <div class="col-sm-7">
+                    <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.number}/>
+                    </div>
                 </div>
-            </div>
+                : <></>
+            }
+            
             <div class="mb-2 row">
                 <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Written Card</label>
                 <div class="col-sm-7">
