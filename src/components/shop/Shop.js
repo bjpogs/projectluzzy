@@ -24,18 +24,16 @@ const Shop = () => {
     },[])
 
     const generateItem = () => {
-        console.log('cat : ',category)
         return (
             data.filter(user =>{
                 if (!category) return user
-                else if (category == "") return user
+                else if (category == "all") return user
                 else if (user.product_category.includes(category))return user
                 else if (user.product_subcategory.includes(category)) return user
                 else if (user.product_subcategory == category) return user
                 
             }).map(meow => {
                 return (
-                    
                     <div class="col-12 col-sm-6 col-lg-6 col-xl-4">
                         <div class="clean-product-item">
                             <div class="image"><a onClick={() => {window.location.href = "/Product-info?product_id=" + meow.product_id}}><img class="shopimage d-block mx-auto" src={meow.product_image}/></a></div>
@@ -54,8 +52,8 @@ const Shop = () => {
     }
     
     const categoryChange = (e) => {
-        console.log(e.target.title);
-        setCategory(e.target.title);
+        console.log('selected :', e);
+        setCategory(e);
         generateItem()
     }
     return(
@@ -72,33 +70,43 @@ const Shop = () => {
                                     <div class="filters">
                                         <div class="filter-item">
                                             <h3>Categories</h3>
-                                            <Nav className="flex-column" variant="pills">
-                                            <Nav.Link eventKey="link" onClick={categoryChange} title="">All Items</Nav.Link>
-                                            <Nav.Link eventKey="link-1" onClick={categoryChange} title="Events1">Events</Nav.Link>
-                                            <NavDropdown title="Events" id="nav-dropdown" onSelect={console.log("puta")}>
-                                                <NavDropdown.Item eventKey="4.1" >Anniversary</NavDropdown.Item>
-                                                <NavDropdown.Item eventKey="4.2">Another action</NavDropdown.Item>
-                                                <NavDropdown.Item eventKey="4.3">Something else here</NavDropdown.Item>
-                                                <NavDropdown.Divider />
-                                                <NavDropdown.Item eventKey="4.4">Separated link</NavDropdown.Item>
+                                            <Nav className="flex-column" defaultActiveKey="/all" variant="pills" onSelect={categoryChange}>
+                                            <Nav.Link eventKey="all" title="">All Items</Nav.Link>
+                                            <NavDropdown title="Events" id="nav-dropdown" onSelect={categoryChange}>
+                                                <NavDropdown.Item eventKey="Anniversary" >Anniversary</NavDropdown.Item>
+                                                <NavDropdown.Item eventKey="Birthday">Birthday</NavDropdown.Item>
+                                                <NavDropdown.Item eventKey="Character">Character</NavDropdown.Item>
+                                                <NavDropdown.Item eventKey="Christening">Christening</NavDropdown.Item>
+                                                <NavDropdown.Item eventKey="Debut">Debut</NavDropdown.Item>
+                                                <NavDropdown.Item eventKey="Gender">Gender</NavDropdown.Item>
+                                                <NavDropdown.Item eventKey="Wedding">Wedding</NavDropdown.Item>
                                             </NavDropdown>
-                                            <Nav.Link eventKey="link-2" onClick={categoryChange} title="Simple">Simple</Nav.Link>
-                                            <Nav.Link eventKey="link-6" onClick={categoryChange} title="Cupcake">Cupcake</Nav.Link>
+                                            <Nav.Link eventKey="Simple" title="Simple">Simple</Nav.Link>
+                                            <Nav.Link eventKey="Cupcake" title="Cupcake">Cupcake</Nav.Link>
                                             </Nav>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="d-lg-none">
                                 <div class="col-12 mb-2">
-                                        <Form.Label htmlFor="basic-url"><b>Category</b></Form.Label>
-                                        <Form.Select aria-label="Default select example" id="top1" onChange={(e)=>setCategory(e.target.value)}>
-                                            <option value='ALL'>All Items</option>
-                                            <option value='Events'>Events</option>
-                                            <option value='Simple'>Simple</option>
-                                            <option value='Cupcake'>Cupcakes</option>
-                                        </Form.Select>
+                                    <h3>Categories</h3>
+                                                <Nav className="flex-column" defaultActiveKey="/all" variant="pills" onSelect={categoryChange}>
+                                                <Nav.Link eventKey="all" title="">All Items</Nav.Link>
+                                                <NavDropdown title="Events" id="nav-dropdown" onSelect={categoryChange}>
+                                                    <NavDropdown.Item eventKey="Anniversary" >Anniversary</NavDropdown.Item>
+                                                    <NavDropdown.Item eventKey="Birthday">Birthday</NavDropdown.Item>
+                                                    <NavDropdown.Item eventKey="Character">Character</NavDropdown.Item>
+                                                    <NavDropdown.Item eventKey="Christening">Christening</NavDropdown.Item>
+                                                    <NavDropdown.Item eventKey="Debut">Debut</NavDropdown.Item>
+                                                    <NavDropdown.Item eventKey="Gender">Gender</NavDropdown.Item>
+                                                    <NavDropdown.Item eventKey="Wedding">Wedding</NavDropdown.Item>
+                                                </NavDropdown>
+                                                <Nav.Link eventKey="Simple" title="Simple">Simple</Nav.Link>
+                                                <Nav.Link eventKey="Cupcake" title="Cupcake">Cupcake</Nav.Link>
+                                                </Nav>
+                                        </div>
+                                        <hr/>
                                     </div>
-                                </div>
                             </div>
                             <div class="col-lg-9">
                                 <div class="products">
@@ -107,6 +115,7 @@ const Shop = () => {
                                         <div class="col-12 col-sm-6 col-lg-6 col-xl-4">
                                             <div class="clean-product-item">
                                                 <div class="image"><a onClick={() => {window.location.href = "/build-cake"}}><img class="shopimage d-block mx-auto" src={imahe}/></a></div>                    
+                                                <div class="product-name"><a href="/build-cake">Build cake</a></div>
                                                 <div class="about">
                                                     <div class="rating"></div>
                                                     <div class="price">

@@ -227,7 +227,7 @@ const Adminhome = () => {
                         
                         <br/>
                         <Table striped bordered hover responsive>
-                            <thead>
+                            <thead  className="table-primary">
                                 <tr>
                                 <th>Order ID</th>
                                 <th>Product Name</th>

@@ -298,7 +298,7 @@ const Reservationorder = () => {
                             </center>
                         <br/>
                         <Table striped bordered hover responsive>
-                            <thead>
+                            <thead className="table-primary">
                                 <tr>
                                 <th>Reservation ID</th>
                                 <th>Requested Design</th>

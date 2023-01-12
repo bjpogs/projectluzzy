@@ -11,14 +11,14 @@ const Footer = () => {
                         <ul>
                             <li><a href="/shop">Menu</a></li>
                             <li><a href={localStorage.getItem("fname") == "" | !localStorage.getItem("fname") ? "/login" : "/myaccount"}>My Account</a></li>
-                            <li><a href="/#infocakes">Satisfaction Guarantee</a></li>
+                            <li><a href="/index#infocakes">Satisfaction Guarantee</a></li>
                         </ul>
                     </div>
                     <div class="col-sm-3">
                         <h5>About us</h5>
                         <ul>
                             <li><a href="/about">Company Information</a></li>
-                            <li><a href="/#contactlocation">Contact us</a></li>
+                            <li><a href="/index#contactlocation">Contact us</a></li>
                         </ul>
                     </div>
                     <div class="col-sm-3">
@@ -30,9 +30,8 @@ const Footer = () => {
                     <div class="col-sm-3">
                         <h5>Legal</h5>
                         <ul>
-                            <li><a href="#">Terms of Service</a></li>
-                            <li><a href="#">Terms of Use</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="/Terms-of-Service">Terms of Service</a></li>
+                            <li><a href="/Terms-of-Use">Terms of Use</a></li>
                         </ul>
                     </div>
                 </div>

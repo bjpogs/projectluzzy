@@ -613,8 +613,8 @@ const Products = () => {
                         <></>    
                     }
                     </div>
-                    <Table striped bordered hover responsive>
-                        <thead>
+                    <Table striped bordered hover responsive >
+                        <thead className="table-primary">
                             <tr>
                                 <th>Product ID</th>
                                 <th>Image</th>

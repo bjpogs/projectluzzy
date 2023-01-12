@@ -255,7 +255,7 @@ const Customorder = () => {
                             </center>
                         <br/>
                         <Table striped bordered hover responsive>
-                            <thead>
+                            <thead className="table-primary">
                                 <tr>
                                 <th>Order ID</th>
                                 <th>Last Name</th>

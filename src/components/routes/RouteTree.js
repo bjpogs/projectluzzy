@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Switch } from 'react-router'
+import { Route, Switch, Redirect } from 'react-router'
 import ProtectedRoute from './ProtectedRoute.js'
 import AdminRoute from './AdminRoute.js'
 
@@ -19,6 +19,8 @@ import Build from '../build/build'
 import Order from '../order/order.js'
 import Trackreservation from '../trackreservation/trackreservation'
 import Buildpt2 from '../finalbuild/finalbuild'
+import Termservice from '../terms-of-service/Termsofservice'
+import Termuse from '../terms-of-use/Termsofuse'
 
 // admin directories
 import AdminHome from '../adminhome/Adminhome'
@@ -34,14 +36,16 @@ function RouteTree() {
     return (
         <div>
             <Switch>
+                <Route exact path="/"><Redirect to="/index"></Redirect></Route>
                 <Route exact path="/index" component={Home}/>
-                <Route exact path="/" component={Home}/>
                 <Route exact path="/About" component={About}/>
                 <Route exact path="/Contact-Us" component={ContactUs}/>
                 <Route exact path="/Login" component={Login}/>
                 <Route exact path="/Register" component={Register}/>
                 <Route exact path="/Shop" component={Shop}/>
                 <Route exact path="/Product-Info" component={ProductInfo}/>
+                <Route exact path="/Terms-of-Service" component={Termservice}/>
+                <Route exact path="/Terms-of-Use" component={Termuse}/>
                 <ProtectedRoute exact path="/Cart" component={Cart}/>
                 <ProtectedRoute exact path="/Order" component={Order}/>
                 <Route exact path="/Reservation" component={Reservation}/>
