@@ -7,7 +7,7 @@ body{
 }
 #mainbanner{
     background-image : url('../img/luzzy1.jpg');
-    color : rgba(9, 162, 255, 0.85);
+    color : rgba(220,220,220,0);
 }
 
 #infocakes .cakebox-center{

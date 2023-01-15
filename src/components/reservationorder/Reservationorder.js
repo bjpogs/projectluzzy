@@ -63,7 +63,7 @@ const Reservationorder = () => {
                     product_price : meows.product_price,
                     email_address : 'ariel.atienzajr@cvsu.edu.ph'
                 }
-                emailjs.send('service_hkloqw4', 'template_y39gciu', template, 'zpZhnlO2TsbRcuocB')
+                emailjs.send('service_fa3wafr', 'template_95n0gvq', template, 'LdHTOyTJG5lKy7e4s')
                 .then((res) => {
                     console.log(res.text);
                 }, (err) => {

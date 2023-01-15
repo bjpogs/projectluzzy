@@ -342,7 +342,7 @@ const Finalbuild = () => {
                                     </div>
                                     <div class="row">
                                         <div class="col-12 mb-2">
-                                            <Form.Label htmlFor="basic-url"><b>Design</b></Form.Label>
+                                            <Form.Label htmlFor="basic-url"><b>Icing Design Layer 1</b></Form.Label>
                                             <Form.Select aria-label="Default select example" id="design" onChange={handleChange}>
                                                 <option value="Plain">Plain</option>
                                                 {selectDesign()}
@@ -351,7 +351,7 @@ const Finalbuild = () => {
                                         {
                                             layer?
                                             <div class="col-12 mb-2">
-                                                <Form.Label htmlFor="basic-url"><b>Design 2</b></Form.Label>
+                                                <Form.Label htmlFor="basic-url"><b>Icing Design Layer 2</b></Form.Label>
                                                 <Form.Select aria-label="Default select example" id="design1" onChange={handleChange}>
                                                     <option value="Plain">Plain</option>
                                                     {selectDesign2()}

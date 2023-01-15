@@ -13,6 +13,7 @@ const Shop = () => {
     const [category, setCategory] = useState()
     
     useEffect(() => {
+		/*
         axios.get('getallproducts')
         .then((res) => {
             setData(res.data);
@@ -21,6 +22,7 @@ const Shop = () => {
         .catch((err) => {
             console.log('error : ', err);
         })
+		*/
     },[])
 
     const generateItem = () => {
@@ -70,7 +72,7 @@ const Shop = () => {
                                     <div class="filters">
                                         <div class="filter-item">
                                             <h3>Categories</h3>
-                                            <Nav className="flex-column" defaultActiveKey="/all" variant="pills" onSelect={categoryChange}>
+                                            <Nav className="flex-column" defaultActiveKey="all" variant="pills" onSelect={categoryChange}>
                                             <Nav.Link eventKey="all" title="">All Items</Nav.Link>
                                             <NavDropdown title="Events" id="nav-dropdown" onSelect={categoryChange}>
                                                 <NavDropdown.Item eventKey="Anniversary" >Anniversary</NavDropdown.Item>
@@ -81,7 +83,7 @@ const Shop = () => {
                                                 <NavDropdown.Item eventKey="Gender">Gender</NavDropdown.Item>
                                                 <NavDropdown.Item eventKey="Wedding">Wedding</NavDropdown.Item>
                                             </NavDropdown>
-                                            <Nav.Link eventKey="Simple" title="Simple">Simple</Nav.Link>
+                                            <Nav.Link eventKey="Simple" title="Simple">Bento and Number</Nav.Link>
                                             <Nav.Link eventKey="Cupcake" title="Cupcake">Cupcake</Nav.Link>
                                             </Nav>
                                         </div>
@@ -101,7 +103,7 @@ const Shop = () => {
                                                     <NavDropdown.Item eventKey="Gender">Gender</NavDropdown.Item>
                                                     <NavDropdown.Item eventKey="Wedding">Wedding</NavDropdown.Item>
                                                 </NavDropdown>
-                                                <Nav.Link eventKey="Simple" title="Simple">Simple</Nav.Link>
+                                                <Nav.Link eventKey="Simple" title="Simple">Bento and Number</Nav.Link>
                                                 <Nav.Link eventKey="Cupcake" title="Cupcake">Cupcake</Nav.Link>
                                                 </Nav>
                                         </div>
