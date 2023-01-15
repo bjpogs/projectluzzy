@@ -59,7 +59,7 @@ const Customorder = () => {
                     flavor : meows.flavor,
                     layer : meows.layer,
                     design : meows.design,
-                    design1 : meows.design1,
+                    design1 : meows.design1 == "" ? "None" : meows.design1,
                     topper : meows.topper == "" ? "None" : meows.topper,
                     message : meows.message == "" ? "None" : meows.message,
                     number : meows.number == "" ? "None" : meows.number,
