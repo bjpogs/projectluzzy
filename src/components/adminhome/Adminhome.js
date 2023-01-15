@@ -56,7 +56,6 @@ const Adminhome = () => {
                     first_name : meows.first_name,
                     last_name : meows.last_name,
                     product_name : meows.product_name,
-                    product_category : meows.product_category,
                     product_price : meows.product_price,
                     email_address : meows.email_address,
                 }
