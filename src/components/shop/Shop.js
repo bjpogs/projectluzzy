@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from 'react'
 
 // navbar and footer template
-import Navbar from '../templates/Navbar'
-import Footer from '../templates/Footer'
 import axios from '../../api/api'
 import {Nav, NavDropdown, Form} from 'react-bootstrap'
 import imahe from '../../assets/img/buildlogo.jpg'
@@ -13,7 +11,6 @@ const Shop = () => {
     const [category, setCategory] = useState()
     
     useEffect(() => {
-		/*
         axios.get('getallproducts')
         .then((res) => {
             setData(res.data);
@@ -22,7 +19,6 @@ const Shop = () => {
         .catch((err) => {
             console.log('error : ', err);
         })
-		*/
     },[])
 
     const generateItem = () => {

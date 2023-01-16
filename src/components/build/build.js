@@ -25,8 +25,8 @@ const Build = () => {
 
     useEffect(() => {
         if (!localStorage.getItem('isAuthenticated')){
-            //alert('Please login first to continue.')
-            //window.location.href = "/login"
+            alert('Please login first to continue.')
+            window.location.href = "/login"
         }
         else{
             axios.get('buildselect')
