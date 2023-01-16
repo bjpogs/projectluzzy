@@ -28,7 +28,7 @@ const Navbars = () => {
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <div class="ms-auto"/>
-                    <Nav>{/*variant='pills' defaultActiveKey='/index'*/}
+                    <Nav variant='pills' defaultActiveKey='/index'>{/*variant='pills' defaultActiveKey='/index'*/}
                         <Nav.Link  as={NavLink} to ="/index"><b>Home</b></Nav.Link>
                         <Nav.Link  as={NavLink} to ="/Shop"><b>Shop</b></Nav.Link>
                         <Nav.Link  as={NavLink} to ="/Reservation"><b>Reservation</b></Nav.Link>
