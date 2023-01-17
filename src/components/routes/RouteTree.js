@@ -36,8 +36,8 @@ function RouteTree() {
     return (
         <div>
             <Switch>
-                <Route exact path="/"><Redirect to="/index"></Redirect></Route>
-                <Route exact path="/index" component={Home}/>
+                <Route exact path="/"><Redirect to="/home"></Redirect></Route>
+                <Route exact path="/home" component={Home}/>
                 <Route exact path="/About" component={About}/>
                 <Route exact path="/Contact-Us" component={ContactUs}/>
                 <Route exact path="/Login" component={Login}/>

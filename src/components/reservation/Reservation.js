@@ -244,7 +244,7 @@ const Reservation = () => {
                                     <FormControl
                                     as="textarea"
                                     rows={3}
-                                    placeholder="e.g. remove specific ingridient due to allergy"
+                                    placeholder="e.g. remove specific ingredients due to allergy"
                                     aria-label="Username"
                                     aria-describedby="basic-addon1"
                                     id="SpecialRequest"

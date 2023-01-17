@@ -20,13 +20,13 @@ const Home = () => {
  return(
     <>
     <div class="page landing-page">
-        <section class="clean-block clean-hero" id="mainbanner">{/*style="background-image: url(&quot;assets/img/luzzy1.jpg&quot;);color: rgba(9, 162, 255, 0.85);" */}
-            {/*
-			<div class="text">
+        <section class="clean-block clean-hero" id="mainbanner">{/*style="background-image: url(&quot;assets/img/luzzy1.jpg&quot;);color: rgba(9, 162, 255, 0.85);" */}      
+			<div class="text d-block d-md-none">
+                {/*}
                 <h2>LUZZY'S SUPREME SWEETS</h2>
                 <p>CAKES MAKE EVERYTHING BETTER</p><button class="btn btn-lg btn-primary" type="button" onClick={() => window.location.href="/shop"}>SHOP NOW</button>
+                */}
             </div>
-			*/}
         </section>
         
         <section class="clean-block clean-info dark">

@@ -7,8 +7,12 @@ body{
 }
 #mainbanner{
     background-image : url('../img/luzzy1.jpg');
+    background-size: 100% 100%;
     color : rgba(220,220,220,0);
+
 }
+
+
 
 #infocakes .cakebox-center{
     width : 40vh;
@@ -25,6 +29,9 @@ body{
         margin-left: auto;
         margin-right: auto;
         text-align: center;
+    }
+    #mainbanner{
+        height: 35vh;
     }
 }
 

@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { NavLink } from 'react-router-dom'
 import {Nav, Navbar, Container, NavDropdown} from 'react-bootstrap'
 import axios from '../../api/api'
+import brandimg from '../../assets/img/luzzybrand.jpg'
 
 const Navbars = () => {
     const [activeMenu, setActiveMenu] = useState()
@@ -22,14 +23,31 @@ const Navbars = () => {
         
         <Navbar bg="white" expand="lg" sticky="top" class="navbar-light bg-white clean-navbar">
             <Container>
-                <Navbar.Brand href='/index' id="navbrand">
-                    <b>Luzzy's Supreme Sweets</b>
+                <Navbar.Brand href='/home' id="navbrand" className='d-none d-sm-block'>
+                    <img
+                        alt=""
+                        src={brandimg}
+                        width="30"
+                        height="30"
+                        className="d-inline-block align-top"
+                    />
+                    <b> Luzzy's Supreme Sweets</b>
+                </Navbar.Brand>
+                <Navbar.Brand href='/home' id="navbrand" className='d-block d-sm-none'>
+                    <img
+                        alt=""
+                        src={brandimg}
+                        width="30"
+                        height="30"
+                        className="d-inline-block align-top"
+                    />
+                    <b> Luzzy</b>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <div class="ms-auto"/>
-                    <Nav variant='pills' defaultActiveKey='/index'>{/*variant='pills' defaultActiveKey='/index'*/}
-                        <Nav.Link  as={NavLink} to ="/index"><b>Home</b></Nav.Link>
+                    <Nav variant='pills' defaultActiveKey='/home'>{/*variant='pills' defaultActiveKey='/index'*/}
+                        <Nav.Link  as={NavLink} to ="/home"><b>Home</b></Nav.Link>
                         <Nav.Link  as={NavLink} to ="/Shop"><b>Shop</b></Nav.Link>
                         <Nav.Link  as={NavLink} to ="/Reservation"><b>Reservation</b></Nav.Link>
                         <Nav.Link  as={NavLink} to ="/About" ><b>About</b></Nav.Link>

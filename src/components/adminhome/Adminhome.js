@@ -50,6 +50,13 @@ const Adminhome = () => {
             .catch((err) => {
                 console.log(err);
             })
+            var today = new Date();
+            var d = today.getDate();
+            var y = today.getFullYear();
+            var m = today.getMonth();
+            var month = ["January", "February","March", "April", "May", "June", "July", "August", "September", "October", "November","December"];
+            m = month[m];
+            var ngayon = m + ' ' + d + ", " + y
             if (statusdata == "To Pick Up"){
                 var template = {
                     order_id : meows.order_id,
@@ -58,8 +65,9 @@ const Adminhome = () => {
                     product_name : meows.product_name,
                     product_price : meows.product_price,
                     email_address : meows.email_address,
+                    date: meows.order_date == "" || meows.order_date == null ? ngayon : meows.order_date
                 }
-                emailjs.send('service_hkloqw4', 'template_y39gciu', template, 'zpZhnlO2TsbRcuocB')
+                emailjs.send('service_l0kzyv6', 'template_kfcpk55', template, 'i7Ncix5NnyEgC_kfb')
                 .then((res) => {
                     console.log(res.text);
                 }, (err) => {

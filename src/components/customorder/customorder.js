@@ -50,6 +50,13 @@ const Customorder = () => {
             .catch((err) => {
                 console.log(err);
             })
+            var today = new Date();
+            var d = today.getDate();
+            var y = today.getFullYear();
+            var m = today.getMonth();
+            var month = ["January", "February","March", "April", "May", "June", "July", "August", "September", "October", "November","December"];
+            m = month[m];
+            var ngayon = m + ' ' + d + ", " + y
             if (statusdata == "To Pick Up"){
                 var template = {
                     order_id : meows.order_id,
@@ -64,9 +71,11 @@ const Customorder = () => {
                     message : meows.message == "" ? "None" : meows.message,
                     number : meows.number == "" ? "None" : meows.number,
                     price : meows.price,
-                    email_address : meows.email_address
+                    email_address : meows.email_address,
+                    date: meows.order_date == "" ? ngayon : meows.order_date
                 }
-                emailjs.send('service_hkloqw4', 'template_5x78v0g', template, 'zpZhnlO2TsbRcuocB')
+                console.log('date : ', template);
+                emailjs.send('service_l0kzyv6', 'template_bqbh1ph', template, 'i7Ncix5NnyEgC_kfb')
                 .then((res) => {
                     console.log(res.text);
                 }, (err) => {
