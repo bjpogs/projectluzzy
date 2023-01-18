@@ -53,7 +53,7 @@ const Navbars = () => {
                         <Nav.Link  as={NavLink} to ="/About" ><b>About</b></Nav.Link>
                         { /* <Nav.Link  as={NavLink} to ="/trackreservation" ><b>Track Reservation</b></Nav.Link> */ }
                         { !localStorage.getItem('fname') ? 
-                        <Nav.Link href="/login"><b>Login</b></Nav.Link> 
+                        <Nav.Link href="Login"><b>Login</b></Nav.Link> 
                         : 
                         <NavDropdown  title={localStorage.getItem('fname')} id="nav-dropdown">
                         <NavDropdown.Item href='/myaccount'>My Account</NavDropdown.Item>
