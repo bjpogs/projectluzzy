@@ -47,13 +47,13 @@ const Navbars = () => {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <div class="ms-auto"/>
                     <Nav variant='pills' defaultActiveKey='/home'>{/*variant='pills' defaultActiveKey='/index'*/}
-                        <Nav.Link  as={NavLink} to ="home"><b>Home</b></Nav.Link>
-                        <Nav.Link  as={NavLink} to ="Shop"><b>Shop</b></Nav.Link>
-                        <Nav.Link  as={NavLink} to ="Reservation"><b>Reservation</b></Nav.Link>
-                        <Nav.Link  as={NavLink} to ="About" ><b>About</b></Nav.Link>
+                        <Nav.Link  as={NavLink} to="/home"><b>Home</b></Nav.Link>
+                        <Nav.Link  as={NavLink} to="/Shop"><b>Shop</b></Nav.Link>
+                        <Nav.Link  as={NavLink} to="/Reservation"><b>Reservation</b></Nav.Link>
+                        <Nav.Link  as={NavLink} to="/About" ><b>About</b></Nav.Link>
                         { /* <Nav.Link  as={NavLink} to ="/trackreservation" ><b>Track Reservation</b></Nav.Link> */ }
                         { !localStorage.getItem('fname') ? 
-                        <Nav.Link href="/Login"><b>Login</b></Nav.Link> 
+                        <Nav.Link as={NavLink} to="/Login"><b>Login</b></Nav.Link> 
                         : 
                         <NavDropdown  title={localStorage.getItem('fname')} id="nav-dropdown">
                         <NavDropdown.Item href='/myaccount'>My Account</NavDropdown.Item>

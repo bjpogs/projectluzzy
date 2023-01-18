@@ -36,29 +36,29 @@ function RouteTree() {
     return (
         <div>
             <Switch>
-                <Route exact path="/"><Redirect to="home"></Redirect></Route>
-                <Route exact path="home" component={Home}/>
-                <Route exact path="About" component={About}/>
-                <Route exact path="Contact-Us" component={ContactUs}/>
-                <Route exact path="Login" component={Login}/>
-                <Route exact path="Register" component={Register}/>
-                <Route exact path="Shop" component={Shop}/>
-                <Route exact path="Product-Info" component={ProductInfo}/>
-                <Route exact path="Terms-of-Service" component={Termservice}/>
-                <Route exact path="Terms-of-Use" component={Termuse}/>
-                <ProtectedRoute exact path="Cart" component={Cart}/>
-                <ProtectedRoute exact path="Order" component={Order}/>
-                <Route exact path="Reservation" component={Reservation}/>
-                <Route exact path="Track" component={TrackOrder}/>
-                <Route exact path="build-a-cake" component={Build}/>
-                <Route exact path="build-cake" component={Buildpt2}/>
-	 			<Route exact path="trackreservation" component={Trackreservation}/>
-                <ProtectedRoute exact path="myaccount" component={Myaccount}/>
-                <AdminRoute exact path="admin/regular-order" component={AdminHome}/>
-                <AdminRoute exact path="admin/custom-order" component={Customorder}/>
-                <AdminRoute exact path="admin/reservation-order" component={Reservationorder}/>
-                <AdminRoute exact path="admin/products" component={Products}/>
-                <AdminRoute exact path="admin/build" component={Builder}/>
+                <Route exact path="/"><Redirect to="/home"></Redirect></Route>
+                <Route exact path="/home" component={Home}/>
+                <Route exact path="/About" component={About}/>
+                <Route exact path="/Contact-Us" component={ContactUs}/>
+                <Route exact path="/Login" component={Login}/>
+                <Route exact path="/Register" component={Register}/>
+                <Route exact path="/Shop" component={Shop}/>
+                <Route exact path="/Product-Info" component={ProductInfo}/>
+                <Route exact path="/Terms-of-Service" component={Termservice}/>
+                <Route exact path="/Terms-of-Use" component={Termuse}/>
+                <ProtectedRoute exact path="/Cart" component={Cart}/>
+                <ProtectedRoute exact path="/Order" component={Order}/>
+                <Route exact path="/Reservation" component={Reservation}/>
+                <Route exact path="/Track" component={TrackOrder}/>
+                <Route exact path="/build-a-cake" component={Build}/>
+                <Route exact path="/build-cake" component={Buildpt2}/>
+	 			<Route exact path="/trackreservation" component={Trackreservation}/>
+                <ProtectedRoute exact path="/myaccount" component={Myaccount}/>
+                <AdminRoute exact path="/admin/regular-order" component={AdminHome}/>
+                <AdminRoute exact path="/admin/custom-order" component={Customorder}/>
+                <AdminRoute exact path="/admin/reservation-order" component={Reservationorder}/>
+                <AdminRoute exact path="/admin/products" component={Products}/>
+                <AdminRoute exact path="/admin/build" component={Builder}/>
                 <Route component={Notfound} /> 
             </Switch>
         </div>
