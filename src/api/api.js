@@ -2,11 +2,12 @@ import axios from 'axios'
 
 
 // axios.defaults.withCredentials = true
-
+// http://www.luzzysupremesweets.shop/backend/
+// process.env.REACT_APP_API_URL
 // withCredentials : true,
 const api = axios.create({
     withCredentials : true,
-    baseURL : process.env.REACT_APP_API_URL,
+    baseURL : "http://www.luzzysupremesweets.shop/backend/",
     headers: {
         "Content-Type":"application/json"
     }

@@ -18,7 +18,7 @@ const Shop = () => {
         .catch((err) => {
             console.log('error : ', err);
             alert('something went wrong, please try again later.')
-            window.location.href = "/"
+            //window.location.href = "/"
         })
     },[])
 
