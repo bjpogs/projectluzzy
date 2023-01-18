@@ -20,7 +20,6 @@ const Myaccount = () => {
         axios.get('getuserinfo')
         .then((res) => {
             setData(res.data[0])
-            console.log(res.data);
         })
         .catch((err) => {
             console.log(err);
@@ -42,7 +41,6 @@ const Myaccount = () => {
         
         axios.post('updateuserinfo', data)
         .then((res) => {
-            console.log(res.data);
             alert('information updated successfully!')
         })
         .catch((err) =>{

@@ -43,7 +43,6 @@ const Finalbuild = () => {
         .then(res => {
             setData(res.data)
             let tempdata = res.data.find(meow => meow.id === "topper-number")
-            console.log(tempdata.image);
             let sizeprice = res.data.find(meow => meow.id === "size")
             setSizeprice(sizeprice.price)
             let flavory = res.data.find(meow => meow.id === 'flavor')
@@ -61,7 +60,6 @@ const Finalbuild = () => {
     },[])
 
     const handleChange = (e) => {
-        console.log('orderss : ',e.target.id);
         e.preventDefault()
         var splitted = false
         var val = ''
@@ -118,13 +116,11 @@ const Finalbuild = () => {
         else if(e.target.id == 'design') setDesignprice(oldprice.price)
         else if(e.target.id == 'design1') setDesign1price(oldprice.price)
         else if(e.target.id == 'topper') setTopperprice(oldprice.price)
-        console.log('newdata : ', newdata);
         setOrder(newdata)
     }
 
     // checkouy
     const checkout = () => {
-        console.log('order summarys : ', order);
         let numero = cnum ? order.number : ''
         var datos = {
             size : order.size,
@@ -140,7 +136,6 @@ const Finalbuild = () => {
             specialrequest : order.specialrequest ? order.specialrequest : '',
             
         }
-        console.log('final datas : ', datos);
         axios.post('savecustom', datos)
         .then((res) => {
             alert('Success!')
@@ -462,7 +457,6 @@ const Finalbuild = () => {
                                     </div>
                                     <div class="row">
                                         <div class="col-10"><p>Size : <b>{order.size}</b></p></div>
-                                        { /* price for size */ console.log(order)}
                                         <div class="col-2"><p>₱{sizeprice}</p></div>
                                         <div class="col-10"><p>Flavor : <b>{order.flavor}</b></p></div>
                                         <div class="col-2"><p>₱0</p></div>

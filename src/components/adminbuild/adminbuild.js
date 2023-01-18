@@ -104,9 +104,8 @@ const Adminbuild = () => {
     }
 
     const addsave = () => {
-        console.log(document.getElementById('addimage').files[0]);
         if (!document.getElementById('addname').value || !document.getElementById('addimage').files[0]) {
-            console.log('name required!');
+            alert('please complete form.')
         }
         else{
             const form = new FormData()
@@ -148,7 +147,7 @@ const Adminbuild = () => {
         else{
             if (id =='size'|| id == 'topper'){
                 if (document.getElementById('editprice').value) {
-                    console.log('price required!');
+                    alert('price required!');
                     foul = true
                 }
             }

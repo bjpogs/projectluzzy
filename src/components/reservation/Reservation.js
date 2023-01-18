@@ -39,13 +39,8 @@ const Reservation = () => {
         form.append('icing', document.getElementById('icing').value)
         form.append('specialrequest', document.getElementById('SpecialRequest').value)
         
-
-        for (const value of form.values()){
-            console.log(value);
-        }
         axios.post('reservecake', form)
         .then((res) => {
-            console.log(res.data);
             setData(res.data)
             alert('Success!')
             setModalShow(true)

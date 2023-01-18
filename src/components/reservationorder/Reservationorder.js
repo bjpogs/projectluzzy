@@ -20,7 +20,6 @@ const Reservationorder = () => {
         axios.get('allreservation')
         .then((res) => {
             setData(res.data)
-            console.log(res.data);
         })
         .catch((err) => {
             console.log(err);
@@ -31,7 +30,6 @@ const Reservationorder = () => {
     },[])
 
     const saveStatus = (meows) => {
-        console.log(data);
         if (statusdata === null) setEdit(!edit)
         else {
             var temps = {
@@ -74,7 +72,6 @@ const Reservationorder = () => {
     }
 
     const editbtn = (id) => {
-        console.log(id);
         setEditingRow(id)
         setEdit(!edit)
     }
@@ -196,8 +193,6 @@ const Reservationorder = () => {
     }
 
     const Saveprice = () => {
-        console.log(document.getElementById('price').value);
-        console.log(modaldata.reservation_id);
         var presyo = document.getElementById('price').value
         let datos = {
             reservation_id : modaldata.reservation_id,

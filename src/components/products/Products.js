@@ -26,7 +26,6 @@ const Products = () => {
         axios.get('getallproducts')
         .then((res) => {
             setData(res.data)
-            console.log(res.data);
         })
         .catch((err) => {
             console.log(err);
@@ -41,10 +40,8 @@ const Products = () => {
         else{
             const tempvar = tempdata
             tempvar['product_id'] = meows.product_id
-            console.log(tempvar);
             axios.post('updateproduct', tempvar)
             .then((res) => {
-                console.log(res.data);
                 let finaldata = {
                     ...meows,
                     ...tempdata
@@ -58,7 +55,7 @@ const Products = () => {
                 setData(lastdata)
             })
             .catch((err) => {
-                console.log(err);
+                console.log(err)
             })
             .finally(() => {
                 setEdit(!edit)
@@ -73,7 +70,6 @@ const Products = () => {
         const newdata = {...tempdata}
         newdata[e.target.id] = e.target.value
         setTempdata(newdata)
-        console.log(newdata);
     }
 
     const handleAddChange = (e) => {
@@ -91,13 +87,9 @@ const Products = () => {
         form.append('product_tier', document.getElementById('product_tier').value)
         form.append('product_image', document.getElementById('product_image').files[0])
         form.append('product_description', document.getElementById('product_description').value)
-        for (const value of form.values()){
-            console.log(value);
-        }
         axios.post('addproduct', form)
         .then((res) => {
             alert('Product added successfully.')
-            console.log(res.data);
         })
         .catch((err) => {
             console.log(err);
@@ -116,7 +108,6 @@ const Products = () => {
                 // else if (meows.product_category.includes(displaycategory) && meows.product_name.toUpperCase().includes(displayname.toUpperCase())) return meows
                 
                 else if (meows.product_category == displaycategory && meows.product_subcategory == subcategory && displayname == "") {
-                    console.log('ture');
                     return meows
                 }
                 else if (displayname !== "" && displaycategory !== "DEFAULT"){
@@ -466,7 +457,6 @@ const Products = () => {
         const newdata = {...tempdata}
         newdata[e.target.id] = e.target.value
         setTempdata(newdata)
-        console.log(e);
     }
 
     function MyVerticallyCenteredModal(props) {

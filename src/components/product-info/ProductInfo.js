@@ -23,11 +23,9 @@ const ProductInfo = () => {
     })
     useEffect(() => {
         const id = queryParams.get('product_id')
-        console.log(id)
         api.get(`getproductbyid/${id}`)
         .then((res) => {
             setData(res.data[0]);
-            console.log(res.data)
         })
         .catch((err) => {
             console.log(err);
@@ -46,7 +44,6 @@ const ProductInfo = () => {
             const id = queryParams.get('product_id')
             api.post('addtocart',{ product_id : id})
             .then((res) => {
-                console.log(res);
                 alert('Add to cart succressfully!')
                 window.location.href = '/shop'
             }) 

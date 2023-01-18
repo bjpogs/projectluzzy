@@ -16,7 +16,6 @@ const Cart = () => {
         .then((res) => {
             setData(res.data)
             setTempdata(res.data)
-            console.log(res.data);
         })
         .catch((err) => {
             console.log(err);
@@ -76,7 +75,6 @@ const Cart = () => {
 
     const tempremoveItem = (id) => {
         var remainingArr = tempdata.filter(data => data.cart_num != id);
-        console.log(remainingArr);
         setTempdata(remainingArr)
     }
 

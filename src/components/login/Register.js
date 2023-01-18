@@ -20,7 +20,6 @@ const Register = () => {
         }
         axios.post('register', data)
         .then((res) => {
-            console.log(res.data);
             alert('Registration Success!');
             window.location.href ="/login"
         })

@@ -17,7 +17,6 @@ const Adminhome = () => {
         axios.get('allorders')
         .then((res) => {
             setData(res.data)
-            console.log(res.data);
         })
         .catch((err) => {
             console.log(err);
@@ -28,7 +27,6 @@ const Adminhome = () => {
     },[])
 
     const saveStatus = (meows) => {
-        console.log(data);
         if (statusdata === null) setEdit(!edit)
         else {
             var temps = {
@@ -141,7 +139,6 @@ const Adminhome = () => {
       }
 
     const editbtn = (id) => {
-        console.log(id);
         setEditingRow(id)
         setEdit(!edit)
     }

@@ -14,7 +14,6 @@ const Shop = () => {
         axios.get('getallproducts')
         .then((res) => {
             setData(res.data);
-            console.log(res.data);
         })
         .catch((err) => {
             console.log('error : ', err);
@@ -50,7 +49,6 @@ const Shop = () => {
     }
     
     const categoryChange = (e) => {
-        console.log('selected :', e);
         setCategory(e);
         generateItem()
     }

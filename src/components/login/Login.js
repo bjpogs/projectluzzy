@@ -12,7 +12,6 @@ const Login = () => {
         axios.post('login', data)
         .then((res) => {
             // check usercategory
-            console.log(res.data);
             localStorage.setItem('fname', res.data.fname)
             localStorage.setItem('accessToken', res.data.accessToken)
             res.data.usercategory == '123' ? localStorage.setItem('adminAuthenticated', true) : localStorage.setItem('isAuthenticated', true)

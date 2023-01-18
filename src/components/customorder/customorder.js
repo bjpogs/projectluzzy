@@ -17,7 +17,6 @@ const Customorder = () => {
         axios.get('allbuildorders')
         .then((res) => {
             setData(res.data)
-            console.log(res.data);
         })
         .catch((err) => {
             console.log(err);
@@ -28,7 +27,6 @@ const Customorder = () => {
     },[])
 
     const saveStatus = (meows) => {
-        console.log(data);
         if (statusdata === null) setEdit(!edit)
         else {
             var temps = {
@@ -74,7 +72,6 @@ const Customorder = () => {
                     email_address : meows.email_address,
                     date: meows.order_date == "" ? ngayon : meows.order_date
                 }
-                console.log('date : ', template);
                 emailjs.send('service_l0kzyv6', 'template_bqbh1ph', template, 'i7Ncix5NnyEgC_kfb')
                 .then((res) => {
                     console.log(res.text);
@@ -86,7 +83,6 @@ const Customorder = () => {
     }
 
     const editbtn = (id) => {
-        console.log(id);
         setEditingRow(id)
         setEdit(!edit)
     }
