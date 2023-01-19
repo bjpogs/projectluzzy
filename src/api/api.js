@@ -7,7 +7,7 @@ import axios from 'axios'
 // withCredentials : true,
 const api = axios.create({
     withCredentials : true,
-    baseURL : "http://www.luzzysupremesweets.shop/backluzzy/",
+    baseURL : process.env.REACT_APP_API_URL,
     headers: {
         "Content-Type":"application/json"
     }
