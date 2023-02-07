@@ -1,0 +1,99 @@
+body{
+    background: rgb(248,248,248)
+}
+#infocakes .cakebox{
+    width : 40vh;
+    height : 40vh;
+}
+#mainbanner{
+    background-image : url('../img/luzzy.jpg');
+    background-size: 100% 100%;
+    color : rgba(220,220,220,0);
+
+}
+
+
+
+#infocakes .cakebox-center{
+    width : 40vh;
+    height : 40vh;
+    justify-content: flex-end;
+}
+
+@media only screen and (max-width: 900px){
+    #infocakes .cakebox{
+        width : 20vh;
+        height : 20vh;
+    }
+    #infocakes{
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+    }
+    #mainbanner{
+        height: 35vh;
+    }
+}
+
+/* login and register container */
+.logincard{
+    position: flex;
+    margin-top: 10%;
+    margin-bottom: 5%;
+    width : auto;
+    height: flex;
+    padding: 5%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    background-color: white;
+    border-radius: 5px; /* 5px rounded corners */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media only screen and (min-width : 900px) {
+    .logincard{
+        width : 60vh;
+    }
+}
+
+/* shop product image */
+.shopimage{
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
+}
+
+/* product info image */
+.productimage{
+    object-fit: cover;
+    width: 220px;
+    height: 220px;
+}
+.reservationcard{
+    position: flex;
+    margin-bottom: 5%;
+    width : 90%;
+    height: flex;
+    padding: 5%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    background-color: white;
+    border-radius: 5px; /* 5px rounded corners */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.product-img-fluid{
+    max-width:100%;
+    height:20vh;
+    margin-left: auto
+    ;margin-right: auto;
+}
+.notfound{
+    min-height: 65vh;
+}
+.img-fluids{
+    max-width: 100%;
+    height: auto;
+}

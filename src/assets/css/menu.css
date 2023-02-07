@@ -1,0 +1,38 @@
+.menu-container{
+    background-color: rgba(9, 162, 255, 0.85);
+    height : 30vh;
+    width : 100%;
+}
+.menu-container .item-category{
+    width : 20vh;
+    height : 25vh;
+    background-color : black;
+    margin-left : 10px;
+}
+
+.track-container{
+    background-color: green;
+    height: 40vh;
+    width : 100%;
+}
+
+.moneycake{
+    background-color: rgba(9, 255, 234, 0.85);
+    height : auto;
+    padding: 25px 5px 25px 5px
+}
+
+.gendercake{
+    height : auto;
+    padding: 25px 5px 25px 5px
+}
+
+.weddingcake{
+    
+    background-color: #ff475b;
+    height : auto;
+    padding: 25px 5px 25px 5px
+}
+.pointed{
+    cursor: pointer;
+}
