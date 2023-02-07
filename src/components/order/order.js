@@ -13,7 +13,7 @@ const Order = () => {
 		setLoading(true)
         await axios.get('myorders/123123123')
         .then(async res => {
-			await delay(1000);
+			await delay(10000);
             setData(res.data)
 			console.log('try 1',res.data[0])
 			console.log('try 2',res.data[1])
