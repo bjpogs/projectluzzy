@@ -53,7 +53,6 @@ const Order = () => {
 								<div class="col-md-7 product-info"><h4><b>{meow.product_name || meow.order_id}</b></h4>
 									<div class="product-specs">
 										<div><span>Category:&nbsp;</span><span class="value">{meow.product_category || meow.statcategory}</span></div>
-										<div><span>Order date:&nbsp;</span><span class="value">{meow.placeddate.slice(0,10)}</span></div>
 										<div><span>₱{meow.statcategory == "Shop" ? meow.product_price : meow.price == 0 ? ' For pricing' : meow.price}</span></div>
 									</div>
 								</div>
