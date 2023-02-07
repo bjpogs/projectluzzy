@@ -10,8 +10,8 @@ const Footer = () => {
                         <h5>Services</h5>
                         <ul>
                             <li><a href="/shop">Menu</a></li>
-                            <li><a href={localStorage.getItem("fname") == "" | !localStorage.getItem("fname") ? "/Login" : "/myaccount"}>My Account</a></li>
                             <li><a href="/reservation">Reservation</a></li>
+							<li><a href="/trackreservation">Track Reservation</a></li>
                         </ul>
                     </div>
                     <div class="col-sm-3">
