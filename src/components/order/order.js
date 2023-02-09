@@ -1,6 +1,6 @@
 import React,{useState, useEffect} from 'react'
 import axios from '../../api/api'
-import {Button, Form, InputGroup, FormControl, Spinner} from 'react-bootstrap'
+import {Button, Form, InputGroup, FormControl, Spinner, Modal} from 'react-bootstrap'
 import imahe from '../../assets/img/buildlogo.jpg'
 const Order = () => {
     const [data, setData] = useState([])
@@ -9,15 +9,16 @@ const Order = () => {
 	const [DisplayID, setDisplayID] = useState("DEFAULT")
 	const [DisplayStatus, setDisplayStatus] = useState("DEFAULT")
 	const delay = ms => new Promise(res => setTimeout(res, ms));
+	const [modalShow, setModalShow] = useState(false)
+    const [modaldata, setmodaldata] = useState([])
+	const [buildmodalShow, setbuildModalShow] = useState(false)
+	const [reservemodalShow, setreserveModalShow] = useState(false)
     useEffect(async () => {
 		setLoading(true)
         await axios.get('myorders/123123123')
         .then(async res => {
 			await delay(10000);
             setData(res.data)
-			console.log('try 1',res.data[0])
-			console.log('try 2',res.data[1])
-			console.log('try 3',res.data[2])
         })
         .catch(err => {
             console.log(err);
@@ -43,7 +44,7 @@ const Order = () => {
 						!meow ?
 						memew = true
 					: 
-						<div class="prodcontainer">
+						<div class="prodcontainer"  onClick={() => {setmodaldata(meow); setModalShow(true)}}>
 							<div class="row justify-content-center align-items-center">
 								{/* start shop */}
 								<div class="col-md-3">
@@ -77,7 +78,7 @@ const Order = () => {
 					if (meows.status == DisplayStatus && meows.statcategory == DisplayID) return meows
 				}).map((meow, index) => {
 					return(
-						<div class="prodcontainer">
+						<div class="prodcontainer" onClick={() => {setmodaldata(meow); setbuildModalShow(true)}}>
 							<div class="row justify-content-center align-items-center">
 								{/* start shop */}
 								<div class="col-md-3">
@@ -110,7 +111,7 @@ const Order = () => {
 					if (meows.status == DisplayStatus && meows.statcategory == DisplayID) return meows
 				}).map((meow, index) => {
 					return(
-						<div class="prodcontainer">
+						<div class="prodcontainer" onClick={() => {setmodaldata(meow); setreserveModalShow(true)}}>
 							<div class="row justify-content-center align-items-center">
 								{/* start shop */}
 								<div class="col-md-3">
@@ -140,6 +141,205 @@ const Order = () => {
 				)
 			}
 		}
+    }
+	function MyVerticallyCenteredModal(props) {
+        return (
+          <Modal
+            {...props}
+            size="md"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+          >
+            <Modal.Header closeButton>
+              <Modal.Title id="contained-modal-title-vcenter">
+                Order details
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Size</label>
+                <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.product_size}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Shape</label>
+                <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.product_shape}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Flavor</label>
+                <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.product_flavor}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Icing</label>
+                <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.product_icing == "" ? "None" : modaldata.product_icing}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Layer</label>
+                <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.product_layer == "" ? "None" : modaldata.product_layer}/>
+                </div>
+            </div>
+            <div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Tier</label>
+                <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.product_tier == "" ? "None" : modaldata.product_tier}/>
+                </div>
+            </div><div class="mb-2 row">
+                <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Price</label>
+                <div class="col-sm-7">
+                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.product_price}/>
+                </div>
+            </div>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={props.onHide}>Close</Button>
+            </Modal.Footer>
+          </Modal>
+        );
+    }
+	function BuildMyVerticallyCenteredModal(props) {
+        return (
+          <Modal
+            {...props}
+            size="md"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+          >
+            <Modal.Header closeButton>
+              <Modal.Title id="contained-modal-title-vcenter">
+                Order details
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+				<div class="mb-2 row">
+					<label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Price</label>
+					<div class="col-sm-7">
+					<input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.price}/>
+					</div>
+				</div>
+				<div class="mb-2 row">
+					<label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Size</label>
+					<div class="col-sm-7">
+					<input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.size}/>
+					</div>
+				</div>
+				<div class="mb-2 row">
+					<label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Flavor</label>
+					<div class="col-sm-7">
+					<input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.flavor}/>
+					</div>
+				</div>
+				<div class="mb-2 row">
+					<label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Layer</label>
+					<div class="col-sm-7">
+					<input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.layer}/>
+					</div>
+				</div>
+				<div class="mb-2 row">
+					<label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Design</label>
+					<div class="col-sm-7">
+					<input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.design}/>
+					</div>
+				</div>
+				{
+					
+					modaldata.design1 != "" ?
+					<div class="mb-2 row">
+						<label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Design 2</label>
+						<div class="col-sm-7">
+						<input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.design}/>
+						</div>
+					</div>
+					: 
+					<></>
+				}
+				<div class="mb-2 row">
+					<label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Topper</label>
+					<div class="col-sm-7">
+					<input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.topper}/>
+					</div>
+				</div>
+				{
+					modaldata.number != "" ?
+					<div class="mb-2 row">
+						<label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Number</label>
+						<div class="col-sm-7">
+						<input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.number}/>
+						</div>
+					</div>
+					: <></>
+				}
+				
+				<div class="mb-2 row">
+					<label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Written Card</label>
+					<div class="col-sm-7">
+					<textarea rows={modaldata.message != "" ? "5" : "1"} type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.message == "" ? "None" : modaldata.message}/>
+					</div>
+				</div>
+				<div class="mb-2 row">
+					<label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Special Request</label>
+					<div class="col-sm-7">
+					<textarea rows={modaldata.specialrequest != "" ? "5" : "1"} type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.specialrequest == "" ? "None" : modaldata.message}/>
+					</div>
+				</div>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={props.onHide}>Close</Button>
+            </Modal.Footer>
+          </Modal>
+        );
+    }
+	function ReserveMyVerticallyCenteredModal(props) {
+        return (
+          <Modal
+            {...props}
+            size="md"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+          >
+            <Modal.Header closeButton>
+              <Modal.Title id="contained-modal-title-vcenter">
+                Order details
+              </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+				<div class="mb-2 row">
+					<label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Size</label>
+					<div class="col-sm-7">
+					<input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.size}/>
+					</div>
+				</div>
+				<div class="mb-2 row">
+					<label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Flavor</label>
+					<div class="col-sm-7">
+					<input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.flavor}/>
+					</div>
+				</div>
+				<div class="mb-2 row">
+					<label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Icing</label>
+					<div class="col-sm-7">
+					<input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.icing == "" ? "None" : modaldata.icing}/>
+					</div>
+				</div>
+				<div class="mb-2 row">
+					<label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Special Request</label>
+					<div class="col-sm-7">
+					<input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.specialrequest == "" ? "None" : modaldata.specialrequest}/>
+					</div>
+				</div>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={props.onHide}>Close</Button>
+            </Modal.Footer>
+          </Modal>
+        );
     }
 
     return (
@@ -177,6 +377,18 @@ const Order = () => {
                     {renderTable()}
 					{renderTable1()}
 					{renderTable2()}
+					<MyVerticallyCenteredModal
+                        show={modalShow}
+                        onHide={() => setModalShow(false)}
+                    />
+					<BuildMyVerticallyCenteredModal
+                        show={buildmodalShow}
+                        onHide={() => setbuildModalShow(false)}
+                    />
+					<ReserveMyVerticallyCenteredModal
+                        show={reservemodalShow}
+                        onHide={() => setreserveModalShow(false)}
+                    />
                 </div>
             </section>
         </main> 
