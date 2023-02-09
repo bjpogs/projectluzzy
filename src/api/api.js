@@ -7,7 +7,7 @@ import axios from 'axios'
 // withCredentials : true,
 const api = axios.create({
     withCredentials : true,
-    baseURL : 'http://localhost:4000/backluzzy/api/',
+    baseURL : 'https://luzzysupremesweets.shop/backluzzy/api/',
     headers: {
         "Content-Type":"application/json"
     }

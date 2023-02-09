@@ -33,7 +33,7 @@ const Home = () => {
             <div class="container" id="infocakes">
                 <div class="block-heading">
                     <h2 class="text-info">Our cakes are made with love and care</h2>
-                    <p>We at Luzzy's Supreme Sweets ensure that our product is fresh and clean for the sake of our lovable customer's health and satisfaction.<br/></p>
+                    <p>We at Luzzy's Supreme Sweets ensure that our product is fresh baked and clean for the sake of our lovable customer's health and satisfaction.<br/></p>
                 </div>
             </div>
         </section>
