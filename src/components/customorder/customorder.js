@@ -72,7 +72,7 @@ const Customorder = () => {
                     number : meows.number == "" ? "None" : meows.number,
                     price : meows.price,
                     email_address : meows.email_address,
-                    date: meows.order_date == "" ? ngayon : meows.order_date
+                    date: ngayon
                 }
                 emailjs.send('service_l0kzyv6', 'template_bqbh1ph', template, 'i7Ncix5NnyEgC_kfb')
                 .then((res) => {

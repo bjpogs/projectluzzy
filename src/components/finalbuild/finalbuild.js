@@ -492,10 +492,10 @@ const Finalbuild = () => {
                                         <div class="col-2"><p>₱{topperprice}</p></div>
 										<div class="col-10"><p>Message: <b>{order.message}</b></p></div>
                                         { /* price for topper */ }
-                                        <div class="col-2"><p>₱{topperprice}</p></div>
+                                        <div class="col-2"><p>₱0</p></div>
 										<div class="col-10"><p>Special Request : <b>{order.specialrequest}</b></p></div>
                                         { /* price for topper */ }
-                                        <div class="col-2"><p>₱{topperprice}</p></div>
+                                        <div class="col-2"><p>₱0</p></div>
                                         
                                         <div class="col-10"><p><b>Subtotal : </b></p></div>
                                         { /* total price */ }

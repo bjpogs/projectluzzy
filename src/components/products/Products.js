@@ -22,6 +22,7 @@ const Products = () => {
     const [productedit, setproductedit] = useState(false)
     const [subcategory, setsubcategory] = useState('DEFAULT')
     const [addsub, setaddsub] = useState('default')
+    const [asd,setasd] = useState('Events')
     useEffect(() => {
         axios.get('getallproducts')
         .then((res) => {
@@ -75,7 +76,7 @@ const Products = () => {
     const handleAddChange = (e) => {
         e.preventDefault()
         const form = new FormData()
-        form.append('product_category', document.getElementById('product_category').value)
+        form.append('product_category', asd)
         form.append('product_subcategory', document.getElementById('product_subcategory').value)
         form.append('product_name', document.getElementById('product_name').value)
         form.append('product_price', document.getElementById('product_price').value)
@@ -294,15 +295,15 @@ const Products = () => {
                     <div class="row">
                         <div class="col-12 mb-3">
                             <Form.Label htmlFor="basic-url">Category</Form.Label>
-                            <Form.Select aria-label="Default select example" id="product_category">
-                                <option value="Events">Events</option>
-                                <option value="Simple">Simple</option>
-                                <option value="Cupcake">Cupcake</option>
+                            <Form.Select aria-label="Default select example" id="product_category" onChange={(e) => setasd(e.target.value)} >
+                                <option selected={asd=="Events"} value="Events">Events</option>
+                                <option selected={asd=="Simple"} value="Simple">Simple</option>
+                                <option selected={asd=="Cupcake"} value="Cupcake">Cupcake</option>
                             </Form.Select>
                         </div>
                         <div class="col-12 mb-3">
                             <Form.Label htmlFor="basic-url">Sub-category</Form.Label>
-                            <Form.Select aria-label="Default select example" id="product_subcategory">
+                            <Form.Select aria-label="Default select example" id="product_subcategory"  disabled={asd!="Events"}>
                                 <option value="Anniversary">Anniversary</option>
                                 <option value="Birthday">Birthday</option>
                                 <option value="Character">Character</option>

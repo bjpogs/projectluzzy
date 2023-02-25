@@ -11,7 +11,7 @@ const Shop = () => {
     const [category, setCategory] = useState()
     
     useEffect(() => {
-        axios.get('getallproducts')
+        axios.get('getshopproducts')
         .then((res) => {
             setData(res.data);
         })
