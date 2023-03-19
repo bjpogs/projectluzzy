@@ -26,10 +26,12 @@ const AdminNavbar = () => {
             <Navbar.Collapse id="basic-navbar-nav">
                 <div class="ms-auto"/>
                 <Nav>
-                    <Nav.Link  as={NavLink} to ="/admin/regular-order"><b>Regular Orders</b></Nav.Link>
-                    <Nav.Link  as={NavLink} to ="/admin/custom-order"><b>Custom Orders</b></Nav.Link>
+                    <Nav.Link  as={NavLink} to ="/admin/regular-order"><b>Order List</b></Nav.Link>
+                    {/*
+		    <Nav.Link  as={NavLink} to ="/admin/custom-order"><b>Custom Orders</b></Nav.Link>
                     <Nav.Link  as={NavLink} to ="/admin/reservation-order"><b>Reservation Orders</b></Nav.Link>
-                    <Nav.Link  as={NavLink} to ="/admin/products"><b>Products</b></Nav.Link>
+                    */}
+		    <Nav.Link  as={NavLink} to ="/admin/products"><b>Products</b></Nav.Link>
                     <Nav.Link  as={NavLink} to ="/admin/build"><b>Build</b></Nav.Link>
                     <NavDropdown  title={localStorage.getItem('fname')} id="nav-dropdown">
                     <NavDropdown.Item href='/admin/myaccount'>My Account</NavDropdown.Item>

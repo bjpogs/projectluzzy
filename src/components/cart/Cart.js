@@ -10,6 +10,11 @@ const Cart = () => {
     const [data, setData] = useState([])
     const [edit, setEdit] = useState(false)
     const [tempdata, setTempdata] = useState([])
+    const [minDate, setMinDate] = useState(() => {
+	const tomorrow = new Date();
+	tomorrow.setDate(tomorrow.getDate() + 1);
+	return tomorrow.toISOString().substr(0, 10);
+    });
     var jatot = 0
     useEffect(() => {
         axios.get('shoppingcart')
@@ -45,11 +50,11 @@ const Cart = () => {
                                 <div class="product-image"><img class="product-img-fluid d-block mx-auto image" src={meow.product_image}/></div>
                             </div>
                             }
-                            
                             <div class="col-md-5 product-info"><a class="product-name" href="#">{meow.product_name}</a>
                                 <div class="product-specs">
                                     <div><span>Category:&nbsp;</span><span class="value">{meow.product_category}</span></div>
                                     <div><span>Size:&nbsp;</span><span class="value">{meow.product_size}</span></div>
+				    <div><span>Request:&nbsp;</span><span class="value">{meow.request}</span></div>
                                 </div>
                             </div>
                             <div class="col-6 col-md-2 price"><span>₱{meow.product_price}</span></div>
@@ -84,8 +89,7 @@ const Cart = () => {
     }
 
     const checkout = () => {
-        if (!reserve) data.order_date = ""
-		
+        if (!reserve) data.order_date = document.getElementById('order_date').value
         axios.post('placeorder', data) 
         .then((res) => {
             alert("Order placed successfully! We will contact you once your order is finish.")
@@ -168,7 +172,7 @@ const Cart = () => {
                                     <h4><span class="text">Subtotal</span><span class="price">₱{jatot}</span></h4>
                                     
                                     <h4><span class="text">Total</span><span class="price">₱{jatot}</span></h4>
-                                    <div class="col-12 mt-3">
+                                   {/* <div class="col-12 mt-3">
                                         <ButtonGroup className="mb-2 d-block">
                                             <ToggleButton
                                             id="toggle-check"
@@ -181,10 +185,7 @@ const Cart = () => {
                                             For Reservation
                                             </ToggleButton>
                                         </ButtonGroup>
-                                    </div>
-                                    {
-                                        reserve ? 
-                                        <>
+                                    </div>*/}
                                         <div class="col-12 mt-3">
                                             <Form.Label htmlFor="basic-url">Select Reservation Date</Form.Label>
                                             <InputGroup className="mb-3">
@@ -193,14 +194,12 @@ const Cart = () => {
                                                 aria-describedby="basic-addon1"
                                                 type="date"
                                                 id="order_date"
+						 min={minDate}
+						
                                                 onChange={() => handleChange}
                                                 />
                                             </InputGroup>
                                         </div>
-                                        </>
-                                        : 
-                                        <></>
-                                    }
 
                                     {!data.length ? <button class="btn btn-primary btn-lg d-block w-100" type="button" disabled >Place Order</button> : <button class="btn btn-primary btn-lg d-block w-100" type="button" onClick={() => checkout()} >Place Order</button>}
                                     

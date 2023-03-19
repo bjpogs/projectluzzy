@@ -64,6 +64,7 @@ api.interceptors.response.use(
                     }
                 }
                 else if (err.response.status === 403){
+		    console.log(err);
                     alert('Please log in again.')
                     localStorage.clear()
                     window.location.href = '/'

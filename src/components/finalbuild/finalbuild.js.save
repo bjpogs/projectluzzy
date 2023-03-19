@@ -32,12 +32,6 @@ const Finalbuild = () => {
     const divRef = useRef(null);
     const [isSprinkle, setisSprinkle] = useState(false)
     const [isSprinkle1, setisSprinkle1] = useState(false)
-    const [color, setColor] = useState("White")
-const [minDate, setMinDate] = useState(() => {
-    const tomorrow = new Date();
-    tomorrow.setDate(tomorrow.getDate() + 1);
-    return tomorrow.toISOString().substr(0, 10);
-  });
     useEffect(() => {
         if (localStorage.getItem('isAuthenticated')){
             axios.get('buildselect')
@@ -47,7 +41,6 @@ const [minDate, setMinDate] = useState(() => {
                 let sizeprice = res.data.find(meow => meow.id === "size")
                 setSizeprice(sizeprice.price)
                 let flavory = res.data.find(meow => meow.id === 'flavor')
-		setColor(flavory.image)
                 let temper = {...order}
                 temper['size'] = sizeprice.name
                 temper['flavor'] = flavory.name
@@ -78,12 +71,6 @@ const [minDate, setMinDate] = useState(() => {
             var test = e.target.value.split('|')
             val = test[0]
         }
-        if(e.target.id == 'flavor'){
-	    splitted = true
-            var test = e.target.value.split('|')
-	    setColor(test[1])
-            val = test[0]
-	}
         if(e.target.id == 'design'){
             splitted = true
             var test = e.target.value.split('|')
@@ -129,7 +116,7 @@ const [minDate, setMinDate] = useState(() => {
         // ---------------------------------------------------------
         
         let findid =  !splitted ? e.target.value : val
-        let oldprice = data.find(meow => meow.name === findid) || {price : 0}
+        let oldprice = data.find(meow => meow.name === findid)
         if(e.target.id == 'size') setSizeprice(oldprice.price)
         else if(e.target.id == 'layer') setLayerprice(oldprice.price)
         else if(e.target.id == 'design') setDesignprice(oldprice.price)
@@ -158,7 +145,7 @@ const [minDate, setMinDate] = useState(() => {
         axios.post('savecustom', datos)
         .then((res) => {
             alert('Success!')
-            window.location.href = '/home'
+            window.location.reload()
         })
         .catch((err) => {
             console.log(err);
@@ -181,7 +168,7 @@ const [minDate, setMinDate] = useState(() => {
             data.map(meow => {
                 if(meow.id == 'flavor'){
                     return(
-                        <option value={meow.name + "|" + meow.image} selected={order.flavor==meow.name}>{meow.name}</option>
+                        <option value={meow.name} selected={order.flavor==meow.name}>{meow.name}</option>
                     )
                 }
             })
@@ -337,11 +324,11 @@ const [minDate, setMinDate] = useState(() => {
                                 </div>
                             }
                             { /* end topper area */ }
-                            { layer? <div class="cakebase2" style={{ backgroundColor: color}}> 
+                            { layer? <div class="cakebase2"> 
                                     {design1 != "" ? <img class="imahe" src={design1} alt="" /> : <></>}
                                 </div> 
                              : <></>}
-                            <div class="cakebase px-0 py-0" style={{ backgroundColor: color}}>
+                            <div class="cakebase px-0 py-0">
                                 {design != "" ? <img class="imahe" src={design} alt="" /> : <></>}
                             </div>
                         </div>
@@ -577,19 +564,16 @@ const [minDate, setMinDate] = useState(() => {
                                             :
                                             <></>   
                                         }
-					{ order.topper != "None" ? <>
                                         <div class="col-10"><p>Topper : <b>{order.topper}</b></p></div>
                                         { /* price for topper */ }
                                         <div class="col-2"><p>₱{topperprice}</p></div>
-					</>:<></>}
-					{ order.message? <>
-					<div class="col-10"><p>Message: <b>{order.message}</b></p></div>
-                                        <div class="col-2"><p></p></div>
-					</>:<></>}
-					{ order.specialrequest ? <>
-					<div class="col-10"><p>Special Request : <b>{order.specialrequest}</b></p></div>
-                                        <div class="col-2"><p></p></div>
-                                        </>:<></>}
+										<div class="col-10"><p>Message: <b>{order.message}</b></p></div>
+                                        { /* price for topper */ }
+                                        <div class="col-2"><p>₱0</p></div>
+										<div class="col-10"><p>Special Request : <b>{order.specialrequest}</b></p></div>
+                                        { /* price for topper */ }
+                                        <div class="col-2"><p>₱0</p></div>
+                                        
                                         <div class="col-10"><p><b>Subtotal : </b></p></div>
                                         { /* total price */ }
                                         <div class="col-2"><p><b>₱{sizeprice + layerprice + designprice + design1price + topperprice}</b></p></div>
@@ -602,7 +586,7 @@ const [minDate, setMinDate] = useState(() => {
                                                 aria-describedby="basic-addon1"
                                                 type="date"
                                                 id="date"
-						 min={minDate}
+						 min={new Date().toISOString().split('T')[0]}
                                                 onChange={handleChange}
                                                 />
                                             </InputGroup>
@@ -645,11 +629,11 @@ const [minDate, setMinDate] = useState(() => {
                                 </div>
                             }
                             { /* end topper area */ }
-                            { layer? <div class="cakebase2"  style={{ backgroundColor: color}}>
+                            { layer? <div class="cakebase2">
                                     {design1 != "" ? <img class="imahe" src={design1} alt="" /> : <></>}
                                 </div>
                              : <></>}
-                            <div class="cakebase px-0 py-0"  style={{ backgroundColor: color}}>
+                            <div class="cakebase px-0 py-0">
                                 {design != "" ? <img class="imahe" src={design} alt="" /> : <></>}
                             </div>
 			</div>

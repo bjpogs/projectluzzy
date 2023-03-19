@@ -18,6 +18,8 @@ const Myaccount = () => {
 	const [hideop, sethideop] = useState(false)
 	const [hidenp, sethidenp] = useState(false)
 	const [hidecnp, sethidecnp] = useState(false)
+	const [useredit, setUseredit] = useState(false)
+	const [passedit, setpassEdit] = useState(false)
     useEffect(() => {
         axios.get('getuserinfo')
         .then((res) => {
@@ -28,8 +30,7 @@ const Myaccount = () => {
         })
     },[])
 
-    const updateInfo = (e) => {
-        e.preventDefault();
+    const updateInfo = () => {
         const data = {
             first_name : document.getElementById('first_name').value,
             last_name : document.getElementById('last_name').value,
@@ -61,12 +62,15 @@ const Myaccount = () => {
 		axios.post('updatepass', {oldpass: op, newpass : np})
 		.then((res) => {
             alert('information updated successfully!')
-			window.location.reload()
+
         })
         .catch((err) =>{
             if (err.response.status === 401)  /* unauthorized */ return alert('Incorrect Password!')
         })
-	
+	.finally(() => {
+		setUseredit(false)
+		window.location.reload()
+	})
 	}
     return(
         <main class="page">
@@ -83,77 +87,86 @@ const Myaccount = () => {
 						{ /* Change username*/ }  
 							
 							<Tab eventKey="home" title="User details">
-								<Form onSubmit={updateInfo}>
-								<div class = "row">
-									<div class="col-12">
-									<InputGroup className="mb-3">
-										<InputGroup.Text id="basic-addon3">
-										First Name
-										</InputGroup.Text>
-										<FormControl id="first_name" defaultValue={data.first_name} aria-describedby="basic-addon3" />
-									</InputGroup>
+								<div class="row mt-3">
+                      							<div className="col-auto mt-2">
+                          							<span><b>First Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></span>
+                      							</div>
+                      							<div className="col-auto">
+                          							<input id="first_name" disabled={!useredit} type="text" defaultValue={data.first_name} className="form-control-plaintext  border-0 shadow-sm px-3" />
+                      							</div>
+                  						</div>								
+								<div class="row mt-3">
+                      							<div className="col-auto mt-2">
+                          							<span><b>Last Name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></span>
+                      							</div>
+                      							<div className="col-auto">
+                          							<input id="last_name" disabled={!useredit} type="text" defaultValue={data.last_name} className="form-control-plaintext  border-0 shadow-sm px-3" />
+                      							</div>
+                  						</div>	
+								<div class="row mt-3">
+                      							<div className="col-auto mt-2">
+                          							<span><b>House No. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></span>
+                      							</div>
+                      							<div className="col-auto">
+                          							<input id="add_house" disabled={!useredit} type="text" defaultValue={data.add_house} className="form-control-plaintext  border-0 shadow-sm px-3" />
+                      							</div>
+                  						</div>								
+								<div class="row mt-3">
+                      							<div className="col-auto mt-2">
+                          							<span><b>Barangay &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></span>
+                      							</div>
+                      							<div className="col-auto">
+                          							<input id="add_brgy" disabled={!useredit} type="text" defaultValue={data.add_brgy} className="form-control-plaintext  border-0 shadow-sm px-3" />
+                      							</div>
+                  						</div>
+								<div class="row mt-3">
+                      							<div className="col-auto mt-2">
+                          							<span><b>City &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></span>
+                      							</div>
+                      							<div className="col-auto">
+                          							<input id="add_city" disabled={!useredit} type="text" defaultValue={data.add_city} className="form-control-plaintext  border-0 shadow-sm px-3" />
+                      							</div>
+                  						</div>								
+								<div class="row mt-3">
+                      							<div className="col-auto mt-2">
+                          							<span><b>Province &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></span>
+                      							</div>
+                      							<div className="col-auto">
+                          							<input id="add_province" disabled={!useredit} type="text" defaultValue={data.add_province} className="form-control-plaintext  border-0 shadow-sm px-3" />
+                      							</div>
+                  						</div>
+								<div class="row mt-3">
+                      							<div className="col-auto mt-2">
+                          							<span><b>Contact Number</b></span>
+                      							</div>
+                      							<div className="col-auto">
+                          							<input id="contact_no" disabled={!useredit} type="text" defaultValue={data.contact_no} className="form-control-plaintext  border-0 shadow-sm px-3" />
+                      							</div>
+                  						</div>								
+								<div class="row mt-3">
+                      							<div className="col-auto mt-2">
+                          							<span><b>Email Address &nbsp;&nbsp;&nbsp;</b></span>
+                      							</div>
+                      							<div className="col-auto">
+                          							<input id="email_address" disabled={!useredit} type="text" defaultValue={data.email_address} className="form-control-plaintext  border-0 shadow-sm px-3" />
+                      							</div>
+                  						</div>
+								{!useredit ?
+                                                                <div class="row mt-3">
+									<div className="col-auto">
+                                						<Button type="button" onClick = {() => setUseredit(true)}>Edit</Button>
 									</div>
-									<div class="col-12">
-									<InputGroup className="mb-3">
-										<InputGroup.Text id="basic-addon3">
-										Last Name
-										</InputGroup.Text>
-										<FormControl id="last_name" defaultValue={data.last_name} aria-describedby="basic-addon3" />
-									</InputGroup>
+                            					</div>
+								:
+                                                                <div class="row mt-3">
+									<div className="col-auto">
+                                						<Button type="button" className="btn-success" onClick = {() => updateInfo()}>Save</Button>
 									</div>
-									<div class="col-12">
-									<InputGroup className="mb-3">
-										<InputGroup.Text id="basic-addon3">
-										House No.
-										</InputGroup.Text>
-										<FormControl id="add_house" defaultValue={data.add_house} aria-describedby="basic-addon3" />
-									</InputGroup>
+									<div className="col-auto">
+                                						<Button type="button" className="btn-danger" onClick = {() => setUseredit(false)}>Cancel</Button>
 									</div>
-									<div class="col-12">
-									<InputGroup className="mb-3">
-										<InputGroup.Text id="basic-addon3">
-										Barangay
-										</InputGroup.Text>
-										<FormControl id="add_brgy" defaultValue={data.add_brgy} aria-describedby="basic-addon3" />
-									</InputGroup>
-									</div>
-									<div class="col-12">
-									<InputGroup className="mb-3">
-										<InputGroup.Text id="basic-addon3">
-										City
-										</InputGroup.Text>
-										<FormControl id="add_city" defaultValue={data.add_city} aria-describedby="basic-addon3" />
-									</InputGroup>
-									</div>
-									<div class="col-12">
-									<InputGroup className="mb-3">
-										<InputGroup.Text id="basic-addon3">
-										Province
-										</InputGroup.Text>
-										<FormControl id="add_province" defaultValue={data.add_province} aria-describedby="basic-addon3" />
-									</InputGroup>
-									<div class="col-12">
-									<InputGroup className="mb-3">
-										<InputGroup.Text id="basic-addon3">
-										Contact No.
-										</InputGroup.Text>
-										<FormControl id="contact_no" defaultValue={data.contact_no} aria-describedby="basic-addon3" />
-									</InputGroup>
-									</div>
-									<div class="col-12">
-									<InputGroup className="mb-3">
-										<InputGroup.Text id="basic-addon3">
-										Email
-										</InputGroup.Text>
-										<FormControl id="email_address" defaultValue={data.email_address} aria-describedby="basic-addon3" />
-									</InputGroup>
-									</div>
-									<div class="col">
-										<Button type="submit">Update Information</Button>
-									</div>
-									</div>
-								</div>
-								</Form>
+                            					</div>
+								}
 							</Tab>
 
 							{ /* Change password */ }  

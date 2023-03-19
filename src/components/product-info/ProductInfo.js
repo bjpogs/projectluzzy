@@ -42,7 +42,8 @@ const ProductInfo = () => {
         }
         else{
             const id = queryParams.get('product_id')
-            api.post('addtocart',{ product_id : id})
+            const request = document.getElementById('specialrequest').value
+	    api.post('addtocart',{ product_id : id, request : request})
             .then((res) => {
                 alert('Add to cart succressfully!')
                 window.location.href = '/shop'
@@ -76,6 +77,10 @@ const ProductInfo = () => {
                                         <div class="price">
                                             <h3>₱{data.product_price}</h3>
                                         </div>
+					<div class="mb-3">
+ 					    <label for="exampleFormControlTextarea1" class="form-label">Special Request</label>
+ 					    <textarea class="form-control" id="specialrequest" rows="4"></textarea>
+					</div>
                                         {
                                             data.product_status != 0 ? 
                                             <button class="btn btn-primary" type="button" disabled><i class="icon-basket"></i>Out of Stock</button>
@@ -83,6 +88,7 @@ const ProductInfo = () => {
                                             <button class="btn btn-primary" type="button" onClick={() => addtocart()}><i class="icon-basket"></i>Add to Cart</button>
                                         }
                                         <div class="summary">
+					    <span class="text-info">Description</span>
                                             <p>{data.product_description}</p>
                                         </div>
                                     </div>

@@ -44,8 +44,8 @@ const Home = () => {
                     <div class="col-md-6">
                         <h3>Build a Cake</h3>
                         <div class="getting-started-info">
-                            <p>Build your dream cake online.</p>
-                        </div><button class="btn btn-primary btn-lg" type="button" onClick={() => window.location.href="/build-cake"}>Build Now</button>
+                        <p>Design your perfect cake with our innovative cake builder platform, where you can select cake flavors, fillings, icings, and decorations to create a delicious masterpiece tailored to your taste preferences.</p>
+		        </div><button class="btn btn-primary btn-lg" type="button" onClick={() => window.location.href="/build-cake"}>Build Now</button>
                     </div>
                 </div>
             </div>
@@ -58,8 +58,8 @@ const Home = () => {
                         <div class="col-md-6">
                             <h3>Gender Reveal Cake</h3>
                             <div class="getting-started-info">
-                                <p>Surprise your partner about the gender of your baby with our gender reveal themed cakes.</p>
-                            </div><button class="btn btn-outline-primary btn-lg" type="button" onClick={() => {localStorage.setItem('shopcat','Gender');window.location.href="/shop"}}>Shop Now</button>
+                           <p>Add a touch of sweetness to your gender reveal celebration with our deliciously moist and beautifully decorated gender reveal cakes, that will leave your guests in awe and make your special moment even more memorable!</p>
+			    </div><button class="btn btn-primary btn-lg" type="button" onClick={() => {localStorage.setItem('shopcat','Gender');localStorage.setItem('shopsubcat','Cakes');window.location.href="/Shop"}}>Shop Now</button>
                         </div>
                         <div class="col-md-6"><center><img class="img-thumbnail cakebox-center" src={gendercake}/></center></div>
                     </div>
@@ -71,8 +71,8 @@ const Home = () => {
                         <div class="col-md-6">
                             <h3>Gender Reveal Cake</h3>
                             <div class="getting-started-info">
-                                <p>Surprise your partner about the gender of your baby with our gender reveal themed cakes.</p>
-                            </div><button class="btn btn-outline-primary btn-lg" type="button" onClick={() => {localStorage.setItem('shopcat','Gender');window.location.href="/shop"}}>Shop Now</button>
+                           <p>Add a touch of sweetness to your gender reveal celebration with our deliciously moist and beautifully decorated gender reveal cakes, that will leave your guests in awe and make your special moment even more memorable!</p>
+			    </div><button class="btn btn-primary btn-lg" type="button" onClick={() => {localStorage.setItem('shopcat','Gender');localStorage.setItem('shopsubcat','Cakes');window.location.href="/Shop"}}>Shop Now</button>
                         </div>
                     </div>
                 </div>
@@ -86,8 +86,8 @@ const Home = () => {
                     <div class="col-md-6">
                         <h3>Wedding Cake</h3>
                         <div class="getting-started-info">
-                            <p>Celebrate your wedding with our premium quality wedding themed cakes.</p>
-                        </div><button class="btn btn-primary btn-lg" type="button" onClick={() => {localStorage.setItem('shopcat','Wedding');window.location.href="/shop"}}>Shop Now</button>
+                            <p>Add a touch of sweetness to your love story with our artisanal wedding cakes. Our commitment to quality and craftsmanship ensures that each cake is not only beautiful but also incredibly delicious. Let us make your special day even more memorable with a one-of-a-kind wedding cake.</p>
+                        </div><button class="btn btn-primary btn-lg" type="button" onClick={() => {localStorage.setItem('shopcat','Wedding');localStorage.setItem('shopsubcat','Cakes');window.location.href="/Shop"}}>Shop Now</button>
                     </div>
                 </div>
             </div>

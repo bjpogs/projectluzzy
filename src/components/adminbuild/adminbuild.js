@@ -9,6 +9,7 @@ const Adminbuild = () => {
     const [id, setid] = useState(null)
     const [editname, seteditname] = useState(null)
     const [editprice, seteditprice] = useState(null)
+    const [editcolor, seteditcolor] = useState(0)
     useEffect(() => {
         axios.get('buildselect')
         .then(res => {
@@ -67,6 +68,18 @@ const Adminbuild = () => {
         )
     }
 
+    const selectsprinklesdesign = () => {
+        return (
+            data.map(meow => {
+                if (meow.id == "design-sprinkles"){
+                    return (
+                        <option value={meow.name}>{meow.name}</option>
+                    )
+                }
+            })
+        )
+    }
+
     const selecttopping = () => {
         return (
             data.map(meow => {
@@ -109,7 +122,7 @@ const Adminbuild = () => {
 		alert('please complete form.')
 		errorchecker = true;
 	}
-	if ( id == "design" || id == "topper" ) {
+	if ( id == "design" || id == "topper" || id == "design-sprinkles") {
 		if (!document.getElementById('addimage').files[0]) {
 			alert('please add product image!')
 			errorchecker = true;
@@ -120,8 +133,8 @@ const Adminbuild = () => {
             form.append('id', id)
             form.append('name', document.getElementById('addname').value)
             form.append('price',  id === 'size' || id === 'topping' || id === 'topper' ? document.getElementById('addprice').value == "" ? 0 : document.getElementById('addprice').value : 0)
-            form.append('image', id == 'design' || id == 'topper' ? document.getElementById('addimage').files[0] : '')
-            axios.post('addbuildselect', form)
+            form.append('image', id == 'design' || id =='design-sprinkles' || id == 'topper' ? document.getElementById('addimage').files[0] : id == 'flavor' ? document.getElementById('addcolor').value : '')
+	    axios.post('addbuildselect', form)
             .then(res => {
                 alert('Success!')
                 setModalShow(false)
@@ -154,7 +167,7 @@ const Adminbuild = () => {
         }
         else{
             if (id =='size'|| id == 'topper'){
-                if (document.getElementById('editprice').value) {
+                if (document.getElementById('editprice').value == "") {
                     alert('price required!');
                     foul = true
                 }
@@ -165,8 +178,9 @@ const Adminbuild = () => {
                 form.append('id', editname)
                 form.append('name', document.getElementById('editname').value)
                 form.append('price',  id === 'size' || id === 'topping' || id === 'topper' ? document.getElementById('editprice').value : 0)
-                form.append('image', id == 'design' || id == 'topper' ? document.getElementById('editimage').files[0] != '' ? document.getElementById('editimage').files[0] : '' : '')
-                axios.post('editbuildselect', form)
+                form.append('image', id == 'design' || id =='design-sprinkles' || id == 'topper' ? document.getElementById('editimage').files[0] != '' ? document.getElementById('editimage').files[0] : '' : id == 'flavor' ? document.getElementById('addcolor').value : '')
+                
+		axios.post('editbuildselect', form)
                 .then(res => {
                     alert('Success!')
                     setid(null)
@@ -190,6 +204,7 @@ const Adminbuild = () => {
 		try{
 			var found = data.find(e => e.name === document.getElementById(`${tempid}`).value);
 			seteditprice(found.price)
+			seteditcolor(found.image)
 		}
 		catch(err){
 			seteditprice(0)
@@ -218,6 +233,14 @@ const Adminbuild = () => {
                     <input type="text" class="form-control" id="addname" placeholder="Enter value" />
                     </div>
                 </div>
+		{id === 'flavor' ? 
+                <div class="mb-2 row">
+                    <label for="staticEmail" class="col-12 col-form-label fw-bold">Color</label>
+                    <div class="col-12">
+                    <input type="color" class="form-control" id="addcolor" placeholder="" style={{ height: "50px" }} />
+                    </div>
+                </div>
+		:<></>}
                 {id === 'size' || id === 'topping' || id === 'topper' ? 
                     <div class="mb-2 row">
                         <label for="staticEmail" class="col-12 col-form-label fw-bold">Price</label>
@@ -228,7 +251,7 @@ const Adminbuild = () => {
                 :
                 <></>
 				}
-				{id === 'design' || id === 'topper' ?
+				{id === 'design' || id === 'topper' || id ==='design-sprinkles'?
 					 /*
 					 <div class="mb-2 row">
 						<Form.Group controlId="formFile" className="mb-3">
@@ -277,6 +300,14 @@ const Adminbuild = () => {
                       <input type="text" class="form-control" id="editname" placeholder="Enter value" defaultValue={editname}/>
                       </div>
                   </div>
+		{id === 'flavor' ? 
+                <div class="mb-2 row">
+                    <label for="staticEmail" class="col-12 col-form-label fw-bold">Color</label>
+                    <div class="col-12">
+                    <input type="color" class="form-control" id="addcolor" placeholder="" defaultValue={editcolor} style={{ height: "50px" }}/>
+                    </div>
+                </div>
+		:<></>}
                   {id === 'size' || id === 'topping' || id === 'topper' ? 
                       <div class="mb-2 row">
                           <label for="staticEmail" class="col-12 col-form-label fw-bold">Price</label>
@@ -287,7 +318,7 @@ const Adminbuild = () => {
                   :
                   <></>
 				  }
-				  {id === 'design' || id === 'topper' ?
+				  {id === 'design' || id === 'topper' || id === 'design-sprinkles' ?
 					 /*
 					 <div class="mb-2 row">
 						<Form.Group controlId="formFile" className="mb-3">
@@ -420,8 +451,39 @@ const Adminbuild = () => {
                                 Delete
                             </button>
                         </div>
+{/*
+                        <div class="col-12 mb-3">
+                            <Form.Label htmlFor="basic-url"><h4><b>Sprinkles Design</b></h4></Form.Label>
+                            <Form.Select aria-label="Default select example" id="design-sprinkles">
+                                {selectsprinklesdesign()}
+                            </Form.Select>
+                        </div>
+                        <div class="col-lg-3 col-xl-2 mb-2">
+                            <button class="btn btn-outline-success w-100" type="button" onClick={() => {setid('design-sprinkles'); setModalShow(true)}}>
+                                <i class="icon-plus icon"/>
+                                Add
+                            </button>
+                        </div>
+                        <div class="col-lg-3 col-xl-2 mb-2">
+                            <button class="btn btn-outline-primary w-100" type="button" onClick={() => {beforeedit('design-sprinkles')}}>
+                                <i class="icon-pencil icon"/>
+                                Edit
+                            </button>
+                        </div>
+                        <div class="col-lg-3 col-xl-2 mb-2">
+                            <button class="btn btn-outline-danger w-100" type="button" onClick={() => {
+                                if (window.confirm('Are you sure you want to delete?')) {
+                                    // Save it!
+                                    setid('design-sprinkles');
+                                    deleteselect('design-sprinkles')
+                                }
+                            }}>
+                                <i class="icon-trash icon"/>
+                                Delete
+                            </button>
+                        </div>
 
-                        { /* --------------------------------------- topper ------------------------------------------ */}
+                         --------------------------------------- topper ------------------------------------------ */}
 
                         <div class="col-12 mb-3">
                             <Form.Label htmlFor="basic-url"><h4><b>Topper</b></h4></Form.Label>

@@ -24,6 +24,11 @@ const Reservation = () => {
         specialrequest :''
     })
 	const [formd, setformd] = useState([])
+const [minDate, setMinDate] = useState(() => {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return tomorrow.toISOString().substr(0, 10);
+  });
 	useEffect(() => {
 		axios.get('getuserinfo')
         .then((res) => {
@@ -110,7 +115,7 @@ const Reservation = () => {
             <section class="clean-block clean-catalog dark">
                 <div class="container">
                     <div class="block-heading">
-                        <h2 class="text-info">Reservation</h2>
+                        <h2 class="text-info">Upload a Cake</h2>
                         <p>You want your own themed cake design? book a reservation now.</p>
                     </div>
                     <div class="reservationcard">
@@ -197,6 +202,7 @@ const Reservation = () => {
                                     aria-describedby="basic-addon1"
                                     type="date"
                                     id="PickupDate"
+				    min={minDate}
                                     />
                                 </InputGroup>
                                 </div>

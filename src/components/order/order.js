@@ -6,8 +6,9 @@ const Order = () => {
     const [data, setData] = useState([])
 	const [loading, setLoading] = useState(false)
 	// for filter
-	const [DisplayID, setDisplayID] = useState("DEFAULT")
+	const [DisplayID, setDisplayID] = useState("")
 	const [DisplayStatus, setDisplayStatus] = useState("DEFAULT")
+	const [DisplayCategory, setDisplayCategory] = useState('Shop')
 	const delay = ms => new Promise(res => setTimeout(res, ms));
 	const [modalShow, setModalShow] = useState(false)
     const [modaldata, setmodaldata] = useState([])
@@ -15,9 +16,8 @@ const Order = () => {
 	const [reservemodalShow, setreserveModalShow] = useState(false)
     useEffect(async () => {
 		setLoading(true)
-        await axios.get('myorders/123123123')
+        await axios.get('myorders')
         .then(async res => {
-			await delay(10000);
             setData(res.data)
         })
         .catch(err => {
@@ -29,32 +29,28 @@ const Order = () => {
     },[])
 
     const renderTable = () => {
-		let memew = false 
 		if (data.length > 0) {
 			return (
-				data[2].filter(meows => {
-					if(DisplayID == "DEFAULT" && DisplayStatus == 'DEFAULT') return meows
-					else if (DisplayID != 'DEFAULT' && DisplayStatus == 'DEFAULT' && meows.statcategory == DisplayID) return meows
-					else if (DisplayID == 'DEFAULT' && meows.status == DisplayStatus) return meows
-					else if (DisplayID != 'DEFAULT' && DisplayStatus != 'DEFAULT'){
-						if (meows.status == DisplayStatus && meows.statcategory == DisplayID) return meows
-					}
+				data.filter(meows => {
+			                if(DisplayID == "" && DisplayStatus == 'DEFAULT') return meows
+			                else if (DisplayID != '' && DisplayStatus == 'DEFAULT' && meows.order_id.toString().includes(DisplayID)) return meows
+			                else if (DisplayID == '' && meows.status == DisplayStatus) return meows
+			                else if (DisplayID != '' && DisplayStatus != 'DEFAULT')
+			                        if (meows.status == DisplayStatus && meows.order_id.toString().includes(DisplayID)) return meows
 				}).map((meow, index) => {
 					return(
-						!meow ?
-						memew = true
-					: 
-						<div class="prodcontainer"  onClick={() => {setmodaldata(meow); setModalShow(true)}}>
+						<div class="prodcontainer"  onClick={() => {setmodaldata(meow); DisplayCategory == "Shop" ? setModalShow(true) : DisplayCategory == "Build" ? setbuildModalShow(true) : setreserveModalShow(true)}}>
 							<div class="row justify-content-center align-items-center">
 								{/* start shop */}
 								<div class="col-md-3">
-									<div class="product-image"><img class="product-img-fluid d-block mx-auto image" src={meow.statcategory == "Build a Cake" ? imahe : meow.product_image || meow.image}/></div>
+									<div class="product-image"><img class="product-img-fluid d-block mx-auto image" src={DisplayCategory == "Build" ? imahe : meow.product_image || meow.image}/></div>
 								</div>
 								
 								<div class="col-md-7 product-info"><h4><b>{meow.product_name || meow.order_id}</b></h4>
 									<div class="product-specs">
-										<div><span>Category:&nbsp;</span><span class="value">{meow.product_category || meow.statcategory}</span></div>
+										{ meow.statcategory == "Shop" ? <div><span>Category:&nbsp;</span><span class="value">{meow.product_category || meow.statcategory}</span></div> : <></>}
 										<div><span>₱{meow.statcategory == "Shop" ? meow.product_price : meow.price == 0 ? ' For pricing' : meow.price}</span></div>
+									        <div><span>Date Ordered : {meow.order_date || meow.date || meow.pickupdate || "--"}</span></div>
 									</div>
 								</div>
 								<div class="col-6 col-md-2 price"><span><b>{meow.status}</b></span></div>
@@ -66,72 +62,6 @@ const Order = () => {
 			)
 			
 		}
-    }
-	const renderTable1 = () => {
-		if (data.length > 0) {
-			return (
-				data[0].filter(meows => {
-					if(DisplayID == "DEFAULT" && DisplayStatus == 'DEFAULT') return meows
-					else if (DisplayID != 'DEFAULT' && DisplayStatus == 'DEFAULT' && meows.statcategory == DisplayID) return meows
-					else if (DisplayID == 'DEFAULT' && meows.status == DisplayStatus) return meows
-					else if (DisplayID != 'DEFAULT' && DisplayStatus != 'DEFAULT')
-					if (meows.status == DisplayStatus && meows.statcategory == DisplayID) return meows
-				}).map((meow, index) => {
-					return(
-						<div class="prodcontainer" onClick={() => {setmodaldata(meow); setbuildModalShow(true)}}>
-							<div class="row justify-content-center align-items-center">
-								{/* start shop */}
-								<div class="col-md-3">
-									<div class="product-image"><img class="product-img-fluid d-block mx-auto image" src={meow.statcategory == "Build a Cake" ? imahe : meow.product_image || meow.image}/></div>
-								</div>
-								
-								<div class="col-md-7 product-info"><h4><b>{meow.product_name || meow.order_id}</b></h4>
-									<div class="product-specs">
-										<div><span>Category:&nbsp;</span><span class="value">{meow.product_category || meow.statcategory}</span></div>
-										<div><span>₱{meow.statcategory == "Shop" ? meow.product_price : meow.price == 0 ? ' For pricing' : meow.price}</span></div>
-									</div>
-								</div>
-								<div class="col-6 col-md-2 price"><span><b>{meow.status}</b></span></div>
-								{/* end shop */}
-							</div>
-						</div>
-					)
-				})
-			)
-		}
-    }
-	const renderTable2 = () => {
-		if (data.length > 0) {
-			return (
-				data[1].filter(meows => {
-					if(DisplayID == "DEFAULT" && DisplayStatus == 'DEFAULT') return meows
-					else if (DisplayID != 'DEFAULT' && DisplayStatus == 'DEFAULT' && meows.statcategory == DisplayID) return meows
-					else if (DisplayID == 'DEFAULT' && meows.status == DisplayStatus) return meows
-					else if (DisplayID != 'DEFAULT' && DisplayStatus != 'DEFAULT')
-					if (meows.status == DisplayStatus && meows.statcategory == DisplayID) return meows
-				}).map((meow, index) => {
-					return(
-						<div class="prodcontainer" onClick={() => {setmodaldata(meow); setreserveModalShow(true)}}>
-							<div class="row justify-content-center align-items-center">
-								{/* start shop */}
-								<div class="col-md-3">
-									<div class="product-image"><img class="product-img-fluid d-block mx-auto image" src={meow.statcategory == "Build a Cake" ? imahe : meow.product_image || meow.image}/></div>
-								</div>
-								
-								<div class="col-md-7 product-info"><h4><b>{meow.product_name || meow.order_id}</b></h4>
-									<div class="product-specs">
-										<div><span>Category:&nbsp;</span><span class="value">{meow.product_category || meow.statcategory}</span></div>
-										<div><span>₱{meow.statcategory == "Shop" ? meow.product_price : meow.price == 0 ? ' For pricing' : meow.price}</span></div>
-									</div>
-								</div>
-								<div class="col-6 col-md-2 price"><span><b>{meow.status}</b></span></div>
-								{/* end shop */}
-							</div>
-						</div>
-					)
-				})
-			)
-		}
 		else{
 			if (!loading) {
 				return(
@@ -142,6 +72,7 @@ const Order = () => {
 			}
 		}
     }
+
 	function MyVerticallyCenteredModal(props) {
         return (
           <Modal
@@ -191,12 +122,19 @@ const Order = () => {
                 <div class="col-sm-7">
                 <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.product_tier == "" ? "None" : modaldata.product_tier}/>
                 </div>
-            </div><div class="mb-2 row">
+            </div>
+	    <div class="mb-2 row">
                 <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Price</label>
                 <div class="col-sm-7">
                 <input type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.product_price}/>
                 </div>
             </div>
+	    <div class="mb-2 row">
+		<label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Special Request</label>
+		<div class="col-sm-7">
+		<textarea rows={modaldata.order_request != "" || modaldata.order_request === null? "5" : "1"} type="text" readonly class="form-control-plaintext" id="staticEmail" value={modaldata.order_request == "" ? "None" : modaldata.order_request}/>
+		</div>
+	    </div>
             </Modal.Body>
             <Modal.Footer>
               <Button onClick={props.onHide}>Close</Button>
@@ -342,6 +280,53 @@ const Order = () => {
         );
     }
 
+    const selectordertype = (e) => {
+	e.preventDefault()
+	let mamaooo = e.target.value
+	setDisplayCategory(mamaooo)
+    if (mamaooo == "Shop"){
+        setLoading(true)
+        axios.get('myorders')
+        .then((res) => {
+            setData(res.data)
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        .finally(() => {
+            setLoading(false)
+        })
+    }
+    else if(mamaooo == "Build"){
+        setLoading(true)
+        axios.get('mybuildorder')
+        .then((res) => {
+            setData(res.data)
+console.log(res.data)
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        .finally(() => {
+            setLoading(false)
+        })
+    }
+    else if(mamaooo == "Reservation"){
+        setLoading(true)
+        axios.get('myreservationorder')
+        .then((res) => {
+            setData(res.data)
+console.log(res.data)
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        .finally(() => {
+            setLoading(false)
+        })
+    }
+}
+
     return (
         <main class="page shopping-cart-page">
             <section class="clean-block clean-cart dark">
@@ -353,20 +338,19 @@ const Order = () => {
 					<div className="row mb-3">
 						<label for="staticEmail" class="col-auto col-form-label fw-bold">Purchase Made: </label>
 						<div class="col-auto">
-							<select class="form-select" id="product_category" aria-label=".form-select-sm example" onChange={(e) => {setDisplayID(e.target.value)}}>
-								<option value="DEFAULT">--</option>
+							<select class="form-select" id="product_category" aria-label=".form-select-sm example" onChange={(e) => {selectordertype(e)}}>
 								<option value="Shop">Shop</option>
-								<option value="Build a Cake">Build a Cake</option>
-								<option value="Reservation">Reservation</option>
+								<option value="Build">Build a Cake</option>
+								<option value="Reservation">Upload a Cake</option>
 							</select>
 						</div>
 						<label for="staticEmail" class="col-auto col-form-label fw-bold">Status</label>
 						<div class="col-auto">
 							<select class="form-select" id="product_category" aria-label=".form-select-sm example" onChange={(e) => {setDisplayStatus(e.target.value)}}>
-								<option value="DEFAULT">--</option>
+								<option value="DEFAULT">All</option>
 								<option value="Pending">Pending</option>
-								<option value="To Pick Up">To Pick Up</option>
-								<option value="Complete">Complete</option>
+								<option value="For Pick Up">For Pick Up</option>
+								<option value="Completed">Completed</option>
 								<option value="Cancelled">Cancelled</option>
 							</select>
 						</div>
@@ -374,9 +358,8 @@ const Order = () => {
 						{
 							loading ? <div class="clean-block"><center><Spinner animation="border" /></center></div> : <></>
 						}
-                    {renderTable()}
-					{renderTable1()}
-					{renderTable2()}
+					{renderTable()}
+						{/* lagayan ng rendertable */ }
 					<MyVerticallyCenteredModal
                         show={modalShow}
                         onHide={() => setModalShow(false)}

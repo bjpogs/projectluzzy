@@ -76,8 +76,8 @@ const Products = () => {
     const handleAddChange = (e) => {
         e.preventDefault()
         const form = new FormData()
-        form.append('product_category', asd)
-        form.append('product_subcategory', document.getElementById('product_subcategory').value)
+        form.append('product_category', document.getElementById('product_category11').value)
+        form.append('product_subcategory', document.getElementById('product_subcategory11').value)
         form.append('product_name', document.getElementById('product_name').value)
         form.append('product_price', document.getElementById('product_price').value)
         form.append('product_size', document.getElementById('product_size').value)
@@ -121,15 +121,15 @@ const Products = () => {
             }).map((meows, index) => {
                 return(
                     <tr key = {index}>
-                        <td class="text-success fw-bold pointed" onClick={() => {setmodaldata(meows); setModalShow(true)}}>{meows.product_id}</td>
-                        <td>
-                            <button class="btn btn-outline-primary btn-sm w-100"  type="button" onClick={() => {setImagesrc(meows.product_image); setTempid(meows.product_id); setImageModalShow(true)} }>
+                        <td data-label="Product ID : " class="text-success fw-bold pointed" onClick={() => {setmodaldata(meows); setModalShow(true)}}>{meows.product_id}</td>
+                        <td data-label="Image : ">
+                            <button class="btn btn-outline-primary btn-sm"  type="button" onClick={() => {setImagesrc(meows.product_image); setTempid(meows.product_id); setImageModalShow(true)} }>
                                 <i class="icon-eye icon"/>
                                 View
                             </button>
                         </td>
-                        <td>{meows.product_name}</td>
-                        <td>
+                        <td data-label="Name : ">{meows.product_name}</td>
+                        <td data-label="Status : ">
                             {!edit ? 
                                 meows.product_status == 0 ? 'Active' : 'Inactive'
                                 :
@@ -149,7 +149,7 @@ const Products = () => {
                                 </>
                             } 
                         </td>
-                        <td>
+                        <td data-label="Action : ">
                             {!edit ? 
 
                                 <button class="btn btn-outline-primary btn-sm" type="button" onClick={() => {setEditingRow(index); setEdit(!edit)}}>
@@ -295,15 +295,7 @@ const Products = () => {
                     <div class="row">
                         <div class="col-12 mb-3">
                             <Form.Label htmlFor="basic-url">Category</Form.Label>
-                            <Form.Select aria-label="Default select example" id="product_category" onChange={(e) => setasd(e.target.value)} >
-                                <option selected={asd=="Events"} value="Events">Events</option>
-                                <option selected={asd=="Simple"} value="Simple">Simple</option>
-                                <option selected={asd=="Cupcake"} value="Cupcake">Cupcake</option>
-                            </Form.Select>
-                        </div>
-                        <div class="col-12 mb-3">
-                            <Form.Label htmlFor="basic-url">Sub-category</Form.Label>
-                            <Form.Select aria-label="Default select example" id="product_subcategory"  disabled={asd!="Events"}>
+                            <Form.Select aria-label="Default select example" id="product_category11">
                                 <option value="Anniversary">Anniversary</option>
                                 <option value="Birthday">Birthday</option>
                                 <option value="Character">Character</option>
@@ -311,6 +303,15 @@ const Products = () => {
                                 <option value="Debut">Debut</option>
                                 <option value="Gender">Gender</option>
                                 <option value="Wedding">Wedding</option>
+                            </Form.Select>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <Form.Label htmlFor="basic-url">Sub-category</Form.Label>
+                            <Form.Select aria-label="Default select example" id="product_subcategory11">
+                                <option value="Bento">Bento</option>
+                                <option value="Cakes">Cakes</option>
+                                <option value="Cupcakes">Cupcakes</option>
+                                <option value="Number">Number</option>
                             </Form.Select>
                         </div>
                         <div class="col-12">
@@ -345,7 +346,6 @@ const Products = () => {
                         <Form.Label htmlFor="basic-url">Size</Form.Label>
                         <InputGroup className="mb-3">
                             <FormControl
-                            required
                             placeholder="Size"
                             aria-label="Username"
                             aria-describedby="basic-addon1"
@@ -451,7 +451,32 @@ const Products = () => {
     }
 
     const saveproductedit = () => {
-
+    // ssave product here
+        const form = new FormData()
+	let datas = {
+		product_id : modaldata.product_id,
+		product_category  : document.getElementById('edit-product_category').value,
+		product_subcategory  : document.getElementById('edit-product_subcategory').value,
+		product_name  : document.getElementById('edit-product_name').value,
+		product_price  : document.getElementById('edit-product_price').value,
+		product_size  : document.getElementById('edit-product_size').value,
+		product_flavor  : document.getElementById('edit-product_flavor').value,
+		product_shape  : document.getElementById('edit-product_shape').value,
+		product_icing  : document.getElementById('edit-product_icing').value,
+		product_layer  : document.getElementById('edit-product_layer').value,
+		product_tier  : document.getElementById('edit-product_tier').value,
+		product_description  : document.getElementById('edit-product_description').value
+	}
+        axios.post('updateshopproduct', datas)
+        .then((res) => {
+            alert('Product update successfully.')
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+        .finally(() => {
+            window.location.reload()
+        })
     }
     const handleproductedit = (e) => {
         e.preventDefault()
@@ -477,68 +502,68 @@ const Products = () => {
             <div class="mb-2 row">
                 <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Name</label>
                 <div class="col-sm-7">
-                <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="staticEmail" defaultValue={modaldata.product_name} onChange={(e) => {handleproductedit(e)}}/>
+                <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="edit-product_name" defaultValue={modaldata.product_name}/>
                 </div>
             </div>
             <div class="mb-2 row">
                 <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Category</label>
                 <div class="col-sm-7">
-                <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="staticEmail" defaultValue={modaldata.product_category} onChange={(e) => {handleproductedit(e)}}/>
+                <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="edit-product_category" defaultValue={modaldata.product_category} />
                 </div>
             </div>
             
             <div class="mb-2 row">
                 <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">sub category</label>
                 <div class="col-sm-7">
-                <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="staticEmail" defaultValue={modaldata.product_subcategory} onChange={(e) => {handleproductedit(e)}}/>
+                <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="edit-product_subcategory" defaultValue={modaldata.product_subcategory} />
                 </div>
             </div>
             <div class="mb-2 row">
                 <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Size</label>
                 <div class="col-sm-7">
-                <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="staticEmail" defaultValue={modaldata.product_size} onChange={(e) => {handleproductedit(e)}}/>
+                <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="edit-product_size" defaultValue={modaldata.product_size}/>
                 </div>
             </div>
             <div class="mb-2 row">
                 <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Shape</label>
                 <div class="col-sm-7">
-                <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="staticEmail" defaultValue={modaldata.product_shape} onChange={(e) => {handleproductedit(e)}}/>
+                <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="edit-product_shape" defaultValue={modaldata.product_shape}/>
                 </div>
             </div>
             <div class="mb-2 row">
                 <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Flavor</label>
                 <div class="col-sm-7">
-                <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="staticEmail" defaultValue={modaldata.product_flavor} onChange={(e) => {handleproductedit(e)}}/>
+                <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="edit-product_flavor" defaultValue={modaldata.product_flavor} />
                 </div>
             </div>
             <div class="mb-2 row">
                 <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Icing</label>
                 <div class="col-sm-7">
-                <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="staticEmail" defaultValue={modaldata.product_icing == "" ? "None" : modaldata.product_icing} onChange={(e) => {handleproductedit(e)}}/>
+                <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="edit-product_icing" defaultValue={modaldata.product_icing == "" ? "None" : modaldata.product_icing} />
                 </div>
             </div>
             <div class="mb-2 row">
                 <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Layer</label>
                 <div class="col-sm-7">
-                <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="staticEmail" defaultValue={modaldata.product_layer == "" ? "None" : modaldata.product_layer} onChange={(e) => {handleproductedit(e)}}/>
+                <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="edit-product_layer" defaultValue={modaldata.product_layer == "" ? "None" : modaldata.product_layer}/>
                 </div>
             </div>
             <div class="mb-2 row">
                 <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Tier</label>
                 <div class="col-sm-7">
-                <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="staticEmail" defaultValue={modaldata.product_tier == "" ? "None" : modaldata.product_tier} onChange={(e) => {handleproductedit(e)}}/>
+                <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="edit-product_tier" defaultValue={modaldata.product_tier == "" ? "None" : modaldata.product_tier}/>
                 </div>
             </div>
             <div class="mb-2 row">
                 <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Description</label>
                 <div class="col-sm-7">
-                <input type="text-area" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="staticEmail" defaultValue={modaldata.product_description == "" ? "None" : modaldata.product_description} onChange={(e) => {handleproductedit(e)}}/>
+                <input type="text-area" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="edit-product_description" defaultValue={modaldata.product_description == "" ? "None" : modaldata.product_description} />
                 </div>
             </div>
             <div class="mb-2 row">
                 <label for="staticEmail" class="col-sm-5 col-form-label fw-bold">Price</label>
                 <div class="col-sm-7">
-                <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="staticEmail" defaultValue={modaldata.product_price} onChange={(e) => {handleproductedit(e)}}/>
+                <input type="text" readOnly={!productedit} class={productedit ? "form-control" : "form-control-plaintext"} id="edit-product_price" defaultValue={modaldata.product_price}/>
                 </div>
             </div>
             </Modal.Body>
@@ -578,17 +603,7 @@ const Products = () => {
                         <label for="staticEmail" class="col-sm-12 col-md-4 col-lg-3 col-xl-2 col-form-label fw-bold">Select By Category</label>
                         <div class="col-sm-12 col-md-8 col-lg-5 col-xl-3 mb-2">
                             <select class="form-select" id="product_category" aria-label=".form-select-sm example" onChange={(e) => {setDisplaycategory(e.target.value); if(e.target.value !== "Events") setsubcategory("DEFAULT")}}>
-                                <option value="DEFAULT">ALL</option>
-                                <option value="Events">Events</option>
-                                <option value="Simple">Simple</option>
-                                <option value="Cupcake">Cupcake</option>
-                            </select>
-                        </div>
-                        { displaycategory == "Events" ? 
-                        <>
-                        <div class="col-sm-12 col-md-8 col-lg-5 col-xl-3">
-                            <select class="form-select" id="product_subcategory" aria-label=".form-select-sm example" onChange={(e) => setsubcategory(e.target.value)}>
-                                <option value="DEFAULT">ALL</option>
+                            	<option value="DEFAULT">ALL</option>
                                 <option value="Anniversary">Anniversary</option>
                                 <option value="Birthday">Birthday</option>
                                 <option value="Character">Character</option>
@@ -596,13 +611,16 @@ const Products = () => {
                                 <option value="Debut">Debut</option>
                                 <option value="Gender">Gender</option>
                                 <option value="Wedding">Wedding</option>
+			    </select>
+                        </div>
+                        <div class="col-sm-12 col-md-8 col-lg-5 col-xl-3">
+                            <select class="form-select" id="product_subcategory" aria-label=".form-select-sm example" onChange={(e) => setsubcategory(e.target.value)}>
+                                <option value="DEFAULT">ALL</option>
+                                <option value="Bento">Bento</option>
+                                <option value="Cakes">Cake</option>
+                                <option value="Number">Number</option>
                             </select>
                         </div>
-                        </>
-                        
-                        : 
-                        <></>    
-                    }
                     </div>
                     <Table striped bordered hover responsive >
                         <thead className="table-primary">
