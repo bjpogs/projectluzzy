@@ -88,8 +88,11 @@ const Cart = () => {
         setEdit(!edit)
     }
 
-    const checkout = () => {
-        if (!reserve) data.order_date = document.getElementById('order_date').value
+    const checkout = () => { 
+        data.map(meow => {
+            meow.order_date = document.getElementById('order_date').value || ""        
+        })
+        console.log('data after map : ', data)
         axios.post('placeorder', data) 
         .then((res) => {
             alert("Order placed successfully! We will contact you once your order is finish.")
